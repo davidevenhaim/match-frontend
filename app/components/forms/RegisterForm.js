@@ -1,13 +1,13 @@
 import React from "react";
 import * as Yup from "yup";
 
-import Form from "../../components/forms/Form";
-import FormField from "../../components/forms/FormField";
-import FormSportPicker from "../../components/forms/FormSportPicker";
-import ProfileImagePicker from "../../components/forms/ProfileImagePicker";
-import SecuredFormField from "../../components/forms/SecuredFormField";
-import SportsPickerItem from "../../components/SportsPickerItem";
-import SubmitButton from "../../components/forms/SubmitButton";
+import Form from "./Form";
+import FormField from "./FormField";
+import FormSportPicker from "./FormSportsPicker";
+import ProfileImagePicker from "./ImagePicker";
+import SecuredFormField from "./SecuredFormField";
+import SportsPickerItem from "../SportsPickerItem";
+import SubmitButton from "./SubmitButton";
 
 const SPORTS_CATERGORIES = [
   "tennis",
@@ -55,15 +55,6 @@ const RegisterForm = () => {
         keyboardType="email-address"
         textContentType="emailAddress"
       />
-      <FormSportPicker
-        name="favoriteSport"
-        items={SPORTS_CATERGORIES}
-        iconName="form-select"
-        inputName="categories"
-        numColumns={3}
-        placeholder="Categories"
-        PickerItemComponent={SportsPickerItem}
-      />
       <FormField
         iconName="account"
         width="50%"
@@ -74,7 +65,16 @@ const RegisterForm = () => {
         autoCorrect={false}
       />
       <SecuredFormField name="password" />
-      <SubmitButton text="Register" style={styles.submitButton} />
+      <FormSportPicker
+        name="favoriteSport"
+        items={SPORTS_CATERGORIES}
+        iconName="form-select"
+        inputName="categories"
+        numColumns={3}
+        placeholder="Categories"
+        PickerItemComponent={SportsPickerItem}
+      />
+      <SubmitButton text="Register" />
     </Form>
   );
 };

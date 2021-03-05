@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 
 import ImageInput from "../ImageInput";
 
-const ProfileImagePicker = ({ name }) => {
+const ImagePicker = ({ name }) => {
   const { handleChange, setFieldTouched, values } = useFormikContext();
 
   return (
@@ -15,4 +15,4 @@ const ProfileImagePicker = ({ name }) => {
   );
 };
 
-export default ProfileImagePicker;
+export default ImagePicker;

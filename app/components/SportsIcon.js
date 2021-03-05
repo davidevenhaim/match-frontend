@@ -5,7 +5,11 @@ import defaultStyles from "../config/styles";
 
 import Icon from "./layouts/Icon";
 
-const SportsIcon = ({ iconSize = 55, backgroundSize = 80, sport }) => {
+const SportsIcon = ({
+  backgroundSize = 80,
+  iconSize = backgroundSize / 1.5,
+  sport,
+}) => {
   return (
     <Icon
       name={defaultStyles.sportsIcons[sport]}

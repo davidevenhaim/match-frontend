@@ -1,9 +1,12 @@
 import React from "react";
-import {} from "react-native";
+import { useMutation } from "@apollo/client";
+
+import { NEW_EVENT } from "../../../gql/mutation";
+import CreateEventForm from "../../../components/forms/CreateEventForm";
 import Text from "../../../components/layouts/Text";
 
 const CreateEvent = () => {
-  return <Text>Create Event form</Text>;
+  return <CreateEventForm />;
 };
 
 export default CreateEvent;

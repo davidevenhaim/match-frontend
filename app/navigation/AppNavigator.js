@@ -21,7 +21,7 @@ const AppNavigator = () => (
             name="crosshairs-gps"
             size={30}
             color={color}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 2 }}
           />
         ),
         tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
@@ -46,7 +46,7 @@ const AppNavigator = () => (
             name="circle"
             size={35}
             color={color}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 2 }}
           />
         ),
         tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,

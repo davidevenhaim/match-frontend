@@ -13,6 +13,7 @@ const AppTextInput = ({
   setIsHidden,
   style,
   width,
+  touched,
   ...otherProps
 }) => {
   let [fontsLoaded] = useFonts({
@@ -21,7 +22,17 @@ const AppTextInput = ({
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <View style={[styles.frame, { width: width || "90%" }]}>
+    <View
+      style={[
+        styles.frame,
+        { width: width || "90%" },
+        touched
+          ? {
+              borderWidth: 1,
+            }
+          : null,
+      ]}
+    >
       {iconName && (
         <MaterialCommunityIcons
           name={iconName}
@@ -59,6 +70,8 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 10,
     padding: 15,
+    borderColor: colors.mediumGrey,
+    borderWidth: 0.2,
   },
   leftIcon: {
     marginRight: 15,

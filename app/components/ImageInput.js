@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
     width: 90,
+    borderWidth: 0.2,
+    borderColor: colors.mediumGrey,
   },
   icon: {
     backgroundColor: colors.lightGrey,

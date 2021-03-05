@@ -76,6 +76,7 @@ const GET_EVENT = gql`
       players {
         id
         username
+        avatar
       }
       curPlayersAmount
       maxPlayersAmount
@@ -124,6 +125,7 @@ const GET_EVENTS = gql`
         players {
           id
           username
+          avatar
         }
         private
         maxPlayersAmount

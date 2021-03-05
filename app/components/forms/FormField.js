@@ -23,6 +23,7 @@ const AppFormField = ({
         onChangeText={handleChange(inputName)}
         isProtected={isProtected}
         setIsHidden={setIsHidden}
+        touched={touched[inputName]}
         {...otherProps}
       />
       <ErrorMessage visible={touched[inputName]} error={errors[inputName]} />

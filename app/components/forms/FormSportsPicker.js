@@ -5,10 +5,19 @@ import ErrorMessage from "./ErrorMessage";
 import SportsPicker from "../SportsPicker";
 
 const AppFormPicker = ({ name, items, numColumns, PickerItemComponent }) => {
-  const { errors, setFieldValue, touched } = useFormikContext();
+  const { errors, setFieldValue, touched, values } = useFormikContext();
+
+  let sports = [...values[name]];
 
   const handleAdd = (item) => {
-    setFieldValue(name, item);
+    setFieldValue(name, [...sports, item]);
+  };
+
+  const handleRemove = (item) => {
+    sports = sports.filter((curItem) => {
+      return curItem !== item;
+    });
+    setFieldValue(name, [...sports]);
   };
 
   return (
@@ -19,7 +28,7 @@ const AppFormPicker = ({ name, items, numColumns, PickerItemComponent }) => {
         onSelectItem={handleAdd}
         numColumns={numColumns}
         PickerItemComponent={PickerItemComponent}
-        selectOneSport={true}
+        onRemoveItem={handleRemove}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </>
