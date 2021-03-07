@@ -7,15 +7,20 @@ import ExploreNearbyScreen from "../screens/registering/ExploreNearbyScreen";
 import OnboardingScreen from "../screens/registering/OnboardingScreen";
 import RegisterFormScreen from "../screens/registering/RegisterFormScreen";
 
+import routes from "./routes";
+
 const Stack = createStackNavigator();
 
 const AuthNavigator = () => (
   <Stack.Navigator headerMode="none">
-    <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-    <Stack.Screen name="SignUp" component={AppRegisterScreen} />
-    <Stack.Screen name="SignIn" component={AppLoginScreen} />
-    <Stack.Screen name="Register" component={RegisterFormScreen} />
-    <Stack.Screen name="ExploreNearbyScreen" component={ExploreNearbyScreen} />
+    <Stack.Screen name={routes.ONBOARDING} component={OnboardingScreen} />
+    <Stack.Screen name={routes.SIGN_UP} component={AppRegisterScreen} />
+    <Stack.Screen name={routes.SIGN_IN} component={AppLoginScreen} />
+    <Stack.Screen name={routes.REGISTER} component={RegisterFormScreen} />
+    <Stack.Screen
+      name={routes.EXPLORE_NEARBY}
+      component={ExploreNearbyScreen}
+    />
   </Stack.Navigator>
 );
 export default AuthNavigator;

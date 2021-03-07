@@ -8,15 +8,17 @@ import ExploreNavigator from "./stacks/ExploreNavigator";
 import NewEventButton from "./stacks/NewEventButton";
 import ProfileNavigator from "./stacks/ProfileNavigator";
 
+import routes from "./routes";
+
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="Explore"
+      name={routes.EXPLORE}
       component={ExploreNavigator}
       options={{
-        tabBarIcon: ({ size, color }) => (
+        tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons
             name="crosshairs-gps"
             size={30}
@@ -28,20 +30,22 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="CreateEvent"
+      name={routes.CREATE_EVENT}
       component={CreateEvent}
       options={({ navigation }) => ({
         tabBarButton: () => (
-          <NewEventButton onPress={() => navigation.navigate("CreateEvent")} />
+          <NewEventButton
+            onPress={() => navigation.navigate(routes.CREATE_EVENT)}
+          />
         ),
         tabBarLabel: () => <Text></Text>,
       })}
     />
     <Tab.Screen
-      name="Account"
+      name={routes.ACCOUNT}
       component={ProfileNavigator}
       options={{
-        tabBarIcon: ({ size, color }) => (
+        tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons
             name="circle"
             size={35}

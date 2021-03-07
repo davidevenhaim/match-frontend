@@ -1,0 +1,16 @@
+export default Object.freeze({
+  ACCOUNT: "Account",
+  ATHLETE_FEED: "AthleteFeed",
+  ATHLETE_PROFILE: "AthleteProfile",
+  CREATE_EVENT: "CreateEvent",
+  EVENTS_FEED: "EventsFeed",
+  EXPLORE: "Explore",
+  EXPLORE_NEARBY: "ExploreNearbyScreen",
+  EVENT_SCREEN: "EventScreen",
+  MY_PROFILE: "MyProfile",
+  MY_SETTINGS: "MySettings",
+  ONBOARDING: "Onboarding",
+  REGISTER: "Register",
+  SIGN_IN: "SignIn",
+  SIGN_UP: "SignUp",
+});
