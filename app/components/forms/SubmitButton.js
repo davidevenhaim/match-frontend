@@ -6,6 +6,7 @@ import AppButton from "../layouts/Button";
 
 const SubmitButton = ({ text, style }) => {
   const { handleSubmit } = useFormikContext();
+
   return (
     <AppButton
       text={text}

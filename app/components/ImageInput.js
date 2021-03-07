@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-const ImageInput = ({ imageUri, handleChange }) => {
+const ImageInput = ({ imageUri, handleChange, iconName = "face" }) => {
   useEffect(() => {
     askImagePermission();
   }, []);
@@ -53,7 +53,7 @@ const ImageInput = ({ imageUri, handleChange }) => {
       <View style={styles.container}>
         {imageUri === "" && (
           <MaterialCommunityIcons
-            name="face"
+            name={iconName}
             size={45}
             color={colors.mediumGrey}
           />

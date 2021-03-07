@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: colors.selected,
+    borderWidth: 0.5,
+    borderColor: colors.secondary,
   },
 });
 

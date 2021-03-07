@@ -6,7 +6,7 @@ import Text from "./Text";
 
 const IconWithText = ({
   iconName,
-  iconSize,
+  iconSize = 40,
   text,
   textSize = iconSize / 2,
 }) => {

@@ -12,6 +12,7 @@ const EventFeed = ({ events }) => {
       data={events}
       keyExtractor={({ id }) => id.toString()}
       style={styles.container}
+      numColumns={2}
       renderItem={({ item }) => <EventInFeed event={item} />}
     />
   );
@@ -19,9 +20,7 @@ const EventFeed = ({ events }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     display: "flex",
-    flexDirection: "column",
   },
 });
 

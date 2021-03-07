@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 
 import ImageInput from "../ImageInput";
 
-const ImagePicker = ({ name }) => {
+const ImagePicker = ({ name, iconName }) => {
   const { handleChange, setFieldTouched, values } = useFormikContext();
 
   return (
@@ -11,6 +11,7 @@ const ImagePicker = ({ name }) => {
       imageUri={values[name]}
       handleChange={handleChange(name)}
       onBlur={() => setFieldTouched(name)}
+      iconName={iconName}
     />
   );
 };

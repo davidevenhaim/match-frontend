@@ -3,10 +3,21 @@ import { TouchableOpacity } from "react-native";
 
 import Icon from "./Icon";
 
-const TouchableIcon = ({ onPress, style, name }) => {
+const TouchableIcon = ({
+  onPress,
+  style,
+  name,
+  backgroundSize,
+  ...otherProps
+}) => {
   return (
     <TouchableOpacity activeOpacity={0.4} onPress={onPress}>
-      <Icon style={style} name={name} />
+      <Icon
+        style={style}
+        name={name}
+        backgroundSize={backgroundSize}
+        {...otherProps}
+      />
     </TouchableOpacity>
   );
 };

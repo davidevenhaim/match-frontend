@@ -5,12 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 
 import SportsIcon from "../SportsIcon";
 import Text from "../layouts/Text";
-import colors from "../../config/colors";
 import IconWithText from "../layouts/IconWithText";
 
 const Event = ({ event }) => {
   const navigation = useNavigation();
-
   const date = new Date(event.eventDate);
   const iconSize = 25;
   const eventSport = event.sport.toLowerCase();

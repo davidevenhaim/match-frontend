@@ -4,9 +4,20 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyles from "../../config/styles";
 
-const Icon = ({ style, name, size = 55 }) => {
+const Icon = ({
+  style,
+  name,
+  backgroundSize = 80,
+  size = backgroundSize / 1.5,
+}) => {
   return (
-    <View style={[styles.container, style]}>
+    <View
+      style={[
+        styles.container,
+        { height: backgroundSize, width: backgroundSize },
+        style,
+      ]}
+    >
       <MaterialCommunityIcons name={name} size={size} color="white" />
     </View>
   );

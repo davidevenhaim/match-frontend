@@ -14,12 +14,14 @@ const AppFormField = ({
 }) => {
   const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
 
+  const onBlur = () => setFieldTouched(inputName);
+
   return (
     <>
       <TextInput
         iconName={iconName}
         iconColor={iconColor}
-        onBlur={() => setFieldTouched(inputName)}
+        onBlur={onBlur}
         onChangeText={handleChange(inputName)}
         isProtected={isProtected}
         setIsHidden={setIsHidden}

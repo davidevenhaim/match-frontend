@@ -41,7 +41,6 @@ const RegisterForm = () => {
       }}
       onSubmit={(values) => {
         console.log(values);
-        console.log("values");
       }}
       validationSchema={validationSchema}
     >

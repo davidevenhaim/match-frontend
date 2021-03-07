@@ -61,7 +61,11 @@ const SportsPicker = ({
             })}
         </ScrollView>
       </View>
-      <Modal visible={modalVisible} animationType="slide">
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => setmodalVisible(false)}
+      >
         <Screen>
           <MaterialCommunityIcons
             name="arrow-down-bold-circle-outline"
