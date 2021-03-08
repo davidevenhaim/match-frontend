@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome } from "@expo/vector-icons";
 
 import Text from "../components/layouts/Text";
 import CreateEvent from "./stacks/CreateEvent";
@@ -19,8 +19,8 @@ const AppNavigator = () => (
       component={ExploreNavigator}
       options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons
-            name="crosshairs-gps"
+          <FontAwesome
+            name="search"
             size={30}
             color={color}
             style={{ marginTop: 2 }}

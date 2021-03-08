@@ -9,16 +9,18 @@ import { format } from "date-fns";
 
 import colors from "../../config/colors";
 import ShowEventPlayers from "../athletes/ShowEventPlayers";
-import { Avatar } from "react-native-elements";
+import NavigateToEvent from "../NavigateToEvent";
+import { ScrollView } from "react-native-gesture-handler";
 
 const EventPage = () => {
   const route = useRoute();
-
+  console.write;
   const event = route.params.event;
   const sport = event.sport.toLowerCase();
   const date = new Date(event.eventDate);
   const iconSize = 25;
 
+  console.log(event.captain);
   return (
     <View style={[styles.container]}>
       <View style={styles.headerContainer}>
@@ -35,30 +37,24 @@ const EventPage = () => {
           { borderColor: colors.sportColors[sport] },
         ]}
       >
-        <View style={styles.detailsElement}>
-          <IconWithText
-            iconName="account-group"
-            iconSize={iconSize}
-            text={`${event.curPlayersAmount}/${event.maxPlayersAmount}`}
-          />
-        </View>
-        <View style={styles.detailsElement}>
-          <SportsIcon sport={sport} backgroundSize={35} />
-          <Text>{sport}</Text>
-        </View>
-        <View style={styles.detailsElement}></View>
-        <View style={styles.detailsElement}>
-          <IconWithText
-            iconName="calendar"
-            iconSize={iconSize}
-            text={format(date, "MMM do")}
-          />
-        </View>
+        <IconWithText
+          iconName="account-group"
+          iconSize={iconSize}
+          text={`${event.curPlayersAmount}/${event.maxPlayersAmount}`}
+        />
+        <SportsIcon sport={sport} backgroundSize={iconSize + 20} />
+        <IconWithText
+          iconName="calendar"
+          iconSize={iconSize}
+          text={format(date, "MMM do")}
+        />
       </View>
-      <Text>Players: </Text>
       <View style={styles.playersContainer}>
-        <ShowEventPlayers players={event.players} />
+        <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
+          <ShowEventPlayers players={event.players} />
+        </ScrollView>
       </View>
+      <NavigateToEvent />
     </View>
   );
 };
@@ -68,19 +64,15 @@ const styles = StyleSheet.create({
   detailsContainer: {
     alignSelf: "center",
     alignItems: "center",
-    borderWidth: 1,
+    borderWidth: 1.5,
     backgroundColor: colors.white,
     borderRadius: 10,
     flexDirection: "row",
     height: 100,
+    justifyContent: "space-evenly",
     shadowOpacity: 0.5,
     shadowRadius: 7,
     width: "90%",
-  },
-  detailsElement: {
-    flexDirection: "column",
-    alignItems: "center",
-    marginLeft: 20,
   },
   eventName: {
     fontSize: 28,
@@ -100,10 +92,16 @@ const styles = StyleSheet.create({
   },
   playersContainer: {
     alignSelf: "center",
-    alignItems: "center",
+    marginTop: 50,
+    marginBottom: 10,
     width: "90%",
     height: 200,
     borderWidth: 1,
+  },
+  scrollContainer: {
+    flexDirection: "column",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
   },
 });
 

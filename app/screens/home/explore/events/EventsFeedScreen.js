@@ -1,18 +1,20 @@
 import React from "react";
-import { ActivityIndicator } from "react-native";
 import { useQuery } from "@apollo/client";
 
 import { GET_EVENTS } from "../../../../gql/query";
 import Text from "../../../../components/layouts/Text";
-import colors from "../../../../config/colors";
 import EventFeed from "../../../../components/events/EventFeed";
+import SearchingIndicator from "../../../../components/layouts/SearchingIndicator";
+import ErrorIndicator from "../../../../components/layouts/ErrorIndicator";
 
 const EventFeedScreen = () => {
   const { loading, error, data } = useQuery(GET_EVENTS);
 
-  if (loading) return <ActivityIndicator color={colors.primary} size="large" />;
+  if (loading) return <SearchingIndicator visible={true} />;
+  // if (loading) return <Text>LOading</Text>;
 
-  if (error) return <Text style={{ color: "red" }}>Error!!</Text>;
+  if (error) return <ErrorIndicator visible={true} />;
+  // if (error) return <Text>Error!</Text>;
 
   return <EventFeed events={data.Events.events} />;
 };

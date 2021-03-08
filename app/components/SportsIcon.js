@@ -9,15 +9,18 @@ const SportsIcon = ({
   backgroundSize = 80,
   iconSize = backgroundSize / 1.5,
   sport,
+  style,
 }) => {
   return (
     <Icon
       name={defaultStyles.sportsIcons[sport]}
-      style={{
-        backgroundColor: colors.sportColors[sport],
-        height: backgroundSize,
-        width: backgroundSize,
-      }}
+      style={[
+        {
+          backgroundColor: colors.sportColors[sport],
+          height: backgroundSize,
+          width: backgroundSize,
+        },
+      ]}
       size={iconSize}
     />
   );

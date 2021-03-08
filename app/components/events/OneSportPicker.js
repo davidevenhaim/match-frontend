@@ -27,7 +27,7 @@ const OneSportPicker = ({ name, userSports }) => {
         {userSports.map((sport) => (
           <SportsPickerItem
             item={sport}
-            id={sport.toString()}
+            key={sport.toString()}
             onPress={() => onPress(sport)}
             iconSize={40}
             backgroundSize={60}
