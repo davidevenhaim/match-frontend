@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SocialIcon } from "react-native-elements";
+import { useMutation } from "@apollo/client";
 
+import { SIGN_IN } from "../../api/gql/mutation";
 import colors from "../../config/colors";
 import Logo from "../../components/layouts/Logo";
 import LogInForm from "../../components/forms/LogInForm";
-// import Screen from "../../components/Screen";
 import Text from "../../components/layouts/Text";
 
 const AppLogin = () => {
+  const [signIn, { loading, error }] = useMutation(SIGN_IN, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+  });
   return (
     <View style={styles.container}>
       <Logo />
@@ -27,7 +33,7 @@ const AppLogin = () => {
         />
       </View>
       <Text style={styles.middleText}>or be classic:</Text>
-      <LogInForm />
+      <LogInForm onSubmit={signIn} />
       <View style={styles.continueBtn}></View>
     </View>
   );

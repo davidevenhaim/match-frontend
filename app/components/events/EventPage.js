@@ -14,7 +14,6 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const EventPage = () => {
   const route = useRoute();
-  console.write;
   const event = route.params.event;
   const sport = event.sport.toLowerCase();
   const date = new Date(event.eventDate);
@@ -60,7 +59,6 @@ const EventPage = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
   detailsContainer: {
     alignSelf: "center",
     alignItems: "center",

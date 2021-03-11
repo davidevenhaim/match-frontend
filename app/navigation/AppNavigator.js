@@ -13,7 +13,7 @@ import routes from "./routes";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator barStyle={{ backgroundColor: "yellow" }}>
     <Tab.Screen
       name={routes.EXPLORE}
       component={ExploreNavigator}

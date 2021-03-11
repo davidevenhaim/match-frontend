@@ -15,7 +15,9 @@ const IconWithText = ({
 }) => {
   return (
     <View style={[styles.container, style]}>
-      <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />
+      <View>
+        <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />
+      </View>
       <Text style={{ fontSize: textSize }}>{text}</Text>
     </View>
   );

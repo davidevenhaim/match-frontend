@@ -9,14 +9,7 @@ import SecuredFormField from "./SecuredFormField";
 import SportsPickerItem from "../SportsPickerItem";
 import SubmitButton from "./SubmitButton";
 
-const SPORTS_CATERGORIES = [
-  "tennis",
-  "soccer",
-  "basketball",
-  "volleyball",
-  "bike",
-  "running",
-];
+import sports from "../../config/sports";
 
 const validationSchema = Yup.object().shape({
   avatar: Yup.mixed(),
@@ -29,7 +22,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).matches().label("Password"),
 });
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit }) => {
   return (
     <Form
       initialValues={{
@@ -41,6 +34,18 @@ const RegisterForm = () => {
       }}
       onSubmit={(values) => {
         console.log(values);
+        try {
+          onSubmit({
+            variables: {
+              email: values.email,
+              username: values.name,
+              favoriteSport: values.favoriteSport[0].toUpperCase(),
+              password: values.password,
+            },
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }}
       validationSchema={validationSchema}
     >
@@ -66,7 +71,7 @@ const RegisterForm = () => {
       <SecuredFormField name="password" />
       <FormSportPicker
         name="favoriteSport"
-        items={SPORTS_CATERGORIES}
+        items={sports.SPORTS_CATERGORIES}
         iconName="form-select"
         inputName="categories"
         numColumns={3}

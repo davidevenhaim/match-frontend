@@ -9,17 +9,20 @@ let localhost;
 if (Constants.manifest.debuggerHost) {
   localhost = Constants.manifest.debuggerHost.split(":").shift();
 }
-
+// API_URI: `http://localhost:4000/api`,
 // set environment variables
 const ENV = {
   dev: {
-    API_URI: `http://localhost:4000/api`,
+    API_URI: "http://localhost:4000/api",
   },
   prod: {
     // update the API_URI value with your publicly deployed API address
-    API_URI: "https://<PUBLIC-API-URI>",
+    API_URI:
+      "mongodb+srv://ZiTex:fvtlowcsufh@roll.iwjl7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   },
 };
+
+// Api KEY = c3c74e6b-3d09-45df-9816-3b27998725cb
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {
   // __DEV__ is set to true when react-native is running locally in dev mode

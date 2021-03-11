@@ -1,8 +1,8 @@
 import React from "react";
+import { StyleSheet, View } from "react-native";
 import LottieView from "lottie-react-native";
-import { View, StyleSheet } from "react-native";
 
-const ErrorIndicator = ({ visible = true }) => {
+const ActivityIndicator = ({ visible = true }) => {
   if (!visible) return null;
 
   return (
@@ -10,7 +10,7 @@ const ErrorIndicator = ({ visible = true }) => {
       <LottieView
         autoPlay
         loop
-        source={require("../../assets/animations/error.json")}
+        source={require("../../assets/animations/loading.json")}
         style={styles.lottie}
       />
     </View>
@@ -26,5 +26,4 @@ const styles = StyleSheet.create({
     width: 250,
   },
 });
-
-export default ErrorIndicator;
+export default ActivityIndicator;

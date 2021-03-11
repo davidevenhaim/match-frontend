@@ -41,11 +41,21 @@ const NEW_EVENT = gql`
     $sport: favoriteSportSelection!
     $maxPlayersAmount: Int!
     $eventDate: Date!
+    $private: Boolean
+    $location: String!
+    $avatar: String
+    $description: String
+    $level: String
   ) {
     newEvent(
       sport: $sport
-      eventDate: $eventDate
       maxPlayersAmount: $maxPlayersAmount
+      eventDate: $eventDate
+      private: $private
+      location: $location
+      avatar: $avatar
+      description: $description
+      level: $level
     ) {
       alert
       succeed

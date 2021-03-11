@@ -1,26 +1,63 @@
-import React from "react";
-import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
 
-import EventInFeed from "./EventInFeed";
+import ShowEventFeed from "./ShowEventFeed";
+import EventFeedHeader from "./EventFeedHeader";
 
-const EventFeed = ({ events }) => {
-  const navigation = useNavigation();
+const EventFeed = () => {
+  const [sportFilters, setSportFilters] = useState([]);
+  const [textFilters, setTextFilters] = useState("");
+  const [isHeaderShown, setIsHeaderShown] = useState(true);
+  const [eventsArr, setEventsArr] = useState([]);
+
+  const isSelected = (sport) => {
+    return sportFilters.indexOf(sport) >= 0;
+  };
+
+  const setSportFilter = (sport) => {
+    if (isSelected(sport)) {
+      const newSports = sportFilters.filter((sportArr) => sportArr !== sport);
+      // need to remove this sport from feed array.
+      setSportFilters([...newSports]);
+    } else {
+      setSportFilters([...sportFilters, sport]);
+      // need to add this sport to feed array
+    }
+  };
+
+  const setEvents = (events) => {
+    console.log("setEvents");
+    setEventsArr([...events]);
+  };
 
   return (
-    <FlatList
-      data={events}
-      keyExtractor={({ id }) => id.toString()}
-      style={styles.container}
-      numColumns={2}
-      renderItem={({ item }) => <EventInFeed event={item} />}
-    />
+    <View>
+      {isHeaderShown && (
+        <EventFeedHeader
+          setSportFilters={setSportFilter}
+          setTextFilters={setTextFilters}
+          isSelected={isSelected}
+        />
+      )}
+      <ShowEventFeed
+        sportFilters={sportFilters}
+        textFilters={textFilters}
+        events={eventsArr}
+        setEvents={setEvents}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+  },
+  logo: {
+    alignSelf: "flex-start",
+    height: 80,
+    width: 60,
+    marginTop: 20,
   },
 });
 

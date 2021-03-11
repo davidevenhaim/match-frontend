@@ -20,6 +20,7 @@ const SportsIcon = ({
           height: backgroundSize,
           width: backgroundSize,
         },
+        style,
       ]}
       size={iconSize}
     />
