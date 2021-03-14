@@ -2,19 +2,33 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SocialIcon } from "react-native-elements";
 import { useMutation } from "@apollo/client";
-
+import { useNavigation } from "@react-navigation/core";
 import { SIGN_IN } from "../../api/gql/mutation";
-import colors from "../../config/colors";
+import * as SecureStore from "expo-secure-store";
+
 import Logo from "../../components/layouts/Logo";
 import LogInForm from "../../components/forms/LogInForm";
+import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
 
-const AppLogin = () => {
-  const [signIn, { loading, error }] = useMutation(SIGN_IN, {
+import colors from "../../config/colors";
+
+const AppLogin = ({ navigation }) => {
+  const [error, setError] = useState({ message: "", visible: false });
+
+  const [signIn, { loading }] = useMutation(SIGN_IN, {
     onCompleted: (data) => {
-      console.log(data);
+      console.log(data.signIn);
+      storeToken(data.signIn);
     },
+    onError: (error) => setError({ message: error.message, visible: true }),
+    // onPress: () => setError({ visible: false }),
   });
+
+  const storeToken = (token) => {
+    SecureStore.setItemAsync("token", token).then(navigation.navigate("app"));
+  };
+
   return (
     <View style={styles.container}>
       <Logo />
@@ -33,8 +47,13 @@ const AppLogin = () => {
         />
       </View>
       <Text style={styles.middleText}>or be classic:</Text>
-      <LogInForm onSubmit={signIn} />
-      <View style={styles.continueBtn}></View>
+      <SubmitAnimation loading={loading} error={error}>
+        <LogInForm
+          action={signIn}
+          actionLoading={loading}
+          actionError={error}
+        />
+      </SubmitAnimation>
     </View>
   );
 };
@@ -59,6 +78,10 @@ const styles = StyleSheet.create({
   },
   facebook: {
     marginRight: 60,
+  },
+  loadingIndicator: {
+    position: "absolute",
+    alignSelf: "center",
   },
   middleText: {
     textAlign: "center",

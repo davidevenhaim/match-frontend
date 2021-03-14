@@ -12,7 +12,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).matches().label("Password"),
 });
 
-const LogInForm = ({ onSubmit }) => {
+const LogInForm = ({ action }) => {
   return (
     <Form
       validationSchema={validationSchema}
@@ -21,23 +21,22 @@ const LogInForm = ({ onSubmit }) => {
         password: "",
       }}
       onSubmit={(values) => {
-        console.log(values);
-        try {
-          onSubmit({
-            variables: {
-              ...values,
-            },
-          });
-        } catch (error) {}
+        console.log("LogIn Form");
+        action({
+          variables: {
+            ...values,
+          },
+        });
       }}
     >
       <FormField
-        iconName="email"
-        inputName="email"
-        placeholder="Email"
         autoCapitalize="none"
         autoCorrect={false}
+        autoFocus
+        iconName="email"
+        inputName="email"
         keyboardType="email-address"
+        placeholder="Email"
         textContentType="emailAddress"
       />
       <SecuredFormField name="password" />

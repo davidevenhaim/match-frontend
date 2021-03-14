@@ -1,19 +1,35 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { setContext } from "apollo-link-context";
+import * as SecureStore from "expo-secure-store";
 
-import AuthNavigator from "./app/navigation/AuthNavigator";
-import AppNavigator from "./app/navigation/AppNavigator";
+import SwitchNavigator from "./app/navigation/SwitchNavigator";
+import Screen from "./app/components/Screen";
 
 import getEnvVars from "./config";
-import Screen from "./app/components/Screen";
 
 const { API_URI } = getEnvVars();
 const uri = API_URI;
 const cache = new InMemoryCache();
+const httpLink = createHttpLink({ uri });
+
+const authLink = setContext(async (_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      authorization: (await SecureStore.getItemAsync("token")) || "",
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri,
+  link: authLink.concat(httpLink),
   cache,
 });
 
@@ -22,8 +38,7 @@ export default App = () => {
     <ApolloProvider client={client}>
       <Screen>
         <NavigationContainer>
-          {/* <AuthNavigator /> */}
-          <AppNavigator />
+          <SwitchNavigator />
         </NavigationContainer>
       </Screen>
     </ApolloProvider>

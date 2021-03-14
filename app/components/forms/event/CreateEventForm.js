@@ -2,64 +2,69 @@ import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import * as Yup from "yup";
 
+import DatePicker from "../datePicker/DatePicker";
 import Form from "../Form";
 import FormField from "../FormField";
 import ImagePicker from "../ImagePicker";
 import SubmitButton from "../SubmitButton";
+import Slider from "../Slider";
 import OneSportPicker from "./EventSportPicker";
-import DatePicker from "../datePicker/DatePicker";
 
-import sports from "../../../config/sports";
+import events from "../../../config/events";
 
 const today = new Date();
 
 const validationSchema = Yup.object().shape({
   avatar: Yup.mixed().label("Event picture"),
+  // description: Yup.string().label("Event description"),
   eventDate: Yup.date().min(today).required().label("Event date"),
+  level: Yup.string()
+    .required("Event needs his level!")
+    .oneOf(events.EVENT_LEVELS)
+    .label("Athletes level"),
   location: Yup.string().required().label("Location"), // Waze/Maps to:
-  sport: Yup.string().required().label("Event Sport"),
   maxPlayersAmount: Yup.number()
     .required()
     .min(2)
     .max(35)
     .label("Players amount"),
-  private: Yup.boolean().required().label("Is the event private?"),
-  description: Yup.string().label("Event description"),
-  level: Yup.string()
-    .oneOf(["begginer, amatuer, professional, legendery"])
-    .label("What is the athletes level"),
+  // private: Yup.boolean().required().label("Is the event private?"),
+  sport: Yup.string().required().label("Event Sport"),
 });
 
-const CreateEventForm = ({ action, actionError, actionLoading }) => {
+const CreateEventForm = ({ action }) => {
   return (
     <ScrollView style={styles.container}>
       <Form
         initialValues={{
-          description: "",
           avatar: "",
+          // description: "",
           eventDate: today,
-          level: "amatuer",
+          level: "",
           location: "",
           maxPlayersAmount: 1,
-          private: false,
+          // private: false,
           sport: "",
         }}
-        validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
-          // console.log(values);
-          // onSubmit({
-          //   variables: {
-          //     ...values,
-          //     sport: values.sport.toUpperCase(),
-          //     maxPlayersAmount: +values.maxPlayersAmount,
-          //   },
-          // });
+          action({
+            variables: {
+              ...values,
+            },
+          });
         }}
+        validationSchema={validationSchema}
       >
         <ImagePicker name="avatar" iconName="account-group-outline" />
-        <OneSportPicker userSports={sports.SPORTS_CATERGORIES} name="sport" />
+        <OneSportPicker userSports={events.SPORTS_CATERGORIES} name="sport" />
         <DatePicker inputName="eventDate" />
+        <Slider
+          inputName="level"
+          maximumValue={events.EVENT_LEVELS.length - 1} // ( -1 ) because .length starts from 1, slider starts from 0
+          stepDetails={events.EVENT_LEVELS}
+          width="80%"
+        />
         <FormField
           iconName="crosshairs-gps"
           inputName="location"

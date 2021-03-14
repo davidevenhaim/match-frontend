@@ -45,7 +45,7 @@ const NEW_EVENT = gql`
     $location: String!
     $avatar: String
     $description: String
-    $level: String
+    $level: sportLevels
   ) {
     newEvent(
       sport: $sport
@@ -66,7 +66,7 @@ const NEW_EVENT = gql`
         maxPlayersAmount
         sport
         captain {
-          username
+          name
         }
       }
     }
@@ -81,16 +81,18 @@ const SIGN_IN = gql`
 
 const SIGN_UP = gql`
   mutation signUp(
+    $avatar: String!
     $email: String!
-    $username: String!
-    $password: String!
     $favoriteSport: [favoriteSportSelection!]!
+    $password: String!
+    $name: String!
   ) {
     signUp(
+      avatar: $avatar
       email: $email
-      username: $username
-      password: $password
       favoriteSport: $favoriteSport
+      password: $password
+      name: $name
     )
   }
 `;

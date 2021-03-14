@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { NEW_EVENT } from "../../../api/gql/mutation";
 import CreateEventForm from "../../../components/forms/event/CreateEventForm";
+import SubmitAnimation from "../../../components/layouts/SubmitAnimation";
 
 const CreateEvent = () => {
-  const [newEvent, { loading, error }] = useMutation(NEW_EVENT, {
+  const [error, setError] = useState({ message: "", visible: false });
+  const [newEvent, { loading }] = useMutation(NEW_EVENT, {
     onCompleted: (data) => console.log(data),
-    onError: (error) => console.log(error),
+    onError: (error) => setError({ message: error.message, visible: true }),
   });
 
   return (
-    <CreateEventForm
-      action={newEvent}
-      actionLoading={loading}
-      actionError={error}
-    />
+    <SubmitAnimation loading={loading} error={error}>
+      <CreateEventForm action={newEvent} />
+    </SubmitAnimation>
   );
 };
 

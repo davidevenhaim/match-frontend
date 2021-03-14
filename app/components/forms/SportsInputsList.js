@@ -20,7 +20,7 @@ const SportsInputsList = ({ sports = [], onAddSport, onRemoveSport }) => {
             </View>
           );
         })}
-        <View>{/* <SportsPickerItem onPress={onAddSport} /> */}</View>
+        {/* <View><SportsPickerItem onPress={onAddSport} /></View> */}
       </View>
     </ScrollView>
   );

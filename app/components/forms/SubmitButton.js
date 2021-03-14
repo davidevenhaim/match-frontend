@@ -12,7 +12,7 @@ const SubmitButton = ({ text, style }) => {
       text={text}
       onPress={() => {
         handleSubmit();
-        console.log("SubmitEventForm");
+        console.log(" Submit Button ");
       }}
       style={[styles.submit, style]}
     />

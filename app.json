@@ -25,10 +25,6 @@
           "moovit",
           "apple-maps"
         ]
-      },
-      "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
       }
     },
     "android": {

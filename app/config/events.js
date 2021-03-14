@@ -7,4 +7,5 @@ export default {
     "volleyball",
     "running",
   ],
+  EVENT_LEVELS: ["beginner", "amatuer", "professional", "legendery"],
 };

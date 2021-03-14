@@ -5,7 +5,7 @@ import AppLogo from "../layouts/Logo";
 import OneSportPicker from "../OneSportPicker";
 import TextInput from "../forms/TextInput";
 
-import APP_SPORTS from "../../config/sports";
+import APP_SPORTS from "../../config/events";
 import colors from "../../config/colors";
 
 const EventFeedHeader = ({ isSelected, setSearchFilters, setSportFilters }) => {

@@ -9,7 +9,7 @@ import SecuredFormField from "./SecuredFormField";
 import SportsPickerItem from "../SportsPickerItem";
 import SubmitButton from "./SubmitButton";
 
-import sports from "../../config/sports";
+import sports from "../../config/events";
 
 const validationSchema = Yup.object().shape({
   avatar: Yup.mixed(),
@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).matches().label("Password"),
 });
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ action }) => {
   return (
     <Form
       initialValues={{
@@ -33,47 +33,41 @@ const RegisterForm = ({ onSubmit }) => {
         password: "",
       }}
       onSubmit={(values) => {
-        console.log(values);
-        try {
-          onSubmit({
-            variables: {
-              email: values.email,
-              username: values.name,
-              favoriteSport: values.favoriteSport[0].toUpperCase(),
-              password: values.password,
-            },
-          });
-        } catch (error) {
-          console.log(error);
-        }
+        console.log("SignUp Form");
+        action({
+          variables: {
+            ...values,
+          },
+        });
       }}
       validationSchema={validationSchema}
     >
       <ProfileImagePicker name="avatar" />
       <FormField
-        iconName="email"
-        inputName="email"
-        placeholder="Email"
         autoCapitalize="none"
         autoCorrect={false}
+        autoFocus
+        iconName="email"
+        inputName="email"
         keyboardType="email-address"
+        placeholder="Email"
         textContentType="emailAddress"
       />
       <FormField
+        autoCorrect={false}
+        autoCompleteType="name"
         iconName="account"
-        width="50%"
         inputName="name"
         placeholder="Name"
-        autoCompleteType="name"
         textContentType="name"
-        autoCorrect={false}
+        width="50%"
       />
       <SecuredFormField name="password" />
       <FormSportPicker
         name="favoriteSport"
-        items={sports.SPORTS_CATERGORIES}
         iconName="form-select"
         inputName="categories"
+        items={sports.SPORTS_CATERGORIES}
         numColumns={3}
         placeholder="Categories"
         PickerItemComponent={SportsPickerItem}

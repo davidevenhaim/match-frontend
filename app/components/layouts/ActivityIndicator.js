@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import LottieView from "lottie-react-native";
 
-const ActivityIndicator = ({ visible = true }) => {
+const ActivityIndicator = ({ visible = true, style }) => {
   if (!visible) return null;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <LottieView
         autoPlay
         loop
