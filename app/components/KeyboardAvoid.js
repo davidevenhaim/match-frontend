@@ -1,12 +1,12 @@
 import React from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 
-const KeyboardAvoid = ({ children }) => {
+const KeyboardAvoid = ({ style, children }) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
       enabled={false}
+      style={style}
     >
       {children}
     </KeyboardAvoidingView>

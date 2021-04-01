@@ -33,6 +33,7 @@ const RegisterForm = ({ action }) => {
         password: "",
       }}
       onSubmit={(values) => {
+        console.log(values)
         console.log("SignUp Form");
         action({
           variables: {

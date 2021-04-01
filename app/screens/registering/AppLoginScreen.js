@@ -7,11 +7,13 @@ import { SIGN_IN } from "../../api/gql/mutation";
 import * as SecureStore from "expo-secure-store";
 
 import Logo from "../../components/layouts/Logo";
+import KeyboardAvoid from '../../components/KeyboardAvoid';
 import LogInForm from "../../components/forms/LogInForm";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
 
 import colors from "../../config/colors";
+import { KeyboardAvoidingView } from "react-native";
 
 const AppLogin = ({ navigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -30,8 +32,8 @@ const AppLogin = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Logo />
+    <KeyboardAvoid style={styles.container}>
+       <Logo />
       <Text style={styles.title}>Sign In With:</Text>
       <View style={styles.socialIcons}>
         <SocialIcon
@@ -54,7 +56,7 @@ const AppLogin = ({ navigation }) => {
           actionError={error}
         />
       </SubmitAnimation>
-    </View>
+    </KeyboardAvoid>
   );
 };
 
