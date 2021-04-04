@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SocialIcon } from "react-native-elements";
 import { useMutation } from "@apollo/client";
-import { useNavigation } from "@react-navigation/core";
 import { SIGN_IN } from "../../api/gql/mutation";
 import * as SecureStore from "expo-secure-store";
 
@@ -13,22 +12,20 @@ import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
 
 import colors from "../../config/colors";
-import { KeyboardAvoidingView } from "react-native";
+// import { KeyboardAvoidingView } from "react-native";
 
-const AppLogin = ({ navigation }) => {
+const AppLogin = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
 
   const [signIn, { loading }] = useMutation(SIGN_IN, {
     onCompleted: (data) => {
-      console.log(data.signIn);
       storeToken(data.signIn);
     },
     onError: (error) => setError({ message: error.message, visible: true }),
-    // onPress: () => setError({ visible: false }),
   });
 
   const storeToken = (token) => {
-    SecureStore.setItemAsync("token", token).then(navigation.navigate("app"));
+    SecureStore.setItemAsync("token", token).then(mainNavigation.navigate("App"));
   };
 
   return (

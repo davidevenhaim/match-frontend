@@ -6,8 +6,8 @@ import ShowPlayer from "./ShowPlayer";
 const ShowEventPlayers = ({ players }) => {
   return (
     <>
-      {players.map(({ avatar, username, id }) => (
-        <ShowPlayer avatar={avatar} name={username} key={id} id={id} />
+      {players.map(({ avatar, name, id }) => (
+        <ShowPlayer avatar={avatar} name={name} key={id} id={id} />
       ))}
     </>
   );

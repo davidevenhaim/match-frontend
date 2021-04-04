@@ -3,9 +3,9 @@ import { View } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import Button from "../../../components/layouts/Button";
 
-const MySettings = ({ navigation }) => {
+const MySettings = ({ mainNavigation }) => {
   const signOut = () => {
-    SecureStore.deleteItemAsync("token").then(navigation.navigate("Auth"));
+    SecureStore.deleteItemAsync("token").then(mainNavigation.navigate("Auth"));
   };
 
   return (
@@ -13,9 +13,5 @@ const MySettings = ({ navigation }) => {
       <Button text="Sign Out" onPress={signOut} />
     </View>
   );
-
-  Settings.navigationOptions = {
-    title: "My Settings",
-  };
 };
 export default MySettings;

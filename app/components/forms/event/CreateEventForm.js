@@ -32,25 +32,30 @@ const validationSchema = Yup.object().shape({
   sport: Yup.string().required().label("Event Sport"),
 });
 
+const convertValues = values => ({
+  ...values,
+  maxPlayersAmount: +values.maxPlayersAmount,
+  eventDate: JSON.parse(JSON.stringify(values.eventDate)),
+  // reformating eventDate & playersAmount to the way the BACKEND supports.
+})
+
 const CreateEventForm = ({ action }) => {
   return (
     <ScrollView style={styles.container}>
       <Form
         initialValues={{
           avatar: "",
-          // description: "",
           eventDate: today,
+          maxPlayersAmount: 1,
           level: "",
           location: "",
-          maxPlayersAmount: 1,
-          // private: false,
           sport: "",
         }}
         onSubmit={(values) => {
-          console.log(values);
+          const newValues = convertValues(values);
           action({
             variables: {
-              ...values,
+              ...newValues,
             },
           });
         }}
@@ -69,6 +74,7 @@ const CreateEventForm = ({ action }) => {
           iconName="crosshairs-gps"
           inputName="location"
           placeholder="Location"
+          textContentType="addressCity"
           autoCorrect={false}
           width="50%"
         />
@@ -77,7 +83,10 @@ const CreateEventForm = ({ action }) => {
           inputName="maxPlayersAmount"
           placeholder="10"
           autoCorrect={false}
+          keyboardType="numeric"
           width="50%"
+          maxLength={2}
+          type="number"
         />
         <SubmitButton text="Create Event" style={{ marginBottom: 40 }} />
       </Form>

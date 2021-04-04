@@ -11,6 +11,7 @@ export default {
   selected: "#d6f8ff",
   secondary: "#4ecdc4",
   silver: "#C0C0C0",
+  snow: "#FFFAFA",
   white: "#fff",
 
   sportColors: {

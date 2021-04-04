@@ -1,42 +1,62 @@
-import React, { useEffect } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { useQuery } from "@apollo/client";
+import React, { useState } from "react";
+import { FlatList, StyleSheet, RefreshControl } from "react-native";
+import { useQuery, NetworkStatus } from "@apollo/client";
 
 import { GET_EVENTS } from "../../api/gql/query";
 import ActivityIndicator from "../layouts/ActivityIndicator";
 import ErrorIndicator from "../layouts/ErrorIndicator";
 import EventInFeed from "./EventInFeed";
-import useApi from "../../hooks/useApi";
+import Animated from "react-native-reanimated";
 
-const ShowEventFeed = ({ sportFilters, setEvents, textFilters }) => {
-  const { data, error, loading } = useQuery(GET_EVENTS);
+const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
 
-  if (loading) return <ActivityIndicator />;
+  let { data, error, loading, refetch, networkStatus } = useQuery(
+    GET_EVENTS,
+    {
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: "network-only",
+    },
+  );
 
+  if(networkStatus === NetworkStatus.refetch ) return <ActivityIndicator />;
+
+  if (loading) return <ActivityIndicator />; 
+  
   if (error) return <ErrorIndicator />;
-
-  const events = data.Events.events;
-
-  let filteredEvents = [];
-  if (sportFilters.length) {
-    let newEvents = [];
-    for (let sport of sportFilters) {
-      newEvents = events.filter((event) => {
-        return event.sport == sport.toUpperCase();
-      });
-      filteredEvents = filteredEvents.concat(newEvents);
-    }
-  }
-
+  
+  // setRefresh(false);
+  
   return (
-    <FlatList
-      data={filteredEvents.length ? filteredEvents : events}
-      keyExtractor={({ id }) => id.toString()}
-      style={styles.container}
-      numColumns={1}
-      renderItem={({ item }) => <EventInFeed event={item} />}
-      showsVerticalScrollIndicator={false}
-    />
+    <>
+    <Animated.ScrollView
+    refreshControl={<RefreshControl onRefresh={refetch} refreshing={networkStatus === NetworkStatus.refetch} />}
+    onScroll={ e => {
+      scrollY.setValue(e.nativeEvent.contentOffset.y);
+      Animated.event(
+        [ { nativeEvent: { contentOffset: scrollY} } ],
+        { useNativeDriver: true }
+      )
+    }}
+    scrollEventThrottle={16}
+    >
+      {data.Events.events.map( event => (
+        <EventInFeed event={event} key={event.id} />
+      ))}
+    </Animated.ScrollView>
+      {/* <FlatList
+        data={data.Events.events}
+        keyExtractor={({ id }) => id.toString()}
+        numColumns={1}
+        onScroll={ e => {
+          scrollY.setValue(e.nativeEvent.contentOffset.y);
+        }}
+        onRefresh={() => refetch({ sports: ["tennis", "bike"] })}
+        refreshing={networkStatus === NetworkStatus.refetch}
+        renderItem={({ item }) => <EventInFeed event={item} />}
+        showsVerticalScrollIndicator={false}
+        style={styles.container}
+      /> */}
+  </>
   );
 };
 

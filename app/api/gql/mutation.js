@@ -37,40 +37,36 @@ const GET_CONNECTED = gql`
 `;
 
 const NEW_EVENT = gql`
-  mutation newEvent(
-    $sport: favoriteSportSelection!
-    $maxPlayersAmount: Int!
-    $eventDate: Date!
-    $private: Boolean
-    $location: String!
-    $avatar: String
-    $description: String
-    $level: sportLevels
+mutation newEvent(
+  $avatar: String
+  $eventDate: DateTime!
+  $maxPlayersAmount: Int!
+  $level: sportLevels
+  $location: String!
+  $sport: favoriteSportSelection!
+) {
+  newEvent(
+    sport: $sport
+    maxPlayersAmount: $maxPlayersAmount
+    eventDate: $eventDate
+    location: $location
+    avatar: $avatar
+    level: $level
   ) {
-    newEvent(
-      sport: $sport
-      maxPlayersAmount: $maxPlayersAmount
-      eventDate: $eventDate
-      private: $private
-      location: $location
-      avatar: $avatar
-      description: $description
-      level: $level
-    ) {
-      alert
-      succeed
-      event {
-        id
-        eventDate
-        eventName
-        maxPlayersAmount
-        sport
-        captain {
-          name
-        }
+    alert
+    succeed
+    event {
+      id
+      eventDate
+      eventName
+      maxPlayersAmount
+      sport
+      captain {
+        name
       }
     }
   }
+}
 `;
 
 const SIGN_IN = gql`

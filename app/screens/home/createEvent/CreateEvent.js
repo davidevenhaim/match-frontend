@@ -8,7 +8,7 @@ import SubmitAnimation from "../../../components/layouts/SubmitAnimation";
 const CreateEvent = () => {
   const [error, setError] = useState({ message: "", visible: false });
   const [newEvent, { loading }] = useMutation(NEW_EVENT, {
-    onCompleted: (data) => console.log(data),
+    onCompleted: (data) => console.log(data.newEvent.event.id),
     onError: (error) => setError({ message: error.message, visible: true }),
   });
 

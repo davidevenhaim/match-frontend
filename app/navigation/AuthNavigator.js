@@ -11,16 +11,22 @@ import routes from "./routes";
 
 const Stack = createStackNavigator();
 
-const AuthNavigator = () => (
+const AuthNavigator = ({ navigation }) => {
+  const mainNavigation = navigation;
+  return (
   <Stack.Navigator headerMode="none">
     <Stack.Screen name={routes.ONBOARDING} component={OnboardingScreen} />
     <Stack.Screen name={routes.SIGN_UP} component={AppRegisterScreen} />
-    <Stack.Screen name={routes.SIGN_IN} component={AppLoginScreen} />
-    <Stack.Screen name={routes.REGISTER} component={RegisterFormScreen} />
+    <Stack.Screen name={routes.SIGN_IN}>
+    { () => <AppLoginScreen mainNavigation={mainNavigation} />}
+    </Stack.Screen>
+    <Stack.Screen name={routes.REGISTER}>
+      { () => <RegisterFormScreen mainNavigation={mainNavigation} />}
+    </Stack.Screen>
     <Stack.Screen
       name={routes.EXPLORE_NEARBY}
       component={ExploreNearbyScreen}
     />
   </Stack.Navigator>
-);
+);}
 export default AuthNavigator;

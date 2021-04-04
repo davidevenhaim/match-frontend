@@ -1,11 +1,14 @@
 /*
-CREDITS GOES TO: github member: yoobi55
+CREDIT TO: github member: yoobi55
 refer link: https://github.com/yoobi55/scrollView-Animation-RN
 */
+
 import React from "react";
-import { Animated, Dimensions, StyleSheet, View } from "react-native";
+import { Animated, Dimensions, StyleSheet, View, Image } from "react-native";
 
 import MakeScrollable from "./MakeScrollable";
+
+import firstSlide from "../../../assets/images/AppIntro/firstSlide.png";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const xOffset = new Animated.Value(0);
@@ -64,15 +67,17 @@ const AppWalkthrough = () => {
         <MakeScrollable
           cardIndex={1}
           transitionAnimation={transitionAnimation}
-        ></MakeScrollable>
+        >
+          <Image source={firstSlide} resizeMode="center" />
+        </MakeScrollable>
         <MakeScrollable
           cardIndex={2}
           transitionAnimation={transitionAnimation}
-        ></MakeScrollable>
+        />
         <MakeScrollable
           cardIndex={3}
           transitionAnimation={transitionAnimation}
-        ></MakeScrollable>
+        />
       </Animated.ScrollView>
     </View>
   );

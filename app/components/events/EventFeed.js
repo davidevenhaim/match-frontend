@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import ShowEventFeed from "./ShowEventFeed";
-import EventFeedHeader from "./EventFeedHeader";
+import EventFeedHeader from './EventFeedHeader';
+import Animated from "react-native-reanimated";
 
 const EventFeed = () => {
   const [sportFilters, setSportFilters] = useState([]);
   const [textFilters, setTextFilters] = useState("");
-  const [isHeaderShown, setIsHeaderShown] = useState(true);
   const [eventsArr, setEventsArr] = useState([]);
+
+  const headerHeight = 200;
+  const scrollY = new Animated.Value(0);
+  const translateY = scrollY.interpolate({
+    inputRange: [0, 100],
+    outputRange: [0, 100]
+  })
 
   const isSelected = (sport) => {
     return sportFilters.indexOf(sport) >= 0;
@@ -26,24 +33,22 @@ const EventFeed = () => {
   };
 
   const setEvents = (events) => {
-    console.log("setEvents");
     setEventsArr([...events]);
   };
 
   return (
-    <View>
-      {isHeaderShown && (
+    <View style={styles.container}>
         <EventFeedHeader
-          setSportFilters={setSportFilter}
-          setTextFilters={setTextFilters}
-          isSelected={isSelected}
+        setSportFilters={setSportFilter}
+        setTextFilters={setTextFilters}
+        isSelected={isSelected}
+        height={headerHeight}
+        translateY={translateY}
         />
-      )}
       <ShowEventFeed
         sportFilters={sportFilters}
         textFilters={textFilters}
-        events={eventsArr}
-        setEvents={setEvents}
+        scrollY={scrollY}
       />
     </View>
   );
@@ -51,14 +56,7 @@ const EventFeed = () => {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-  },
-  logo: {
-    alignSelf: "flex-start",
-    height: 80,
-    width: 60,
-    marginTop: 20,
-  },
+  }
 });
 
 export default EventFeed;

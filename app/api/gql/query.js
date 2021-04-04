@@ -110,8 +110,8 @@ const GET_EVENTS_BY_SPORT = gql`
 `;
 
 const GET_EVENTS = gql`
-  query Events($cursor: String) {
-    Events(cursor: $cursor) {
+  query Events($cursor: String, $sports: [favoriteSportSelection]) {
+    Events(cursor: $cursor, sports: $sports) {
       cursor
       hasNextPage
       events {
@@ -120,11 +120,11 @@ const GET_EVENTS = gql`
         eventName
         captain {
           id
-          username
+          name
         }
         players {
           id
-          username
+          name
           avatar
         }
         private

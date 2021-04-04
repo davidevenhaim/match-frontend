@@ -8,10 +8,12 @@ import routes from "../routes";
 
 const Stack = createStackNavigator();
 
-const ProfileStack = () => (
+const ProfileStack = ({ mainNavigation }) => (
   <Stack.Navigator headerMode="none">
-    <Stack.Screen name={routes.MY_PROFILE} component={MyProfileScreen} />
-    <Stack.Screen name={routes.MY_SETTINGS} component={MySettingsScreen} />
+    <Stack.Screen name={routes.MY_PROFILE} component={MyProfileScreen}/>
+    <Stack.Screen name={routes.MY_SETTINGS}>
+      { () => <MySettingsScreen mainNavigation={mainNavigation} />}
+    </Stack.Screen>
   </Stack.Navigator>
 );
 

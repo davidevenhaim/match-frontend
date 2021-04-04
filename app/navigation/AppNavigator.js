@@ -12,8 +12,11 @@ import routes from "./routes";
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigator = () => (
-  <Tab.Navigator barStyle={{ backgroundColor: "yellow" }}>
+const AppNavigator = ({ navigation }) => {
+  const mainNavigation = navigation;
+  let numOfNotifications;
+  return (
+  <Tab.Navigator>
     <Tab.Screen
       name={routes.EXPLORE}
       component={ExploreNavigator}
@@ -38,12 +41,11 @@ const AppNavigator = () => (
             onPress={() => navigation.navigate(routes.CREATE_EVENT)}
           />
         ),
-        tabBarLabel: () => <Text></Text>,
       })}
     />
     <Tab.Screen
       name={routes.ACCOUNT}
-      component={ProfileNavigator}
+      children={() => <ProfileNavigator mainNavigation={mainNavigation} />}
       options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons
@@ -54,9 +56,10 @@ const AppNavigator = () => (
           />
         ),
         tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
+        tabBarBadge: numOfNotifications || 1,
       }}
     />
   </Tab.Navigator>
-);
+)};
 
 export default AppNavigator;
