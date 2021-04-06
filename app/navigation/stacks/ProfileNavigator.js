@@ -5,10 +5,11 @@ import MyProfileScreen from "../../screens/home/profile/MyProfileScreen";
 import MySettingsScreen from "../../screens/home/profile/MySettingsScreen";
 
 import routes from "../routes";
+import { useNavigation } from "@react-navigation/core";
 
 const Stack = createStackNavigator();
 
-const ProfileStack = ({ mainNavigation }) => (
+const ProfileStack = ({ mainNavigation}) => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen name={routes.MY_PROFILE} component={MyProfileScreen}/>
     <Stack.Screen name={routes.MY_SETTINGS}>

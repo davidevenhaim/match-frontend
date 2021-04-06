@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import ShowEventFeed from "./ShowEventFeed";
 import EventFeedHeader from './EventFeedHeader';
 import Animated from "react-native-reanimated";
+
+import colors from "../../config/colors";
 
 const EventFeed = () => {
   const [sportFilters, setSportFilters] = useState([]);
@@ -13,8 +15,8 @@ const EventFeed = () => {
   const headerHeight = 200;
   const scrollY = new Animated.Value(0);
   const translateY = scrollY.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, 100]
+    inputRange: [1, headerHeight],
+    outputRange: [0, -headerHeight]
   })
 
   const isSelected = (sport) => {
@@ -37,26 +39,40 @@ const EventFeed = () => {
   };
 
   return (
-    <View style={styles.container}>
-        <EventFeedHeader
-        setSportFilters={setSportFilter}
-        setTextFilters={setTextFilters}
-        isSelected={isSelected}
-        height={headerHeight}
-        translateY={translateY}
-        />
+    <>
+        <Animated.View style={[styles.container, { transform: [{translateY}]}]}>
+            {/* <EventFeedHeader
+            setSportFilters={setSportFilter}
+            setTextFilters={setTextFilters}
+            isSelected={isSelected}
+            height={headerHeight}
+            translateY={translateY}
+            /> */}
+
+        </Animated.View>
       <ShowEventFeed
         sportFilters={sportFilters}
         textFilters={textFilters}
         scrollY={scrollY}
       />
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-  }
-});
+    backgroundColor: colors.white,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    borderLeftWidth: 1,
+    borderBottomWidth: 2,
+    borderRightWidth: 1,
+    borderRightColor: colors.secondary,
+    borderBottomColor: colors.secondary,
+    borderLeftColor: colors.secondary,
+    overflow: "hidden",
+    height: 200,
+  },
+})
 
 export default EventFeed;

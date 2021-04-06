@@ -59,11 +59,21 @@ mutation newEvent(
       id
       eventDate
       eventName
-      maxPlayersAmount
-      sport
       captain {
+        id
         name
       }
+      players {
+        id
+        name
+        avatar
+      }
+      private
+      maxPlayersAmount
+      curPlayersAmount
+      sport
+      level
+      location
     }
   }
 }

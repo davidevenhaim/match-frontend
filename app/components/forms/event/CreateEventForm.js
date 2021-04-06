@@ -39,8 +39,7 @@ const convertValues = values => ({
   // reformating eventDate & playersAmount to the way the BACKEND supports.
 })
 
-const CreateEventForm = ({ action }) => {
-  return (
+const CreateEventForm = ({ action }) =>(
     <ScrollView style={styles.container}>
       <Form
         initialValues={{
@@ -92,7 +91,6 @@ const CreateEventForm = ({ action }) => {
       </Form>
     </ScrollView>
   );
-};
 
 const styles = StyleSheet.create({
   container: {

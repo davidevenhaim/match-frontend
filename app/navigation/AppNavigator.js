@@ -2,11 +2,11 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons, FontAwesome } from "@expo/vector-icons";
 
-import Text from "../components/layouts/Text";
-import CreateEvent from "./stacks/CreateEvent";
+import CreateEventScreen from '../screens/home/createEvent/CreateEvent';
 import ExploreNavigator from "./stacks/ExploreNavigator";
 import NewEventButton from "./stacks/NewEventButton";
 import ProfileNavigator from "./stacks/ProfileNavigator";
+import Text from "../components/layouts/Text";
 
 import routes from "./routes";
 
@@ -34,13 +34,14 @@ const AppNavigator = ({ navigation }) => {
     />
     <Tab.Screen
       name={routes.CREATE_EVENT}
-      component={CreateEvent}
+      component={CreateEventScreen}
       options={({ navigation }) => ({
         tabBarButton: () => (
           <NewEventButton
             onPress={() => navigation.navigate(routes.CREATE_EVENT)}
           />
         ),
+        
       })}
     />
     <Tab.Screen
@@ -57,7 +58,9 @@ const AppNavigator = ({ navigation }) => {
         ),
         tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
         tabBarBadge: numOfNotifications || 1,
+        
       }}
+      
     />
   </Tab.Navigator>
 )};

@@ -131,6 +131,8 @@ const GET_EVENTS = gql`
         maxPlayersAmount
         curPlayersAmount
         sport
+        level
+        location
       }
     }
   }

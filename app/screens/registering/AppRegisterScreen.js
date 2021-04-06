@@ -8,6 +8,7 @@ import colors from "../../config/colors";
 import Logo from "../../components/layouts/Logo";
 // import Screen from "../../components/Screen";
 import Text from "../../components/layouts/Text";
+import routes from "../../navigation/routes";
 
 const AppLogin = ({ navigation }) => {
   return (
@@ -31,7 +32,7 @@ const AppLogin = ({ navigation }) => {
       <View style={styles.continueBtn}>
         <Button
           text="Continue To Sign Up"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </View>
       <View style={styles.currentOnline}>

@@ -1,7 +1,9 @@
 export default Object.freeze({
   ACCOUNT: "Account",
+  AUTH: "Auth",
   ATHLETE_FEED: "AthleteFeed",
   ATHLETE_PROFILE: "AthleteProfile",
+  APP: "App",
   CREATE_EVENT: "CreateEvent",
   EVENTS_FEED: "EventsFeed",
   EXPLORE: "Explore",
@@ -13,4 +15,5 @@ export default Object.freeze({
   REGISTER: "Register",
   SIGN_IN: "SignIn",
   SIGN_UP: "SignUp",
+  SPLASH: "Splash",
 });

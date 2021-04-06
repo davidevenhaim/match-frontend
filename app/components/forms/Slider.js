@@ -6,6 +6,7 @@ import { useFormikContext } from "formik";
 import Text from "../layouts/Text";
 
 import colors from "../../config/colors";
+import ErrorMessage from "./ErrorMessage";
 
 const AppSlider = ({
   inputName,
@@ -14,7 +15,7 @@ const AppSlider = ({
   sliderStyle,
   width,
 }) => {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, errors, touched } = useFormikContext();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
@@ -29,6 +30,7 @@ const AppSlider = ({
         style={[sliderStyle, { width: width }]}
         value={stepDetails.indexOf(values[inputName])}
       />
+      <ErrorMessage error={errors[inputName]} visible={touched[inputName]} />
     </View>
   );
 };
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    margin: 5,
   },
   text: {
     textTransform: "capitalize",

@@ -10,7 +10,7 @@ import colors from "../../config/colors";
 
 const EventFeedHeader = ({ height, isSelected, setSearchFilters, setSportFilters, translateY }) => {
   return (
-    <Animated.View style={[styles.container, { height: height}, { transform: [{translateY}]}]}>
+    <Animated.View style={[styles.container, { height: height}]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     alignSelf: "flex-start",
     width: 60,
-    position: "relative",
+    // position: "relative",
     marginRight: 30,
   },
   topContainer: {
