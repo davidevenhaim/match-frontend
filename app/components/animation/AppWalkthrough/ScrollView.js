@@ -3,14 +3,18 @@ CREDIT TO: github member: yoobi55
 refer link: https://github.com/yoobi55/scrollView-Animation-RN
 */
 
-import React from "react";
-import { Animated, Dimensions, StyleSheet, View, Image, StatusBar } from "react-native";
+import React, { useState } from "react";
+import {
+  Animated,
+  Dimensions,
+  StyleSheet,
+  View,
+  Image,
+  StatusBar,
+} from "react-native";
 
 import MakeScrollable from "./MakeScrollable";
-import Text from '../../layouts/Text';
-
-import firstSlide from "../../../assets/images/AppIntro/firstSlide.png";
-import colors from "../../../config/colors";
+import ProgressIndictor from "../../layouts/ProgressIndictor";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const xOffset = new Animated.Value(0);
@@ -54,10 +58,13 @@ const transitionAnimation = (index) => {
 };
 
 const AppWalkthrough = () => {
+  const [indicator, setIndicator] = useState(1);
+  const pages = [1, 2, 3];
+
   return (
     <View style={styles.scrollContainer}>
       <Animated.ScrollView
-        scrollEventThrottle={16}
+        scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: xOffset } } }],
@@ -67,25 +74,11 @@ const AppWalkthrough = () => {
         pagingEnabled
         style={styles.scrollViews}
       >
-        <View style={styles.firstPage}>
-        <MakeScrollable
-          cardIndex={1}
-          transitionAnimation={transitionAnimation}
-        >
-          {/* <Image source={firstSlide} resizeMode="center" /> */}
-        </MakeScrollable>
-        </View>
-        <MakeScrollable
-          cardIndex={2}
-          transitionAnimation={transitionAnimation}
-        >
-        </MakeScrollable>
-        <MakeScrollable
-          cardIndex={3}
-          transitionAnimation={transitionAnimation}
-        >
-        </MakeScrollable>
+        {pages.map((pageIndex) => (
+          <MakeScrollable cardIndex={pageIndex} key={pageIndex} />
+        ))}
       </Animated.ScrollView>
+      <ProgressIndictor amount={pages.length} index={indicator} />
     </View>
   );
 };
@@ -95,14 +88,6 @@ const styles = StyleSheet.create({
     height: "80%",
     marginBottom: 15,
   },
-  scrollViews: {
-    flexDirection: "row",
-  },
-  firstPageText: {
-    color: colors.white,
-    fontSize: 40,
-    textAlign: "center"
-  }
 });
 
 export default AppWalkthrough;

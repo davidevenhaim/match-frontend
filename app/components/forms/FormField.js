@@ -26,6 +26,7 @@ const AppFormField = ({
         isProtected={isProtected}
         setIsHidden={setIsHidden}
         touched={touched[inputName]}
+        error={errors[inputName]}
         {...otherProps}
       />
       <ErrorMessage visible={touched[inputName]} error={errors[inputName]} />

@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import Text from "../layouts/Text";
 import IconWithText from "../layouts/IconWithText";
 import defaultStyles from "../../config/styles";
+import routes from "../../navigation/routes";
 
 const Event = ({ event }) => {
   const navigation = useNavigation();
@@ -17,14 +18,13 @@ const Event = ({ event }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("EventScreen", { event: event })}
+      onPress={() => navigation.navigate(routes.EVENT_SCREEN, { event: event })}
       style={styles.container}
     >
       <View style={styles.eventDetails}>
         <IconWithText
           iconName={sportIcon}
           iconSize={iconSize}
-          text={eventSport}
           style={styles.sportStyle}
         />
         <IconWithText
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   sportStyle: {
-    backgroundColor: defaultStyles.colors.secondary,
     borderRadius: 15,
     padding: 5,
   },

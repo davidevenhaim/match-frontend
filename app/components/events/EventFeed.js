@@ -38,30 +38,34 @@ const EventFeed = () => {
     setEventsArr([...events]);
   };
 
-  return (
-    <>
-        <Animated.View style={[styles.container, { transform: [{translateY}]}]}>
-            {/* <EventFeedHeader
-            setSportFilters={setSportFilter}
-            setTextFilters={setTextFilters}
-            isSelected={isSelected}
-            height={headerHeight}
-            translateY={translateY}
-            /> */}
+  const FeedHeader = () => (
+      <EventFeedHeader
+        setSportFilters={setSportFilter}
+        setTextFilters={setTextFilters}
+        isSelected={isSelected}
+        height={headerHeight}
+        translateY={translateY}
+      />
+  )
 
-        </Animated.View>
+  return (
+    <View style={styles.container}>
+      {/* <EventFeedHeader /> */}
       <ShowEventFeed
         sportFilters={sportFilters}
         textFilters={textFilters}
         scrollY={scrollY}
+        Header={FeedHeader}
       />
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
+    flex: 1
+  },
+  containerHeader: {
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     borderLeftWidth: 1,

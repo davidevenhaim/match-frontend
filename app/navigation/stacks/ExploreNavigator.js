@@ -8,6 +8,7 @@ import EventsFeed from "../../screens/home/explore/events/EventsFeedScreen";
 
 import routes from "../routes";
 
+
 const Stack = createStackNavigator();
 
 const ExploreStack = () => (

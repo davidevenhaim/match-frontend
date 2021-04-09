@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormikContext } from "formik";
 
-import ImageInput from "../ImageInput";
+import ImageInput from "./ImageInput";
 
 const ImagePicker = ({ name, iconName }) => {
   const { handleChange, setFieldTouched, values } = useFormikContext();

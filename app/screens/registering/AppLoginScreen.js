@@ -6,12 +6,13 @@ import { SIGN_IN } from "../../api/gql/mutation";
 import * as SecureStore from "expo-secure-store";
 
 import Logo from "../../components/layouts/Logo";
-import KeyboardAvoid from '../../components/KeyboardAvoid';
+import KeyboardAvoid from "../../components/KeyboardAvoid";
 import LogInForm from "../../components/forms/LogInForm";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
 
 import colors from "../../config/colors";
+import routes from "../../navigation/routes";
 // import { KeyboardAvoidingView } from "react-native";
 
 const AppLogin = ({ mainNavigation }) => {
@@ -25,12 +26,14 @@ const AppLogin = ({ mainNavigation }) => {
   });
 
   const storeToken = (token) => {
-    SecureStore.setItemAsync("token", token).then(mainNavigation.navigate("App"));
+    SecureStore.setItemAsync("token", token).then(
+      mainNavigation.navigate(routes.APP)
+    );
   };
 
   return (
     <KeyboardAvoid style={styles.container}>
-       <Logo />
+      <Logo />
       <Text style={styles.title}>Sign In With:</Text>
       <View style={styles.socialIcons}>
         <SocialIcon

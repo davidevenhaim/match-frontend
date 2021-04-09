@@ -1,21 +1,22 @@
 import React from "react";
 import { View } from "react-native";
+import HeaderProfile from "../../../components/athletes/profile/HeaderProfile";
+import { useQuery } from "@apollo/client";
 
-import AppButton from "../../../components/layouts/Button";
-import Text from "../../../components/layouts/Text";
+import ActivityIndicator from "../../../components/layouts/ActivityIndicator";
+import ErrorIndicator from "../../../components/layouts/ErrorIndicator";
 
-import routes from "../../../navigation/routes";
+import { GET_ME } from "../../../api/gql/query";
+import AthleteProfile from "../../../components/athletes/profile/AthleteProfile";
 
 const MyProfileScreen = ({ navigation }) => {
-  console.log(navigation);
-  return (
-    <View>
-      <AppButton
-        text={"settings"}
-        onPress={() => navigation.navigate(routes.MY_SETTINGS)}
-      />
-    </View>
-  );
+  const { loading, error, data } = useQuery(GET_ME);
+
+  if (loading) return <ActivityIndicator />;
+
+  if (error) return <ErrorIndicator />;
+
+  return <AthleteProfile athlete={data.Me} isOwner={true} />;
 };
 
 export default MyProfileScreen;

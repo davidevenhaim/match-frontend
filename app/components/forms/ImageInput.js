@@ -10,7 +10,7 @@ import * as ImagePicker from "expo-image-picker";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 const ImageInput = ({ imageUri, handleChange, iconName = "face" }) => {
   useEffect(() => {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     borderRadius: 45,
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.snow,
     height: 90,
     justifyContent: "center",
     overflow: "hidden",

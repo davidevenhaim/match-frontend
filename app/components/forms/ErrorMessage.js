@@ -1,22 +1,22 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import AppText from "../layouts/Text";
+import Text from "../layouts/Text";
 
-import defaultStyles from "../../config/styles";
+import colors from "../../config/colors";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!visible || !error) {
     return null;
   }
-  return <AppText style={styles.message}>{error}</AppText>;
+  return <Text style={styles.message}>{error}</Text>;
 };
 
 const styles = StyleSheet.create({
   message: {
-    color: defaultStyles.colors.danger,
+    color: colors.danger,
     fontSize: 14,
-    marginLeft: 30,
+    textAlign: "center"
   },
 });
 

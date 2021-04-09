@@ -14,6 +14,7 @@ const AppTextInput = ({
   style,
   width,
   touched,
+  error,
   ...otherProps
 }) => {
   let [fontsLoaded] = useFonts({
@@ -31,12 +32,17 @@ const AppTextInput = ({
               borderWidth: 1,
             }
           : null,
+        error && touched
+          ? {
+            borderColor: colors.danger,
+          }
+          : null,
       ]}
     >
       {iconName && (
         <MaterialCommunityIcons
           name={iconName}
-          color={colors.mediumGrey}
+          color={error && touched ? colors.danger : colors.mediumGrey}
           style={styles.leftIcon}
           size={20}
         />
@@ -62,7 +68,7 @@ const AppTextInput = ({
 
 const styles = StyleSheet.create({
   frame: {
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.snow,
     borderRadius: 25,
     flexDirection: "row",
     height: 50,

@@ -8,6 +8,8 @@ import Logo from "../../components/layouts/Logo";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import RegisterForm from "../../components/forms/RegisterForm";
 import routes from "../../navigation/routes";
+import KeyboardAvoid from "../../components/KeyboardAvoid";
+import { KeyboardAvoidingView } from "react-native";
 
 const RegisterFormScreen = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -21,16 +23,18 @@ const RegisterFormScreen = ({ mainNavigation }) => {
   });
 
   const storeToken = (token) => {
-    SecureStore.setItemAsync("token", token).then(mainNavigation.navigate(routes.APP));
+    SecureStore.setItemAsync("token", token).then(
+      mainNavigation.navigate(routes.APP)
+    );
   };
 
   return (
-    <>
+    <KeyboardAvoidingView>
       <Logo />
       <SubmitAnimation error={error} loading={loading}>
         <RegisterForm action={signUp} />
       </SubmitAnimation>
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -4,7 +4,7 @@ const GET_ME = gql`
   query Me {
     Me {
       id
-      username
+      name
       favoriteSport
       avatar
       createdAt
@@ -18,7 +18,7 @@ const GET_ME = gql`
       connection {
         id
         avatar
-        username
+        name
       }
     }
   }

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { NEW_EVENT } from "../../../api/gql/mutation";
 import CreateEventForm from "../../../components/forms/event/CreateEventForm";
 import SubmitAnimation from "../../../components/layouts/SubmitAnimation";
 import { View } from "react-native";
 import colors from "../../../config/colors";
 import { StyleSheet } from "react-native";
+
+import { NEW_EVENT } from "../../../api/gql/mutation";
+import { GET_EVENTS } from "../../../api/gql/query";
 
 import routes from "../../../navigation/routes";
 

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, RefreshControl } from "react-native";
+import { FlatList, StyleSheet, View, RefreshControl } from "react-native";
 import { useQuery, NetworkStatus } from "@apollo/client";
 
 import { GET_EVENTS } from "../../api/gql/query";
 import ActivityIndicator from "../layouts/ActivityIndicator";
 import ErrorIndicator from "../layouts/ErrorIndicator";
 import EventInFeed from "./EventInFeed";
-import Animated from "react-native-reanimated";
+// import Animated from "react-native-reanimated";
+
 
 const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
 
@@ -18,50 +19,46 @@ const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
     },
   );
 
-  if(networkStatus === NetworkStatus.refetch ) return <ActivityIndicator />;
+  const LoadingStatus = () => (
+    <>
+    <Header />
+    <ActivityIndicator />
+    </>
+    // search for a better solution.
+  );
 
-  if (loading) return <ActivityIndicator />; 
+  if(networkStatus === NetworkStatus.refetch ) return <LoadingStatus />;
+
+  if (loading) return <LoadingStatus />;
   
   if (error) return <ErrorIndicator />;
   
-  // setRefresh(false);
-  
+  console.log(sportFilters.length)
+
   return (
     <>
-    <Animated.ScrollView
-    refreshControl={<RefreshControl onRefresh={refetch} refreshing={networkStatus === NetworkStatus.refetch} />}
-    onScroll={ e => {
-      scrollY.setValue(e.nativeEvent.contentOffset.y);
-      Animated.event(
-        [ { nativeEvent: { contentOffset: scrollY} } ],
-        { useNativeDriver: true }
-      )
-    }}
-    scrollEventThrottle={16}
-    >
-      {data.Events.events.map( event => (
-        <EventInFeed event={event} key={event.id} />
-      ))}
-    </Animated.ScrollView>
-      {/* <FlatList
+      <Header />
+      <FlatList
         data={data.Events.events}
         keyExtractor={({ id }) => id.toString()}
         numColumns={1}
         onScroll={ e => {
           scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
-        onRefresh={() => refetch({ sports: ["tennis", "bike"] })}
+        onRefresh={() => refetch({ sports: sportFilters })}
         refreshing={networkStatus === NetworkStatus.refetch}
         renderItem={({ item }) => <EventInFeed event={item} />}
         showsVerticalScrollIndicator={false}
         style={styles.container}
-      /> */}
+        ListFooterComponent={<View style={{ marginBottom: 30 }} />} // For the last list element 
+      />
   </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+  },
 });
 
 export default ShowEventFeed;

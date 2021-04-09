@@ -1,9 +1,10 @@
 import React from "react";
-import { Animated, Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 
-import Text from '../../layouts/Text';
+import Text from "../../layouts/Text";
 
 import colors from "../../../config/colors";
+import ProgressIndictor from "../../layouts/ProgressIndictor";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -27,36 +28,37 @@ const colorIndex = {
     borderTopLeftRadius: 400,
     borderBottomEndRadius: 80,
     borderBottomLeftRadius: 80,
-  }
-} 
+  },
+};
 
 const textIndex = {
-  1: { 
+  1: {
     title: "Meet New Friends",
-    body: `Explore & Join Sport Events that match the best for you.`
+    body: `Explore & Join Sport Events that match the best for you.`,
   },
-2: {
-  title: "Create Events",
-  body:  `Create your own custom events.`
-},
-3: {
-  title: "You Are All Set!",
-  body: `You are ready to start, it's completley free! Friendly and easy to adapt UI`
-}
-}
+  2: {
+    title: "Create Events",
+    body: `Create your own custom sport events and athletes will join you`,
+  },
+  3: {
+    title: "Have Fun!",
+    body: `You are ready to start, it's completley free. With friendly and easy to adapt UI`,
+  },
+};
 
-const MakeScrollable = ({ cardIndex, transitionAnimation, children }) => {
-
+const MakeScrollable = ({ cardIndex }) => {
   return (
     <>
-      <View style={[styles.scrollPage, { width: SCREEN_WIDTH }, colorIndex[cardIndex]]}>
-        <Animated.View style={[styles.screen, transitionAnimation(cardIndex)]}>
-          {children}
-        </Animated.View>
-      </View>
-        <View style={styles.text}>
-        <Text style={styles.textTitle}>{textIndex[cardIndex].title}</Text>
-        <Text style={styles.textBody}>{textIndex[cardIndex].body}</Text>
+      <View style={[styles.screen, { width: SCREEN_WIDTH }]}>
+        {colorIndex[cardIndex] && textIndex[cardIndex] && (
+          <>
+            <View style={[colorIndex[cardIndex], styles.scrollPage]} />
+            <View style={styles.text}>
+              <Text style={styles.textTitle}>{textIndex[cardIndex].title}</Text>
+              <Text style={styles.textBody}>{textIndex[cardIndex].body}</Text>
+            </View>
+          </>
+        )}
       </View>
     </>
   );
@@ -64,25 +66,27 @@ const MakeScrollable = ({ cardIndex, transitionAnimation, children }) => {
 
 const styles = StyleSheet.create({
   screen: {
-    justifyContent: "center",
     alignItems: "center",
     borderRadius: 60,
+    height: "100%",
   },
   scrollPage: {
-    padding: 20,
+    width: SCREEN_WIDTH - 5,
     height: "80%",
+    padding: 20,
   },
   text: {
-    width: SCREEN_WIDTH,
-    alignContent: "center",
-    alignSelf: "center"
+    top: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "70%",
   },
   textTitle: {
-    fontSize: 30,
+    fontSize: 27,
   },
   textBody: {
-
-  }
+    textAlign: "center",
+  },
 });
 
 export default MakeScrollable;

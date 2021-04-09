@@ -10,7 +10,7 @@ import colors from "../../config/colors";
 
 const EventFeedHeader = ({ height, isSelected, setSearchFilters, setSportFilters, translateY }) => {
   return (
-    <Animated.View style={[styles.container, { height: height}]}>
+    <View style={[styles.container, { height: height}]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />
@@ -21,21 +21,21 @@ const EventFeedHeader = ({ height, isSelected, setSearchFilters, setSportFilters
         onPress={setSportFilters}
         userSports={APP_SPORTS.SPORTS_CATERGORIES}
       />
-    </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
-    borderLeftWidth: 1,
-    borderBottomWidth: 2,
-    borderRightWidth: 1,
-    borderRightColor: colors.secondary,
-    borderBottomColor: colors.secondary,
-    borderLeftColor: colors.secondary,
+    borderWidth: 1,
+    borderRadius: 40,
+    borderColor: colors.secondary,
+    // borderTopColor: colors.secondary,
+    // borderRightColor: colors.secondary,
+    // borderBottomColor: colors.secondary,
+    // borderLeftColor: colors.secondary,
+    margin: 2,
     overflow: "hidden",
   },
   logoStyle: {

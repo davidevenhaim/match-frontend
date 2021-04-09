@@ -9,8 +9,10 @@ import { format } from "date-fns";
 
 import colors from "../../config/colors";
 import ShowEventPlayers from "../athletes/ShowEventPlayers";
+import JoinEvent from "./eventPage/JoinEvent";
 import NavigateToEvent from "../NavigateToEvent";
 import { ScrollView } from "react-native-gesture-handler";
+import TouchableIcon from "../layouts/TouchableIcon";
 
 const EventPage = () => {
   const route = useRoute();
@@ -19,16 +21,23 @@ const EventPage = () => {
   const date = new Date(event.eventDate);
   const iconSize = 25;
 
-  console.log(event.captain);
+  console.log(event);
+
   return (
     <View style={[styles.container]}>
       <View style={styles.headerContainer}>
+      <View>
         <Image
           style={styles.image}
           source={require("../../assets/images/sports/soccer.jpg")}
         />
         <Text style={styles.eventName}>{event.eventName}</Text>
         <Text style={styles.evetnDetails}>{event.eventName}</Text>
+        </View>
+        <View style={styles.joinBtn}>
+          <JoinEvent id={event.id} />
+         <Text>Join</Text>
+        </View>
       </View>
       <View
         style={[
@@ -59,11 +68,15 @@ const EventPage = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+    flex: 1
+  },
   detailsContainer: {
     alignSelf: "center",
     alignItems: "center",
     borderWidth: 1.5,
-    backgroundColor: colors.white,
+    backgroundColor: colors.snow,
     borderRadius: 10,
     flexDirection: "row",
     height: 100,
@@ -77,8 +90,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   headerContainer: {
-    marginLeft: 25,
-    marginTop: 25,
+    flexDirection: "row",
+    margin: 25,
     marginBottom: 35,
   },
   image: {
@@ -87,6 +100,8 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     marginBottom: 10,
+  },
+  joinBtn: {
   },
   playersContainer: {
     alignSelf: "center",

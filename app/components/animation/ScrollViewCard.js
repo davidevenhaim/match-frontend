@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   screen: {
-    height: 600,
+    height: "80%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 25,

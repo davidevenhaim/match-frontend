@@ -4,7 +4,7 @@ import FormField from "./FormField";
 
 const SecuredFormField = ({ name, iconName = "lock" }) => {
   const [isHidden, setIsHidden] = useState(true);
-  const [rightIconName, setRightIconName] = useState("eye");
+  const [rightIconName, setRightIconName] = useState("eye-off");
 
   const hiddenHandler = () => {
     setIsHidden(!isHidden);
