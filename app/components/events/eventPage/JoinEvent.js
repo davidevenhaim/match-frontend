@@ -1,21 +1,26 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useMutation } from '@apollo/client';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { useMutation } from "@apollo/client";
 
-import SubmitAnimation from '../../layouts/SubmitAnimation';
-import TouchableIcon from '../../layouts/TouchableIcon';
+// import SubmitAnimation from "../../layouts/SubmitAnimation";
+// import TouchableIcon from "../../layouts/TouchableIcon";
+import RoundIconButtonText from "../../layouts/RoundIconButtonText";
 
-import { TOGGLE_JOIN_EVENT } from '../../../api/gql/mutation';
-import { GET_EVENT } from '../../../api/gql/query';
+import { TOGGLE_JOIN_EVENT } from "../../../api/gql/mutation";
 
-const JoinEvent = ({ id }) => {
-    const [ toggleJoinEvent, { loading } ] = useMutation(TOGGLE_JOIN_EVENT);
-return (
-    <TouchableIcon backgroundSize={60} name={"account-multiple-plus"} onPress={() => toggleJoinEvent({ variables: { id }})} />
-);
+import colors from "../../../config/colors";
+
+const JoinEvent = ({ id, isParticipant, text }) => {
+  const [toggleJoinEvent, { loading }] = useMutation(TOGGLE_JOIN_EVENT);
+  return (
+    <RoundIconButtonText
+      backgroundSize={60}
+      iconName="account-multiple-plus"
+      onPress={() => toggleJoinEvent({ variables: { id } })}
+      text={isParticipant ? "Exit" : "Join"}
+    />
+  );
 };
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 export default JoinEvent;

@@ -1,15 +1,11 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { format } from "date-fns";
-import { useNavigation } from "@react-navigation/native";
 
-import Text from "../layouts/Text";
 import IconWithText from "../layouts/IconWithText";
 import defaultStyles from "../../config/styles";
-import routes from "../../navigation/routes";
 
-const Event = ({ event }) => {
-  const navigation = useNavigation();
+const Event = ({ event, onPress }) => {
   const date = new Date(event.eventDate);
 
   const iconSize = 25;
@@ -17,10 +13,7 @@ const Event = ({ event }) => {
   const sportIcon = defaultStyles.sportsIcons[eventSport];
 
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(routes.EVENT_SCREEN, { event: event })}
-      style={styles.container}
-    >
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.eventDetails}>
         <IconWithText
           iconName={sportIcon}
@@ -41,7 +34,7 @@ const Event = ({ event }) => {
       <IconWithText
         iconName="google-maps"
         iconSize={iconSize + 10}
-        text={event.eventName} // will show event location.
+        text={event.location} // will show event location.
         style={styles.locationStyle}
       />
     </TouchableOpacity>

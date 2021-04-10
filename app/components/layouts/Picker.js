@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../config/styles";
+import defaultStyles from "../../config/styles";
 
 import PickerItem from "./PickerItem";
-import Screen from "./Screen";
-import Text from "./layouts/Text";
+import Screen from "../Screen";
+import Text from "./Text";
 
-const AppPicker = ({
+const Picker = ({
   iconName,
   items,
   onSelectItem,
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
     color: defaultStyles.colors.dark,
   },
 });
-export default AppPicker;
+export default Picker;

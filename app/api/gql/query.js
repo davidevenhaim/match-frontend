@@ -9,11 +9,23 @@ const GET_ME = gql`
       avatar
       createdAt
       upcomingEvents {
-        id
-        eventDate
-        sport
+        captain {
+          id
+          name
+        }
         curPlayersAmount
+        eventDate
+        id
+        level
+        location
         maxPlayersAmount
+        players {
+          id
+          name
+          avatar
+        }
+        private
+        sport
       }
       connection {
         id
@@ -75,7 +87,7 @@ const GET_EVENT = gql`
       }
       players {
         id
-        username
+        name
         avatar
       }
       curPlayersAmount
@@ -96,11 +108,11 @@ const GET_EVENTS_BY_SPORT = gql`
         sport
         captain {
           id
-          username
+          name
         }
         players {
           id
-          username
+          name
         }
         curPlayersAmount
         maxPlayersAmount

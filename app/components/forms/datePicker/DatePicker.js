@@ -5,7 +5,7 @@ import { format } from "date-fns";
 
 import DatePickerIOS from "./DatePickerIOS";
 import DatePickerAndroid from "./DatePickerAndroid";
-import TouchableIcon from "../../layouts/TouchableIcon";
+import RoundIconButton from "../../layouts/RoundIconButton";
 import Text from "../../layouts/Text";
 import colors from "../../../config/colors";
 
@@ -40,12 +40,12 @@ const DatePicker = ({ inputName }) => {
   return (
     <>
       <View style={styles.pickerIcons}>
-        <TouchableIcon
+        <RoundIconButton
           name="calendar"
           onPress={showDatePicker}
           backgroundSize={60}
         />
-        <TouchableIcon
+        <RoundIconButton
           name="clock"
           onPress={showTimePicker}
           backgroundSize={60}

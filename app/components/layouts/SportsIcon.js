@@ -1,28 +1,29 @@
 import React from "react";
 
-import colors from "../config/colors";
-import defaultStyles from "../config/styles";
+import Icon from "./RoundIcon";
 
-import Icon from "./layouts/Icon";
+import defaultStyles from "../../config/styles";
 
 const SportsIcon = ({
   backgroundSize = 80,
   iconSize = backgroundSize / 1.5,
   sport,
   style,
+  ...otherProps
 }) => {
   return (
     <Icon
       name={defaultStyles.sportsIcons[sport]}
       style={[
         {
-          backgroundColor: colors.sportColors[sport],
+          backgroundColor: defaultStyles.colors.sportColors[sport],
           height: backgroundSize,
           width: backgroundSize,
         },
         style,
       ]}
       size={iconSize}
+      {...otherProps}
     />
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { showLocation, Popup } from "react-native-map-link";
 
-import TouchableIcon from "./layouts/TouchableIcon";
+import RoundIconButton from "./layouts/RoundIconButton";
 import Text from "./layouts/Text";
 
 import colors from "../config/colors";
@@ -11,7 +11,7 @@ const NavigateToEvent = ({ currentPosition, destination }) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <TouchableIcon
+      <RoundIconButton
         name="google-maps"
         onPress={() => setIsVisible(!isVisible)}
         style={styles.navigateButton}

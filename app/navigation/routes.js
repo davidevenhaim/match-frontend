@@ -10,6 +10,7 @@ export default Object.freeze({
   EXPLORE_NEARBY: "ExploreNearbyScreen",
   EVENT_SCREEN: "EventScreen",
   MY_PROFILE: "MyProfile",
+  MY_EVENT: "MyEvents",
   MY_SETTINGS: "MySettings",
   ONBOARDING: "Onboarding",
   REGISTER: "Register",

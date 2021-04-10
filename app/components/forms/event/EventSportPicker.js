@@ -2,7 +2,7 @@ import React from "react";
 import { useFormikContext } from "formik";
 
 import ErrorMessage from "../ErrorMessage";
-import OneSportPicker from "../../OneSportPicker";
+import SportsIconList from "../../layouts/SportsIconList";
 
 const EventSportPicker = ({ name, userSports }) => {
   const { errors, setFieldValue, touched, values } = useFormikContext();
@@ -17,7 +17,7 @@ const EventSportPicker = ({ name, userSports }) => {
 
   return (
     <>
-      <OneSportPicker
+      <SportsIconList
         userSports={userSports}
         onPress={onPress}
         itemSelected={itemSelected}

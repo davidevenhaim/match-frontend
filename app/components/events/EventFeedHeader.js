@@ -2,20 +2,26 @@ import React from "react";
 import { StyleSheet, View, Animated } from "react-native";
 
 import AppLogo from "../layouts/Logo";
-import OneSportPicker from "../OneSportPicker";
+import SportsIconList from "../layouts/SportsIconList";
 import TextInput from "../forms/TextInput";
 
 import APP_SPORTS from "../../config/events";
 import colors from "../../config/colors";
 
-const EventFeedHeader = ({ height, isSelected, setSearchFilters, setSportFilters, translateY }) => {
+const EventFeedHeader = ({
+  height,
+  isSelected,
+  setSearchFilters,
+  setSportFilters,
+  translateY,
+}) => {
   return (
-    <View style={[styles.container, { height: height}]}>
+    <View style={[styles.container, { height: height }]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />
       </View>
-      <OneSportPicker
+      <SportsIconList
         iconSize={33}
         itemSelected={isSelected}
         onPress={setSportFilters}

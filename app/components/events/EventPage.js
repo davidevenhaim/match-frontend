@@ -4,7 +4,7 @@ import { View, StyleSheet, Image } from "react-native";
 
 import IconWithText from "../layouts/IconWithText";
 import Text from "../layouts/Text";
-import SportsIcon from "../SportsIcon";
+import SportsIcon from "../layouts/SportsIcon";
 import { format } from "date-fns";
 
 import colors from "../../config/colors";
@@ -12,9 +12,8 @@ import ShowEventPlayers from "../athletes/ShowEventPlayers";
 import JoinEvent from "./eventPage/JoinEvent";
 import NavigateToEvent from "../NavigateToEvent";
 import { ScrollView } from "react-native-gesture-handler";
-import TouchableIcon from "../layouts/TouchableIcon";
 
-const EventPage = () => {
+const EventPage = ({ isParticipant = false }) => {
   const route = useRoute();
   const event = route.params.event;
   const sport = event.sport.toLowerCase();
@@ -26,17 +25,16 @@ const EventPage = () => {
   return (
     <View style={[styles.container]}>
       <View style={styles.headerContainer}>
-      <View>
-        <Image
-          style={styles.image}
-          source={require("../../assets/images/sports/soccer.jpg")}
-        />
-        <Text style={styles.eventName}>{event.eventName}</Text>
-        <Text style={styles.evetnDetails}>{event.eventName}</Text>
+        <View>
+          <Image
+            style={styles.image}
+            source={require("../../assets/images/sports/soccer.jpg")}
+          />
+          <Text style={styles.eventName}>{event.eventName}</Text>
+          <Text style={styles.evetnDetails}>{event.eventName}</Text>
         </View>
         <View style={styles.joinBtn}>
-          <JoinEvent id={event.id} />
-         <Text>Join</Text>
+          <JoinEvent id={event.id} isParticipant={isParticipant} />
         </View>
       </View>
       <View
@@ -70,7 +68,7 @@ const EventPage = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-    flex: 1
+    flex: 1,
   },
   detailsContainer: {
     alignSelf: "center",
@@ -101,8 +99,7 @@ const styles = StyleSheet.create({
     width: 100,
     marginBottom: 10,
   },
-  joinBtn: {
-  },
+  joinBtn: {},
   playersContainer: {
     alignSelf: "center",
     marginTop: 50,

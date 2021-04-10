@@ -2,7 +2,7 @@ import React from "react";
 import { useFormikContext } from "formik";
 
 import ErrorMessage from "./ErrorMessage";
-import SportsPicker from "../SportsPicker";
+import SportsPicker from "./SportsPicker";
 
 const AppFormPicker = ({ name, items, numColumns, PickerItemComponent }) => {
   const { errors, setFieldValue, touched } = useFormikContext();

@@ -1,6 +1,4 @@
 import React from "react";
-import { View } from "react-native";
-import HeaderProfile from "../../../components/athletes/profile/HeaderProfile";
 import { useQuery } from "@apollo/client";
 
 import ActivityIndicator from "../../../components/layouts/ActivityIndicator";
@@ -16,7 +14,9 @@ const MyProfileScreen = ({ navigation }) => {
 
   if (error) return <ErrorIndicator />;
 
-  return <AthleteProfile athlete={data.Me} isOwner={true} />;
+  return (
+    <AthleteProfile athlete={data.Me} isOwner={true} navigation={navigation} />
+  );
 };
 
 export default MyProfileScreen;

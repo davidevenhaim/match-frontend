@@ -10,10 +10,11 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFormikContext } from "formik";
 
-import colors from "../config/colors";
-import Screen from "./Screen";
-import SportsPickerItem from "./SportsPickerItem";
-import Button from "./layouts/Button";
+import Button from "../layouts/Button";
+import Screen from "../Screen";
+import SportsPickerItem from "../layouts/SportsPickerItem";
+
+import colors from "../../config/colors";
 
 const SportsPicker = ({
   items,

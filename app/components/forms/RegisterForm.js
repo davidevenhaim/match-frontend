@@ -6,7 +6,7 @@ import FormField from "./FormField";
 import FormSportPicker from "./FormSportsPicker";
 import ProfileImagePicker from "./ImagePicker";
 import SecuredFormField from "./SecuredFormField";
-import SportsPickerItem from "../SportsPickerItem";
+import SportsPickerItem from "../layouts/SportsPickerItem";
 import SubmitButton from "./SubmitButton";
 
 import sports from "../../config/events";
@@ -33,7 +33,7 @@ const RegisterForm = ({ action }) => {
         password: "",
       }}
       onSubmit={(values) => {
-        console.log(values)
+        console.log(values);
         console.log("SignUp Form");
         action({
           variables: {

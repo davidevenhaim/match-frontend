@@ -2,23 +2,29 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../../config/styles";
+import colors from "../../config/colors";
 
 const Icon = ({
-  style,
-  name,
   backgroundSize = 80,
+  backgroundColor = colors.primary,
+  iconColor = colors.white,
+  name,
   size = backgroundSize / 1.5,
+  style,
 }) => {
   return (
     <View
       style={[
         styles.container,
-        { height: backgroundSize, width: backgroundSize },
+        {
+          height: backgroundSize,
+          width: backgroundSize,
+          backgroundColor,
+        },
         style,
       ]}
     >
-      <MaterialCommunityIcons name={name} size={size} color="white" />
+      <MaterialCommunityIcons name={name} size={size} color={iconColor} />
     </View>
   );
 };
@@ -26,7 +32,7 @@ const Icon = ({
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: defaultStyles.colors.primary,
+    // backgroundColor: colors.primary,
     borderRadius: 40,
     height: 80,
     justifyContent: "center",

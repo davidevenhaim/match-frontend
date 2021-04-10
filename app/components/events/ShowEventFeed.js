@@ -1,39 +1,39 @@
 import React, { useState } from "react";
 import { FlatList, StyleSheet, View, RefreshControl } from "react-native";
 import { useQuery, NetworkStatus } from "@apollo/client";
+import { useNavigation } from "@react-navigation/core";
 
-import { GET_EVENTS } from "../../api/gql/query";
 import ActivityIndicator from "../layouts/ActivityIndicator";
 import ErrorIndicator from "../layouts/ErrorIndicator";
 import EventInFeed from "./EventInFeed";
-// import Animated from "react-native-reanimated";
 
+import { GET_EVENTS } from "../../api/gql/query";
+
+import routes from "../../navigation/routes";
 
 const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
+  const navigation = useNavigation();
 
-  let { data, error, loading, refetch, networkStatus } = useQuery(
-    GET_EVENTS,
-    {
-      notifyOnNetworkStatusChange: true,
-      fetchPolicy: "network-only",
-    },
-  );
+  let { data, error, loading, refetch, networkStatus } = useQuery(GET_EVENTS, {
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: "network-only",
+  });
 
   const LoadingStatus = () => (
     <>
-    <Header />
-    <ActivityIndicator />
+      <Header />
+      <ActivityIndicator />
     </>
     // search for a better solution.
   );
 
-  if(networkStatus === NetworkStatus.refetch ) return <LoadingStatus />;
+  if (networkStatus === NetworkStatus.refetch) return <LoadingStatus />;
 
   if (loading) return <LoadingStatus />;
-  
+
   if (error) return <ErrorIndicator />;
-  
-  console.log(sportFilters.length)
+
+  console.log(sportFilters.length);
 
   return (
     <>
@@ -42,23 +42,29 @@ const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
         data={data.Events.events}
         keyExtractor={({ id }) => id.toString()}
         numColumns={1}
-        onScroll={ e => {
+        onScroll={(e) => {
           scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
         onRefresh={() => refetch({ sports: sportFilters })}
         refreshing={networkStatus === NetworkStatus.refetch}
-        renderItem={({ item }) => <EventInFeed event={item} />}
+        renderItem={({ item }) => (
+          <EventInFeed
+            event={item}
+            onPress={() =>
+              navigation.navigate(routes.EVENT_SCREEN, { event: item })
+            }
+          />
+        )}
         showsVerticalScrollIndicator={false}
         style={styles.container}
-        ListFooterComponent={<View style={{ marginBottom: 30 }} />} // For the last list element 
+        ListFooterComponent={<View style={{ marginBottom: 30 }} />} // For the last list element
       />
-  </>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
 });
 
 export default ShowEventFeed;

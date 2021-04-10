@@ -1,9 +1,10 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 
-import AppText from "./layouts/Text";
-import colors from "../config/colors";
+import Text from "./Text";
 import SportsIcon from "./SportsIcon";
+
+import colors from "../../config/colors";
 
 function SportsPickerItem({
   backgroundSize = 80,
@@ -30,7 +31,7 @@ function SportsPickerItem({
           style={selectedIconStyle}
         />
       )}
-      <AppText style={[styles.text, selectedTextStyle]}>{item}</AppText>
+      <Text style={[styles.text, selectedTextStyle]}>{item}</Text>
     </TouchableOpacity>
   );
 }
