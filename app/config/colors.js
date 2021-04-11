@@ -22,5 +22,6 @@ export default {
     tennis: "#008744",
     volleyball: "#ffeead",
     running: "#3c2f2f",
+    default: "#2D9CDB",
   },
 };

@@ -31,22 +31,3 @@ const styles = StyleSheet.create({
 });
 
 export default UpcomingEvents;
-
-/* 
-    <View style={styles.container}>
-      <FlatList
-        data={events}
-        keyExtractor={({ id }) => id.toString()}
-        renderItem={({ item }) => {
-          return (
-            <EventInFeed
-              event={item}
-              onPress={() =>
-                navigation.navigate(routes.MY_EVENT, { event: item })
-              }
-            />
-          );
-        }}
-      />
-    </View>
-*/

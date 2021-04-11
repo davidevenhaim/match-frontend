@@ -20,5 +20,6 @@ export default {
     running: "shoe-print",
     soccer: "soccer",
     volleyball: "volleyball",
+    default: "emoticon-sad-outline",
   },
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons, FontAwesome } from "@expo/vector-icons";
 
-import CreateEventScreen from '../screens/home/createEvent/CreateEvent';
+import CreateEventScreen from "../screens/home/createEvent/CreateEvent";
 import ExploreNavigator from "./stacks/ExploreNavigator";
 import NewEventButton from "./stacks/NewEventButton";
 import ProfileNavigator from "./stacks/ProfileNavigator";
@@ -16,53 +16,51 @@ const AppNavigator = ({ navigation }) => {
   const mainNavigation = navigation;
   let numOfNotifications;
   return (
-  <Tab.Navigator>
-    <Tab.Screen
-      name={routes.EXPLORE}
-      component={ExploreNavigator}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <FontAwesome
-            name="search"
-            size={30}
-            color={color}
-            style={{ marginTop: 2 }}
-          />
-        ),
-        tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
-      }}
-    />
-    <Tab.Screen
-      name={routes.CREATE_EVENT}
-      component={CreateEventScreen}
-      options={({ navigation }) => ({
-        tabBarButton: () => (
-          <NewEventButton
-            onPress={() => navigation.navigate(routes.CREATE_EVENT)}
-          />
-        ),
-        
-      })}
-    />
-    <Tab.Screen
-      name={routes.ACCOUNT}
-      children={() => <ProfileNavigator mainNavigation={mainNavigation} />}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons
-            name="circle"
-            size={35}
-            color={color}
-            style={{ marginTop: 2 }}
-          />
-        ),
-        tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
-        tabBarBadge: numOfNotifications || 1,
-        
-      }}
-      
-    />
-  </Tab.Navigator>
-)};
+    <Tab.Navigator>
+      <Tab.Screen
+        name={routes.EXPLORE}
+        component={ExploreNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome
+              name="search"
+              size={30}
+              color={color}
+              style={{ marginTop: 2 }}
+            />
+          ),
+          tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
+        }}
+      />
+      <Tab.Screen
+        name={routes.CREATE_EVENT}
+        component={CreateEventScreen}
+        options={({ navigation }) => ({
+          tabBarButton: () => (
+            <NewEventButton
+              onPress={() => navigation.navigate(routes.CREATE_EVENT)}
+            />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name={routes.ACCOUNT}
+        children={() => <ProfileNavigator mainNavigation={mainNavigation} />}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="account-circle"
+              size={35}
+              color={color}
+              style={{ marginTop: 2 }}
+            />
+          ),
+          tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
+          tabBarBadge: numOfNotifications || 1,
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default AppNavigator;

@@ -11,7 +11,7 @@ import colors from "../../../config/colors";
 import routes from "../../../navigation/routes";
 
 const HeaderProfile = ({
-  athlete,
+  athlete: { connection, name, avatar, favoriteSport },
   isOwner,
   navigation,
   toggleShowConnection,
@@ -22,17 +22,13 @@ const HeaderProfile = ({
     cog: () => navigation.navigate(routes.MY_SETTINGS),
   };
 
-  const connectionCount = athlete.connection.length;
+  const connectionCount = connection.length;
   return (
     <View style={styles.conatiner}>
       <View style={styles.avatarStyle}>
-        <AthleteAvatar
-          athleteName={athlete.name}
-          athleteImage={athlete.avatar}
-          size="large"
-        />
+        <AthleteAvatar athleteName={name} athleteImage={avatar} size="large" />
       </View>
-      <Text style={styles.nameText}>{athlete.name}</Text>
+      <Text style={styles.nameText}>{name}</Text>
       <TouchableOpacity onPress={toggleShowConnection}>
         <Text style={styles.connectionText}>
           Connections: {connectionCount}
@@ -40,7 +36,7 @@ const HeaderProfile = ({
       </TouchableOpacity>
       <View style={styles.sportContainer}>
         <SportsIconList
-          userSports={athlete.favoriteSport}
+          userSports={favoriteSport}
           touch={false}
           style={{ flexShrink: 1 }}
         />
