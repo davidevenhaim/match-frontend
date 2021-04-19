@@ -7,12 +7,15 @@ import EventScreen from "../../screens/home/explore/events/EventScreen";
 import EventsFeed from "../../screens/home/explore/events/EventsFeedScreen";
 
 import routes from "../routes";
-
+import colors from "../../config/colors";
 
 const Stack = createStackNavigator();
 
 const ExploreStack = () => (
-  <Stack.Navigator mode="modal" headerMode="none">
+  <Stack.Navigator
+    headerMode="none"
+    screenOptions={{ cardStyle: { backgroundColor: colors.white } }}
+  >
     <Stack.Screen name={routes.EVENTS_FEED} component={EventsFeed} />
     <Stack.Screen
       name={routes.ATHLETE_PROFILE}

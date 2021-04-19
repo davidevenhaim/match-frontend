@@ -19,10 +19,9 @@ const AppLogo = ({ logoStyle, textStyle, showText = true }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    // marginBottom: 40,
   },
   logo: {
-    marginTop: 50,
+    marginTop: 10,
     height: 120,
     width: 100,
   },

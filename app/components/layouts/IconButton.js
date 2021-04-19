@@ -1,6 +1,6 @@
 import React from "react";
 
-import TouchableIcon from "./RoundIconButton";
+import RoundIconButton from "./RoundIconButton";
 
 import colors from "../../config/colors";
 
@@ -12,7 +12,7 @@ const IconButton = ({
   style,
 }) => {
   return (
-    <TouchableIcon
+    <RoundIconButton
       name={name}
       backgroundSize={size}
       onPress={onPress}

@@ -31,9 +31,10 @@ const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
 
   if (loading) return <LoadingStatus />;
 
-  if (error) return <ErrorIndicator />;
-
-  console.log(sportFilters.length);
+  if (error) {
+    console.log(error);
+    return <LoadingStatus />;
+  }
 
   return (
     <>

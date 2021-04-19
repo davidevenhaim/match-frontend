@@ -4,7 +4,13 @@ import { useFormikContext } from "formik";
 import ErrorMessage from "./ErrorMessage";
 import SportsPicker from "./SportsPicker";
 
-const AppFormPicker = ({ name, items, numColumns, PickerItemComponent }) => {
+const AppFormPicker = ({
+  name,
+  items,
+  numColumns,
+  PickerItemComponent,
+  showErrorMessage = false,
+}) => {
   const { errors, setFieldValue, touched } = useFormikContext();
 
   const handleAdd = (item) => {
@@ -21,7 +27,9 @@ const AppFormPicker = ({ name, items, numColumns, PickerItemComponent }) => {
         PickerItemComponent={PickerItemComponent}
         selectOneSport={true}
       />
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      {showErrorMessage && (
+        <ErrorMessage error={errors[name]} visible={touched[name]} />
+      )}
     </>
   );
 };

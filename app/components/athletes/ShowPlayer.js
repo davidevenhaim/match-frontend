@@ -5,19 +5,21 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
+
 import AthleteAvatar from "../layouts/AthleteAvatar";
 import Text from "../layouts/Text";
+import routes from "../../navigation/routes";
 
 const ShowPlayers = ({ avatar, name, id, size = "large" }) => {
-  console.log(name);
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => console.log("Navigate to: ", id)}
+      onPress={() => navigation.navigate(routes.ATHLETE_PROFILE, { id })}
     >
       <AthleteAvatar athleteImage={avatar} athleteName={name} size={size} />
-      {/* <Avatar source={{ uri: avatar }} rounded activeOpacity={0.7} size={60} />
-      <Text style={styles.name}>{name}</Text> */}
     </TouchableOpacity>
   );
 };

@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import IconWithText from "../layouts/IconWithText";
 import defaultStyles from "../../config/styles";
 
-const Event = ({ event, onPress }) => {
+const EventInFeed = ({ event, onPress }) => {
   const date = new Date(event.eventDate);
 
   const iconSize = 25;
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Event;
+export default EventInFeed;

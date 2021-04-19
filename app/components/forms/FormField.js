@@ -10,6 +10,7 @@ const AppFormField = ({
   inputName,
   isProtected,
   setIsHidden,
+  showErrorMessage = false,
   ...otherProps
 }) => {
   const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
@@ -29,7 +30,9 @@ const AppFormField = ({
         error={errors[inputName]}
         {...otherProps}
       />
-      <ErrorMessage visible={touched[inputName]} error={errors[inputName]} />
+      {showErrorMessage && (
+        <ErrorMessage visible={touched[inputName]} error={errors[inputName]} />
+      )}
     </>
   );
 };

@@ -42,9 +42,10 @@ const RoundIconButtonText = ({
 const styles = StyleSheet.create({
   container: {
     alignContent: "center",
+    alignItems: "center",
   },
   text: {
-    textAlign: "center",
+    // textAlign: "center",
     top: -3,
   },
 });

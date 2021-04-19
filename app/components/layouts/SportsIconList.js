@@ -25,6 +25,7 @@ const OneSportPicker = ({
           ? userSports.map((sport) => (
               <SportsIcon
                 sport={sport}
+                key={sport.toString()}
                 iconSize={iconSize}
                 backgroundSize={iconSize * 1.5}
                 style={styles.userPreview}

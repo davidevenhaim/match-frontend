@@ -17,6 +17,7 @@ import SportsPickerItem from "../layouts/SportsPickerItem";
 import colors from "../../config/colors";
 
 const SportsPicker = ({
+  errorBtnColor = colors.primary,
   items,
   ListFooterComponentStyle,
   name,
@@ -43,7 +44,9 @@ const SportsPicker = ({
       <View>
         <ScrollView horizontal keyboardDismissMode="on-drag">
           <TouchableOpacity onPress={modalHandler}>
-            <View style={styles.selectSport}>
+            <View
+              style={[styles.selectSport, { backgroundColor: errorBtnColor }]}
+            >
               <MaterialCommunityIcons name="plus" size={50} color="white" />
             </View>
           </TouchableOpacity>
@@ -130,7 +133,6 @@ const styles = StyleSheet.create({
   },
   selectSport: {
     alignItems: "center",
-    backgroundColor: colors.primary,
     borderRadius: 20,
     height: 70,
     justifyContent: "center",

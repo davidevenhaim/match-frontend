@@ -1,17 +1,20 @@
-import { useRoute } from "@react-navigation/core";
 import React from "react";
+import { useRoute } from "@react-navigation/core";
 import { View, StyleSheet, Image } from "react-native";
+import { format } from "date-fns";
+import { ScrollView } from "react-native-gesture-handler";
+import { useQuery } from "@apollo/client";
 
 import IconWithText from "../layouts/IconWithText";
-import Text from "../layouts/Text";
-import SportsIcon from "../layouts/SportsIcon";
-import { format } from "date-fns";
-
-import colors from "../../config/colors";
-import ShowEventPlayers from "../athletes/ShowEventPlayers";
 import JoinEvent from "./eventPage/JoinEvent";
 import NavigateToEvent from "../NavigateToEvent";
-import { ScrollView } from "react-native-gesture-handler";
+import ShowEventPlayers from "../athletes/ShowEventPlayers";
+import SportsIcon from "../layouts/SportsIcon";
+import Text from "../layouts/Text";
+
+import { GET_EVENT_PLAYERS } from "../../api/gql/query";
+
+import colors from "../../config/colors";
 
 const EventPage = ({ isParticipant = false }) => {
   const route = useRoute();
@@ -20,7 +23,10 @@ const EventPage = ({ isParticipant = false }) => {
   const date = new Date(event.eventDate);
   const iconSize = 25;
 
-  console.log(event);
+  const { data, error, loading } = useQuery(GET_EVENT_PLAYERS, {
+    variables: { id: event.id },
+    fetchPolicy: "network-only",
+  });
 
   return (
     <View style={[styles.container]}>
@@ -57,7 +63,9 @@ const EventPage = ({ isParticipant = false }) => {
       </View>
       <View style={styles.playersContainer}>
         <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
-          <ShowEventPlayers players={event.players} />
+          {!loading && !error && (
+            <ShowEventPlayers players={data.Event.players} />
+          )}
         </ScrollView>
       </View>
       <NavigateToEvent />

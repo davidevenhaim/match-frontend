@@ -1,8 +1,7 @@
 import React from "react";
-import { View } from "react-native";
 import * as SecureStore from "expo-secure-store";
 
-import Button from "../../../components/layouts/Button";
+import UserSettings from "../../../components/athletes/profile/UserSettings";
 
 import routes from "../../../navigation/routes";
 
@@ -13,10 +12,10 @@ const MySettings = ({ mainNavigation }) => {
     );
   };
 
-  return (
-    <View>
-      <Button text="Sign Out" onPress={signOut} />
-    </View>
-  );
+  const beCoach = () => {
+    console.log("Becoming coach... Please wait.");
+  };
+
+  return <UserSettings beCoach={beCoach} signOut={signOut} />;
 };
 export default MySettings;

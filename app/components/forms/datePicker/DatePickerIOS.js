@@ -5,6 +5,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Text from "../../layouts/Text";
 import Logo from "../../layouts/Logo";
 import Button from "../../layouts/Button";
+import Screen from "../../Screen";
 
 import colors from "../../../config/colors";
 
@@ -24,7 +25,7 @@ const DatePicker = ({
         presentationStyle="overFullScreen"
         animationType="fade"
       >
-        <Logo />
+        <Logo logoStyle={styles.logo} />
         <Text style={styles.modalText}>Choose {showMode} for your event:</Text>
         <View style={styles.modalDate}>
           <DateTimePicker
@@ -52,10 +53,15 @@ const styles = StyleSheet.create({
     width: "50%",
     margin: 30,
   },
-  container: {},
+  container: {
+    flex: 1,
+  },
   pickerIcons: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  logo: {
+    marginTop: 90,
   },
   modalContainer: {
     flex: 1,

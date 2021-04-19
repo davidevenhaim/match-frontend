@@ -5,14 +5,14 @@ import AppLoading from "expo-app-loading";
 
 import defaultStyles from "../../config/styles";
 
-const AppText = ({ children, style, ...otherProps }) => {
+const AppText = ({ children, size = 15, style, ...otherProps }) => {
   let [fontsLoaded] = useFonts({
     "Righteous-font": require("../../assets/fonts/Righteous-Regular.ttf"),
   });
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <Text style={[styles.text, style]} {...otherProps}>
+    <Text style={[styles.text, { fontSize: size }, style]} {...otherProps}>
       {children}
     </Text>
   );

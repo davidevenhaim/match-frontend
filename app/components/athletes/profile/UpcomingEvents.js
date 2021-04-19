@@ -9,6 +9,10 @@ import routes from "../../../navigation/routes";
 
 const UpcomingEvents = ({ events, isOwner }) => {
   const navigation = useNavigation();
+
+  let route = "EVENT_SCREEN";
+  if (isOwner) route = "MY_EVENT";
+
   const ListFooterComponent = () => <View style={{ height: 40 }}></View>;
   return (
     <FlatList
@@ -18,7 +22,7 @@ const UpcomingEvents = ({ events, isOwner }) => {
         <EventInFeed
           event={item}
           onPress={() =>
-            navigation.navigate(routes.MY_EVENT, { event: item, isOwner })
+            navigation.navigate(routes[route], { event: item, isOwner })
           }
         />
       )}

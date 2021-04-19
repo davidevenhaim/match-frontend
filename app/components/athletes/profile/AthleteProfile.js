@@ -10,9 +10,9 @@ import ConnectionsList from "./ConnectionsList";
 import defaultAthlete from "../../../config/defaultAthlete";
 import colors from "../../../config/colors";
 
-const AthleteProfile = ({ athlete, isOwner = false, navigation }) => {
+const AthleteProfileOwner = ({ athlete, isOwner = false }) => {
   const [showConnection, setShowConnection] = useState(false);
-  // console.log(athlete.connection);
+
   let opacity = 1;
   const toggleShowConnection = () => {
     const newShowConnection = !showConnection;
@@ -20,23 +20,15 @@ const AthleteProfile = ({ athlete, isOwner = false, navigation }) => {
   };
   if (!athlete) {
     athlete = defaultAthlete;
-    opacity = 0.5;
+    opacity = 0.7;
   }
 
   return (
     <View style={{ opacity }}>
       <View style={styles.headerContainer}>
-        {/* <LinearGradient
-          colors={[colors.primary, colors.primaryLight]}
-          start={{ x: 1, y: 0.1 }}
-          end={{ x: 0.5, y: 0.9 }}
-          locations={[0, 0.8]}
-          style={styles.headerBackground}
-        /> */}
         <HeaderProfile
           athlete={athlete}
           isOwner={isOwner}
-          navigation={navigation}
           toggleShowConnection={toggleShowConnection}
         />
       </View>
@@ -64,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AthleteProfile;
+export default AthleteProfileOwner;

@@ -30,53 +30,53 @@ const GET_CONNECTED = gql`
       succeed
       athlete {
         id
-        username
+        name
       }
     }
   }
 `;
 
 const NEW_EVENT = gql`
-mutation newEvent(
-  $avatar: String
-  $eventDate: DateTime!
-  $maxPlayersAmount: Int!
-  $level: sportLevels
-  $location: String!
-  $sport: favoriteSportSelection!
-) {
-  newEvent(
-    sport: $sport
-    maxPlayersAmount: $maxPlayersAmount
-    eventDate: $eventDate
-    location: $location
-    avatar: $avatar
-    level: $level
+  mutation newEvent(
+    $avatar: String
+    $eventDate: DateTime!
+    $maxPlayersAmount: Int!
+    $level: sportLevels
+    $location: String!
+    $sport: favoriteSportSelection!
   ) {
-    alert
-    succeed
-    event {
-      id
-      eventDate
-      eventName
-      captain {
+    newEvent(
+      sport: $sport
+      maxPlayersAmount: $maxPlayersAmount
+      eventDate: $eventDate
+      location: $location
+      avatar: $avatar
+      level: $level
+    ) {
+      alert
+      succeed
+      event {
         id
-        name
+        eventDate
+        eventName
+        captain {
+          id
+          name
+        }
+        players {
+          id
+          name
+          avatar
+        }
+        private
+        maxPlayersAmount
+        curPlayersAmount
+        sport
+        level
+        location
       }
-      players {
-        id
-        name
-        avatar
-      }
-      private
-      maxPlayersAmount
-      curPlayersAmount
-      sport
-      level
-      location
     }
   }
-}
 `;
 
 const SIGN_IN = gql`

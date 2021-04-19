@@ -1,21 +1,39 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
+import { useMutation } from "@apollo/client";
 
 import AthleteAvatar from "../../layouts/AthleteAvatar";
+import Button from "../../layouts/Button";
 import IconButton from "../../layouts/IconButton";
 import SportsIconList from "../../layouts/SportsIconList";
 import Text from "../../layouts/Text";
+
+import { GET_CONNECTED } from "../../../api/gql/mutation";
+import { GET_MY_CONNECTIONS } from "../../../api/gql/query";
 
 import colors from "../../../config/colors";
 import routes from "../../../navigation/routes";
 
 const HeaderProfile = ({
-  athlete: { connection, name, avatar, favoriteSport },
+  athlete: { connection, name, avatar, favoriteSport, id },
   isOwner,
-  navigation,
   toggleShowConnection,
 }) => {
+  const navigation = useNavigation();
+
+  const [getConnected, { loading }] = useMutation(GET_CONNECTED, {
+    variables: { id },
+    refetchQueries: [{ query: GET_MY_CONNECTIONS }],
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
   const userOptions = {
     chat: () => console.log("clicked chat"),
     bell: () => console.log("clicked bell"),
@@ -41,15 +59,20 @@ const HeaderProfile = ({
           style={{ flexShrink: 1 }}
         />
       </View>
-      {
-        isOwner ? (
-          <View style={styles.bottomButtons}>
-            {Object.keys(userOptions).map((key) => (
-              <IconButton name={key} onPress={userOptions[key]} />
-            ))}
-          </View>
-        ) : null // toggle connection
-      }
+      {isOwner ? (
+        <View style={styles.bottomButtons}>
+          {Object.keys(userOptions).map((key) => (
+            <IconButton name={key} onPress={userOptions[key]} />
+          ))}
+        </View>
+      ) : (
+        <Button
+          style={styles.connectBtn}
+          btnHeight={40}
+          text="Connect"
+          onPress={getConnected}
+        />
+      )}
     </View>
   );
 };
@@ -62,6 +85,10 @@ const styles = StyleSheet.create({
   bottomButtons: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  connectBtn: {
+    width: "25%",
+    marginBottom: 10,
   },
   conatiner: {
     alignSelf: "center",
@@ -85,10 +112,7 @@ const styles = StyleSheet.create({
   sportContainer: {
     alignSelf: "center",
     alignItems: "center",
-    position: "relative",
-    // height: 100,
     flexShrink: 0.45,
-    // backgroundColor: "black",
   },
 });
 

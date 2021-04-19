@@ -3,15 +3,18 @@ import { gql } from "@apollo/client";
 const GET_ME = gql`
   query Me {
     Me {
+      avatar
+      connection {
+        id
+        avatar
+        name
+      }
+      favoriteSport
       id
       name
-      favoriteSport
-      avatar
-      createdAt
       upcomingEvents {
         captain {
           id
-          name
         }
         curPlayersAmount
         eventDate
@@ -27,11 +30,6 @@ const GET_ME = gql`
         private
         sport
       }
-      connection {
-        id
-        avatar
-        name
-      }
     }
   }
 `;
@@ -40,19 +38,29 @@ const GET_ATHLETE = gql`
   query Athlete($id: ID!) {
     Athlete(id: $id) {
       avatar
-      username
-      upcomingEvents {
-        id
-        eventName
-        eventDate
-        sport
-        curPlayersAmount
-        maxPlayersAmount
-      }
-      favoriteSport
       connection {
         avatar
-        username
+        name
+      }
+      favoriteSport
+      name
+      upcomingEvents {
+        captain {
+          id
+        }
+        curPlayersAmount
+        eventName
+        eventDate
+        id
+        level
+        location
+        maxPlayersAmount
+        players {
+          id
+          name
+          avatar
+        }
+        sport
       }
     }
   }
@@ -65,7 +73,7 @@ const GET_ATHLETES = gql`
       hasNextPage
       athletes {
         id
-        username
+        name
         favoriteSport
         avatar
         createdAt
@@ -83,7 +91,7 @@ const GET_EVENT = gql`
       sport
       captain {
         id
-        username
+        name
       }
       players {
         id
@@ -92,6 +100,22 @@ const GET_EVENT = gql`
       }
       curPlayersAmount
       maxPlayersAmount
+    }
+  }
+`;
+
+const GET_EVENT_PLAYERS = gql`
+  query Event($id: ID!) {
+    Event(id: $id) {
+      captain {
+        id
+        name
+      }
+      players {
+        id
+        name
+        avatar
+      }
     }
   }
 `;
@@ -127,24 +151,15 @@ const GET_EVENTS = gql`
       cursor
       hasNextPage
       events {
+        curPlayersAmount
         id
         eventDate
         eventName
-        captain {
-          id
-          name
-        }
-        players {
-          id
-          name
-          avatar
-        }
-        private
-        maxPlayersAmount
-        curPlayersAmount
-        sport
         level
         location
+        maxPlayersAmount
+        private
+        sport
       }
     }
   }
@@ -154,11 +169,11 @@ const GET_MY_CONNECTIONS = gql`
   query Me {
     Me {
       id
-      username
+      name
       connection {
         id
         avatar
-        username
+        name
       }
     }
   }
@@ -169,7 +184,7 @@ const GET_MY_EVENTS = gql`
     Me {
       id
       avatar
-      username
+      name
       upcomingEvents {
         id
         eventDate
@@ -179,11 +194,11 @@ const GET_MY_EVENTS = gql`
         sport
         captain {
           id
-          username
+          name
         }
         players {
           id
-          username
+          name
         }
       }
     }
@@ -207,6 +222,7 @@ export {
   GET_ATHLETE,
   GET_ATHLETES,
   GET_EVENT,
+  GET_EVENT_PLAYERS,
   GET_EVENTS_BY_SPORT,
   GET_EVENTS,
   GET_MY_CONNECTIONS,

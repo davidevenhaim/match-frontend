@@ -4,11 +4,11 @@ import { useQuery } from "@apollo/client";
 
 import ActivityIndicator from "../../../components/layouts/ActivityIndicator";
 import ErrorIndicator from "../../../components/layouts/ErrorIndicator";
-
-import { GET_ME } from "../../../api/gql/query";
 import AthleteProfile from "../../../components/athletes/profile/AthleteProfile";
 
-const MyProfileScreen = ({ navigation }) => {
+import { GET_ME } from "../../../api/gql/query";
+
+const MyProfileScreen = () => {
   const { loading, error, data } = useQuery(GET_ME);
 
   if (loading) {
@@ -29,9 +29,7 @@ const MyProfileScreen = ({ navigation }) => {
     );
   }
 
-  return (
-    <AthleteProfile athlete={data.Me} isOwner={true} navigation={navigation} />
-  );
+  return <AthleteProfile athlete={data.Me} isOwner={true} />;
 };
 
 const styles = StyleSheet.create({
