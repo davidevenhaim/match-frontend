@@ -24,12 +24,11 @@ const EDIT_EVENT = gql`
 `;
 
 const GET_CONNECTED = gql`
-  mutation togglectConnection($id: ID!) {
+  mutation toggleConnection($id: ID!) {
     toggleConnection(id: $id) {
-      alert
       succeed
+      alert
       athlete {
-        id
         name
       }
     }

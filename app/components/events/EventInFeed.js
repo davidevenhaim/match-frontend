@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { format } from "date-fns";
 
 import IconWithText from "../layouts/IconWithText";
+
 import defaultStyles from "../../config/styles";
 
 const EventInFeed = ({ event, onPress }) => {

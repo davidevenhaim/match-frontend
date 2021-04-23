@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import Slider from "@react-native-community/slider";
 import { useFormikContext } from "formik";
 
+import ErrorMessage from "./ErrorMessage";
 import Text from "../layouts/Text";
 
 import colors from "../../config/colors";
-import ErrorMessage from "./ErrorMessage";
 
 const AppSlider = ({
   inputName,
   maximumValue,
-  stepDetails,
+  showErrorMessage = false,
   sliderStyle,
+  stepDetails,
   width,
 }) => {
   const { setFieldValue, values, errors, touched } = useFormikContext();
+  const isInvalid = errors[inputName] && touched[inputName];
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
@@ -24,13 +27,16 @@ const AppSlider = ({
       <Slider
         maximumValue={maximumValue}
         maximumTrackTintColor={colors.selected}
+        thumbTintColor={isInvalid ? colors.lightRed : colors.white}
         onValueChange={(value) => setFieldValue(inputName, stepDetails[value])}
         minimumTrackTintColor={colors.primary}
         step={1}
         style={[sliderStyle, { width: width }]}
         value={stepDetails.indexOf(values[inputName])}
       />
-      <ErrorMessage error={errors[inputName]} visible={touched[inputName]} />
+      {showErrorMessage && (
+        <ErrorMessage error={errors[inputName]} visible={touched[inputName]} />
+      )}
     </View>
   );
 };

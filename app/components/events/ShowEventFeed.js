@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View, RefreshControl } from "react-native";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { useNavigation } from "@react-navigation/core";
@@ -11,21 +11,42 @@ import { GET_EVENTS } from "../../api/gql/query";
 
 import routes from "../../navigation/routes";
 
-const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
+const ShowEventFeed = ({ Header, sportFilters }) => {
   const navigation = useNavigation();
 
-  let { data, error, loading, refetch, networkStatus } = useQuery(GET_EVENTS, {
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: "network-only",
-  });
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [eventsArr, setEventsArr] = useState([]);
+  const [scrollPosition, setScrollPosition] = useState("");
+
+  let { data, error, loading, refetch, networkStatus, fetchMore } = useQuery(
+    GET_EVENTS,
+    {
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: "network-only",
+      onCompleted: (data) => {
+        setScrollPosition(data.Events.cursor);
+        addEventHandler(data.Events.events);
+      },
+    }
+  );
 
   const LoadingStatus = () => (
     <>
       <Header />
       <ActivityIndicator />
     </>
-    // search for a better solution.
   );
+
+  const getMore = async () => {
+    setIsLoadingMore(true);
+    console.log(data.cursor);
+    await fetchMore({
+      variables: {
+        cursor: scrollPosition,
+      },
+    });
+    setIsLoadingMore(false);
+  };
 
   if (networkStatus === NetworkStatus.refetch) return <LoadingStatus />;
 
@@ -33,19 +54,22 @@ const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
 
   if (error) {
     console.log(error);
-    return <LoadingStatus />;
+    return <ErrorIndicator />;
   }
+
+  const addEventHandler = (events) => {
+    setEventsArr(() => {
+      return [...events];
+    });
+  };
 
   return (
     <>
       <Header />
       <FlatList
-        data={data.Events.events}
+        data={eventsArr}
         keyExtractor={({ id }) => id.toString()}
         numColumns={1}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         onRefresh={() => refetch({ sports: sportFilters })}
         refreshing={networkStatus === NetworkStatus.refetch}
         renderItem={({ item }) => (
@@ -58,7 +82,11 @@ const ShowEventFeed = ({ Header, scrollY, sportFilters, textFilters }) => {
         )}
         showsVerticalScrollIndicator={false}
         style={styles.container}
-        ListFooterComponent={<View style={{ marginBottom: 30 }} />} // For the last list element
+        onEndReachedThreshold={0.2}
+        onEndReached={() => {
+          console.log("End Reached. fetch more.");
+          // getMore();
+        }}
       />
     </>
   );

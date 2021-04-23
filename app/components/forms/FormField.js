@@ -10,6 +10,7 @@ const AppFormField = ({
   inputName,
   isProtected,
   setIsHidden,
+  errorMessageStyle,
   showErrorMessage = false,
   ...otherProps
 }) => {
@@ -31,7 +32,11 @@ const AppFormField = ({
         {...otherProps}
       />
       {showErrorMessage && (
-        <ErrorMessage visible={touched[inputName]} error={errors[inputName]} />
+        <ErrorMessage
+          visible={touched[inputName]}
+          error={errors[inputName]}
+          style={errorMessageStyle}
+        />
       )}
     </>
   );

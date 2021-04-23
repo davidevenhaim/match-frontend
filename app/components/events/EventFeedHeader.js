@@ -13,7 +13,6 @@ const EventFeedHeader = ({
   isSelected,
   setSearchFilters,
   setSportFilters,
-  translateY,
 }) => {
   return (
     <View style={[styles.container, { height: height }]}>

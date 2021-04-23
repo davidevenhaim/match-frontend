@@ -10,27 +10,33 @@ import RoundIconButtonText from "../../layouts/RoundIconButtonText";
 import { TOGGLE_JOIN_EVENT } from "../../../api/gql/mutation";
 import {
   GET_EVENTS,
-  GET_EVENT_PLAYERS,
-  GET_ME,
   GET_MY_CONNECTIONS,
   GET_MY_EVENTS,
 } from "../../../api/gql/query";
 
-import colors from "../../../config/colors";
 import routes from "../../../navigation/routes";
 
-const JoinEvent = ({ id, isParticipant, text }) => {
+const JoinEvent = ({ event, isParticipant, text }) => {
   const navigation = useNavigation();
-  const [toggleJoinEvent, { loading }] = useMutation(TOGGLE_JOIN_EVENT, {
+
+  let navigateTo = () =>
+    navigation.navigate(routes.EVENT_SCREEN, {
+      variables: { event, isParticipant },
+    });
+
+  if (isParticipant) {
+    navigateTo = () => navigation.navigate(routes.MY_PROFILE);
+  }
+
+  const [toggleJoinEvent] = useMutation(TOGGLE_JOIN_EVENT, {
     refetchQueries: [
       { query: GET_EVENTS },
       { query: GET_MY_EVENTS },
       { query: GET_MY_CONNECTIONS },
     ],
-    onCompleted: () => {
-      // navigation.navigate(routes.MY_EVENT, { variables: { id } });
-    },
+    onCompleted: navigateTo,
   });
+
   let iconName = "account-multiple-plus";
   // if (loading) {
   //   iconName = "electron-framework";
@@ -42,7 +48,7 @@ const JoinEvent = ({ id, isParticipant, text }) => {
       <RoundIconButtonText
         backgroundSize={60}
         iconName={iconName}
-        onPress={() => toggleJoinEvent({ variables: { id } })}
+        onPress={() => toggleJoinEvent({ variables: { id: event.id } })}
         text={isParticipant ? "Exit" : "Join"}
       />
     </View>

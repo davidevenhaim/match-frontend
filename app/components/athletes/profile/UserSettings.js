@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-
-import RoundIconButtonText from "../../layouts/RoundIconButtonText";
-import Text from "../../layouts/Text";
-
-import colors from "../../../config/colors";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
-import SwitchWithText from "../../layouts/SwitchWithText";
+
 import IconButton from "../../layouts/IconButton";
-import routes from "../../../navigation/routes";
 import Seperator from "../../layouts/Seperator";
+import SwitchWithText from "../../layouts/SwitchWithText";
+import Text from "../../layouts/Text";
+import RoundIconButtonText from "../../layouts/RoundIconButtonText";
+
+import routes from "../../../navigation/routes";
+import colors from "../../../config/colors";
 
 const UserSettings = ({ beCoach, signOut }) => {
   const navigation = useNavigation();

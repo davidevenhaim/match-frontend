@@ -19,7 +19,8 @@ const RegisterFormScreen = ({ mainNavigation }) => {
       console.log(data.signUp);
       storeToken(data.signUp);
     },
-    onError: (error) => setError({ message: error.message, visible: true }),
+    onError: (error) =>
+      setError({ message: "Email is already in use!", visible: true }),
   });
 
   const storeToken = (token) => {

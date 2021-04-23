@@ -34,7 +34,9 @@ const validationSchema = Yup.object().shape({
 
 const convertValues = (values) => ({
   ...values,
-  maxPlayersAmount: +values.maxPlayersAmount,
+  maxPlayersAmount: isNaN(+values.maxPlayersAmount)
+    ? 0
+    : +values.maxPlayersAmount,
   eventDate: JSON.parse(JSON.stringify(values.eventDate)),
   // reformating eventDate & playersAmount to the way the BACKEND supports.
 });
@@ -43,7 +45,7 @@ const CreateEventForm = ({ action }) => (
   <ScrollView style={styles.container}>
     <Form
       initialValues={{
-        avatar: "",
+        // avatar: "",
         eventDate: today,
         maxPlayersAmount: 1,
         level: "",
@@ -60,7 +62,10 @@ const CreateEventForm = ({ action }) => (
       }}
       validationSchema={validationSchema}
     >
-      <ImagePicker name="avatar" iconName="account-group-outline" />
+      {/* <ImagePicker name="avatar" iconName="account-group-outline" /> 
+                  For now, we won't support images on events.
+                  Feature - Tested & Ready to work.
+      */}
       <EventSportPicker userSports={events.SPORTS_CATERGORIES} name="sport" />
       <DatePicker inputName="eventDate" />
       <Slider
@@ -86,6 +91,8 @@ const CreateEventForm = ({ action }) => (
         width="50%"
         maxLength={2}
         type="number"
+        showErrorMessage={true}
+        errorMessageStyle={{ left: 30 }}
       />
       <SubmitButton text="Create Event" style={{ marginBottom: 40 }} />
     </Form>

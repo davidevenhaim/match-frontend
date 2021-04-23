@@ -6,7 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useQuery } from "@apollo/client";
 
 import IconWithText from "../layouts/IconWithText";
-import JoinEvent from "./eventPage/JoinEvent";
+import JoinEvent from "./EventActions/JoinEvent";
 import NavigateToEvent from "../NavigateToEvent";
 import ShowEventPlayers from "../athletes/ShowEventPlayers";
 import SportsIcon from "../layouts/SportsIcon";
@@ -19,7 +19,7 @@ import colors from "../../config/colors";
 const EventPage = ({ isParticipant = false }) => {
   const route = useRoute();
   const event = route.params.event;
-  const sport = event.sport.toLowerCase();
+  const sport = event.sport;
   const date = new Date(event.eventDate);
   const iconSize = 25;
 
@@ -40,7 +40,7 @@ const EventPage = ({ isParticipant = false }) => {
           <Text style={styles.evetnDetails}>{event.eventName}</Text>
         </View>
         <View style={styles.joinBtn}>
-          <JoinEvent id={event.id} isParticipant={isParticipant} />
+          <JoinEvent event={event} isParticipant={isParticipant} />
         </View>
       </View>
       <View

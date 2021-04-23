@@ -1,14 +1,10 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Avatar } from "react-native-elements";
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
 
 import AthleteAvatar from "../layouts/AthleteAvatar";
-import Text from "../layouts/Text";
+
 import routes from "../../navigation/routes";
 
 const ShowPlayers = ({ avatar, name, id, size = "large" }) => {

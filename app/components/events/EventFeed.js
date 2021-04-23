@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 
+import EventFeedHeader from "./EventFeedHeader";
 import ShowEventFeed from "./ShowEventFeed";
-import EventFeedHeader from './EventFeedHeader';
-import Animated from "react-native-reanimated";
 
 import colors from "../../config/colors";
 
 const EventFeed = () => {
   const [sportFilters, setSportFilters] = useState([]);
   const [textFilters, setTextFilters] = useState("");
-  const [eventsArr, setEventsArr] = useState([]);
-
   const headerHeight = 200;
-  const scrollY = new Animated.Value(0);
-  const translateY = scrollY.interpolate({
-    inputRange: [1, headerHeight],
-    outputRange: [0, -headerHeight]
-  })
 
   const isSelected = (sport) => {
     return sportFilters.indexOf(sport) >= 0;
@@ -26,27 +18,20 @@ const EventFeed = () => {
   const setSportFilter = (sport) => {
     if (isSelected(sport)) {
       const newSports = sportFilters.filter((sportArr) => sportArr !== sport);
-      // need to remove this sport from feed array.
       setSportFilters([...newSports]);
     } else {
       setSportFilters([...sportFilters, sport]);
-      // need to add this sport to feed array
     }
   };
 
-  const setEvents = (events) => {
-    setEventsArr([...events]);
-  };
-
   const FeedHeader = () => (
-      <EventFeedHeader
-        setSportFilters={setSportFilter}
-        setTextFilters={setTextFilters}
-        isSelected={isSelected}
-        height={headerHeight}
-        translateY={translateY}
-      />
-  )
+    <EventFeedHeader
+      setSportFilters={setSportFilter}
+      setTextFilters={setTextFilters}
+      isSelected={isSelected}
+      height={headerHeight}
+    />
+  );
 
   return (
     <View style={styles.container}>
@@ -54,7 +39,6 @@ const EventFeed = () => {
       <ShowEventFeed
         sportFilters={sportFilters}
         textFilters={textFilters}
-        scrollY={scrollY}
         Header={FeedHeader}
       />
     </View>
@@ -63,7 +47,7 @@ const EventFeed = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   containerHeader: {
     borderBottomLeftRadius: 40,
@@ -77,6 +61,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     height: 200,
   },
-})
+});
 
 export default EventFeed;

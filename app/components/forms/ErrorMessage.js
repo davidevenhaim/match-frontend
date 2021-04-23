@@ -5,18 +5,17 @@ import Text from "../layouts/Text";
 
 import colors from "../../config/colors";
 
-const ErrorMessage = ({ error, visible }) => {
+const ErrorMessage = ({ error, style, visible }) => {
   if (!visible || !error) {
     return null;
   }
-  return <Text style={styles.message}>{error}</Text>;
+  return <Text style={[styles.message, style]}>{error}</Text>;
 };
 
 const styles = StyleSheet.create({
   message: {
     color: colors.danger,
     fontSize: 14,
-    textAlign: "center"
   },
 });
 

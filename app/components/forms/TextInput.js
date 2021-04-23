@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { useFonts } from "@expo-google-fonts/inter";
-import AppLoading from "expo-app-loading";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import AppLoading from "expo-app-loading";
 
 import colors from "../../config/colors";
 
@@ -34,8 +35,8 @@ const AppTextInput = ({
           : null,
         error && touched
           ? {
-            borderColor: colors.danger,
-          }
+              borderColor: colors.danger,
+            }
           : null,
       ]}
     >

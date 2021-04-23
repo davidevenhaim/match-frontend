@@ -14,7 +14,7 @@ const OneSportPicker = ({
   touch = true,
 }) => {
   return (
-    <View>
+    <>
       <ScrollView
         horizontal
         keyboardDismissMode="on-drag"
@@ -43,7 +43,7 @@ const OneSportPicker = ({
               />
             ))}
       </ScrollView>
-    </View>
+    </>
   );
 };
 
@@ -58,30 +58,3 @@ const styles = StyleSheet.create({
 });
 
 export default OneSportPicker;
-/* 
-<FlatList
-            data={userSports}
-            contentContainerStyle={{
-              flexGrow: 1,
-              // justifyContent: "center",
-            }}
-            keyExtractor={(item) => item.toString()}
-            horizontal
-            renderItem={({ item }) => (
-              <View
-                style={{
-                  alignItems: "center",
-                  width: "20%",
-                  flex: 1,
-                }}
-              >
-                <SportsIcon
-                  sport={item}
-                  iconSize={iconSize}
-                  backgroundSize={iconSize * 1.5}
-                  // style={styles.userPreview}
-                />
-              </View>
-            )}
-          />
-*/

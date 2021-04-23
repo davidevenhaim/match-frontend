@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
 
-import HeaderProfile from "./HeaderProfile";
+import HeaderProfile from "./header/HeaderProfile";
 import UpcomingEvents from "./UpcomingEvents";
 import ConnectionsList from "./ConnectionsList";
 
-import defaultAthlete from "../../../config/defaultAthlete";
+import defaultValues from "../../../config/defaultValues";
 import colors from "../../../config/colors";
 
 const AthleteProfileOwner = ({ athlete, isOwner = false }) => {
@@ -19,7 +18,7 @@ const AthleteProfileOwner = ({ athlete, isOwner = false }) => {
     setShowConnection(newShowConnection);
   };
   if (!athlete) {
-    athlete = defaultAthlete;
+    athlete = defaultValues.athlete;
     opacity = 0.7;
   }
 

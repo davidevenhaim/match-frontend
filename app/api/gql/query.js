@@ -40,6 +40,7 @@ const GET_ATHLETE = gql`
       avatar
       connection {
         avatar
+        id
         name
       }
       favoriteSport

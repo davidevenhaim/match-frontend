@@ -4,7 +4,9 @@ import { useFormikContext } from "formik";
 import ErrorMessage from "../ErrorMessage";
 import SportsIconList from "../../layouts/SportsIconList";
 
-const EventSportPicker = ({ name, userSports }) => {
+import colors from "../../../config/colors";
+
+const EventSportPicker = ({ name, showErrorMessage = false, userSports }) => {
   const { errors, setFieldValue, touched, values } = useFormikContext();
 
   const itemSelected = (sport) => {
@@ -14,6 +16,12 @@ const EventSportPicker = ({ name, userSports }) => {
   const onPress = (sport) => {
     setFieldValue(name, sport);
   };
+  const isInvalid = touched[name] && errors[name];
+  const invalidStyle = {
+    borderWidth: 0.9,
+    borderColor: colors.danger,
+    borderRadius: 200,
+  };
 
   return (
     <>
@@ -22,8 +30,11 @@ const EventSportPicker = ({ name, userSports }) => {
         onPress={onPress}
         itemSelected={itemSelected}
         iconSize={40}
+        style={isInvalid ? invalidStyle : null}
       />
-      <ErrorMessage visible={touched[name]} error={errors[name]} />
+      {showErrorMessage && (
+        <ErrorMessage visible={touched[name]} error={errors[name]} />
+      )}
     </>
   );
 };

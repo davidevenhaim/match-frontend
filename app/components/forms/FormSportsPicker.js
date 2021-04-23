@@ -1,8 +1,11 @@
 import React from "react";
+import { View } from "react-native";
 import { useFormikContext } from "formik";
 
 import ErrorMessage from "./ErrorMessage";
 import SportsPicker from "./SportsPicker";
+
+import colors from "../../config/colors";
 
 const AppFormPicker = ({
   name,
@@ -27,7 +30,7 @@ const AppFormPicker = ({
   };
 
   return (
-    <>
+    <View>
       <SportsPicker
         name={name}
         items={items}
@@ -35,11 +38,12 @@ const AppFormPicker = ({
         numColumns={numColumns}
         PickerItemComponent={PickerItemComponent}
         onRemoveItem={handleRemove}
+        errorBtnColor={errors[name] ? colors.danger : colors.primary}
       />
       {showErrorMessage && (
         <ErrorMessage error={errors[name]} visible={touched[name]} />
       )}
-    </>
+    </View>
   );
 };
 

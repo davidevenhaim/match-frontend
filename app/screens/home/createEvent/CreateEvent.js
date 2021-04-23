@@ -8,13 +8,15 @@ import colors from "../../../config/colors";
 import { StyleSheet } from "react-native";
 
 import { NEW_EVENT } from "../../../api/gql/mutation";
+import { GET_MY_EVENTS } from "../../../api/gql/query";
 
 import routes from "../../../navigation/routes";
 
 const CreateEvent = ({ navigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
   const [newEvent, { loading }] = useMutation(NEW_EVENT, {
-    onCompleted: () =>
+    refetchQueries: [{ query: GET_MY_EVENTS }],
+    onCompleted: (data) =>
       navigation.navigate(routes.EVENT_SCREEN, { event: data.newEvent.event }),
     onError: (error) => setError({ message: error.message, visible: true }),
   });
