@@ -18,7 +18,7 @@ const EventSportPicker = ({ name, showErrorMessage = false, userSports }) => {
   };
   const isInvalid = touched[name] && errors[name];
   const invalidStyle = {
-    borderWidth: 0.9,
+    borderWidth: 0.4,
     borderColor: colors.danger,
     borderRadius: 200,
   };

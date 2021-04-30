@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 
 import IconWithText from "../layouts/IconWithText";
 import JoinEvent from "./EventActions/JoinEvent";
-import NavigateToEvent from "../NavigateToEvent";
+import NavigateToEvent from "./EventActions/NavigateToEvent";
 import ShowEventPlayers from "../athletes/ShowEventPlayers";
 import SportsIcon from "../layouts/SportsIcon";
 import Text from "../layouts/Text";

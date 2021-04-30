@@ -1,23 +1,18 @@
-const event = {
+export const defaultEvent = {
   id: "1234",
   eventName: "Match & Roll",
   eventDate: new Date(),
   sport: "default",
-  captain: athlete,
-  players: [athlete],
+  captain: defaultAthlete,
+  players: [defaultAthlete],
   curPlayersAmount: 0,
   maxPlayersAmount: 0,
 };
 
-const athlete = {
+export const defaultAthlete = {
   id: "123456",
   name: "Match",
   favoriteSport: ["default"],
-  upcomingEvents: [event],
+  upcomingEvents: [defaultEvent],
   connection: [],
-};
-
-export default {
-  event,
-  athlete,
 };

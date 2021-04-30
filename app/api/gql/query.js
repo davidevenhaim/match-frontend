@@ -44,6 +44,7 @@ const GET_ATHLETE = gql`
         name
       }
       favoriteSport
+      id
       name
       upcomingEvents {
         captain {
@@ -152,6 +153,11 @@ const GET_EVENTS = gql`
       cursor
       hasNextPage
       events {
+        captain {
+          name
+          avatar
+          id
+        }
         curPlayersAmount
         id
         eventDate

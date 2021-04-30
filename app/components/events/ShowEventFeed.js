@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View, RefreshControl } from "react-native";
+import React, { useState, useEffect } from "react";
+import { FlatList, StyleSheet } from "react-native";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { useNavigation } from "@react-navigation/core";
+import * as SplashScreen from "expo-splash-screen";
 
 import ActivityIndicator from "../layouts/ActivityIndicator";
 import ErrorIndicator from "../layouts/ErrorIndicator";
+import EventFeed from "./eventFeed/EventFeed";
 import EventInFeed from "./EventInFeed";
 
 import { GET_EVENTS } from "../../api/gql/query";
@@ -14,19 +16,13 @@ import routes from "../../navigation/routes";
 const ShowEventFeed = ({ Header, sportFilters }) => {
   const navigation = useNavigation();
 
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [eventsArr, setEventsArr] = useState([]);
-  const [scrollPosition, setScrollPosition] = useState("");
 
-  let { data, error, loading, refetch, networkStatus, fetchMore } = useQuery(
+  const { data, error, loading, refetch, networkStatus } = useQuery(
     GET_EVENTS,
     {
       notifyOnNetworkStatusChange: true,
       fetchPolicy: "network-only",
-      onCompleted: (data) => {
-        setScrollPosition(data.Events.cursor);
-        addEventHandler(data.Events.events);
-      },
     }
   );
 
@@ -37,17 +33,6 @@ const ShowEventFeed = ({ Header, sportFilters }) => {
     </>
   );
 
-  const getMore = async () => {
-    setIsLoadingMore(true);
-    console.log(data.cursor);
-    await fetchMore({
-      variables: {
-        cursor: scrollPosition,
-      },
-    });
-    setIsLoadingMore(false);
-  };
-
   if (networkStatus === NetworkStatus.refetch) return <LoadingStatus />;
 
   if (loading) return <LoadingStatus />;
@@ -57,19 +42,25 @@ const ShowEventFeed = ({ Header, sportFilters }) => {
     return <ErrorIndicator />;
   }
 
-  const addEventHandler = (events) => {
-    setEventsArr(() => {
-      return [...events];
-    });
-  };
-
   return (
     <>
       <Header />
-      <FlatList
-        data={eventsArr}
+      <EventFeed events={data.Events.events} />
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {},
+});
+
+export default ShowEventFeed;
+
+/*
+<FlatList
+        // horizontal
+        data={data.Events.events}
         keyExtractor={({ id }) => id.toString()}
-        numColumns={1}
         onRefresh={() => refetch({ sports: sportFilters })}
         refreshing={networkStatus === NetworkStatus.refetch}
         renderItem={({ item }) => (
@@ -88,12 +79,4 @@ const ShowEventFeed = ({ Header, sportFilters }) => {
           // getMore();
         }}
       />
-    </>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {},
-});
-
-export default ShowEventFeed;
+*/

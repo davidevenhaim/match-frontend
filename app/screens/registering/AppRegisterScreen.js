@@ -9,10 +9,11 @@ import Logo from "../../components/layouts/Logo";
 // import Screen from "../../components/Screen";
 import Text from "../../components/layouts/Text";
 import routes from "../../navigation/routes";
+import Screen from "../../components/Screen";
 
 const AppLogin = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Screen style={styles.container}>
       <Logo />
       <Text style={styles.title}>Sign Up With:</Text>
       <View style={styles.socialIcons}>
@@ -41,7 +42,7 @@ const AppLogin = ({ navigation }) => {
           <MaterialCommunityIcons name="circle" color="lightgreen" size={15} />
         </Text>
       </View>
-    </View>
+    </Screen>
   );
 };
 

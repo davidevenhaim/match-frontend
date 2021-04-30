@@ -1,37 +1,80 @@
 import React from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 
-import Screen from "../Screen";
 import Text from "../layouts/Text";
+import Button from "../layouts/Button";
 
-const ScrollViewCard = ({ cardIndex, text }) => {
-  const xOffset = new Animated.Value(0);
+import colors from "../../config/colors";
 
+const ScrollViewCard = ({ action, description, image, title, width }) => {
   return (
-    <Screen>
-      <View style={styles.scrollPage}>
-        <Animated.View style={[styles.screen, transitionAnimation(cardIndex)]}>
-          <Text style={styles.text}>Match{text}</Text>
-        </Animated.View>
+    <View style={[styles.container, { width }]}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: image }}
+          style={{
+            width: width / 2,
+            height: width / 2,
+            resizeMode: "contain",
+          }}
+        />
       </View>
-    </Screen>
+      <View style={{ flex: 0.3 }}>
+        <Text
+          style={[
+            styles.text,
+            {
+              fontSize: 36,
+              marginBottom: 10,
+            },
+          ]}
+        >
+          {title}
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            {
+              fontSize: 16,
+            },
+          ]}
+        >
+          {description}
+        </Text>
+        {action && (
+          <View>
+            <Button
+              onPress={action}
+              style={styles.button}
+              text="Sign Up as Coach"
+              // textStyle={{ color: colors.black }}
+            />
+          </View>
+        )}
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollPage: {
-    width: SCREEN_WIDTH,
+  button: {
+    backgroundColor: colors.secondary,
+    width: "60%",
+    margin: 15,
+    borderWidth: 1,
+    borderColor: colors.selected,
+  },
+  container: {
+    alignItems: "center",
+  },
+  imageContainer: {
+    flex: 0.7,
+    justifyContent: "center",
     padding: 20,
   },
-  screen: {
-    height: "80%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 25,
-    backgroundColor: "white",
-  },
   text: {
-    fontSize: 48,
+    color: colors.white,
+    textAlign: "center",
   },
 });
 

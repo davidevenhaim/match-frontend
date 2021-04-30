@@ -38,7 +38,9 @@ const AppFormPicker = ({
         numColumns={numColumns}
         PickerItemComponent={PickerItemComponent}
         onRemoveItem={handleRemove}
-        errorBtnColor={errors[name] ? colors.danger : colors.primary}
+        errorBtnColor={
+          errors[name] && touched[name] ? colors.danger : colors.primary
+        }
       />
       {showErrorMessage && (
         <ErrorMessage error={errors[name]} visible={touched[name]} />

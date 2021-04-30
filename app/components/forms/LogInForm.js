@@ -21,7 +21,6 @@ const LogInForm = ({ action }) => {
         password: "",
       }}
       onSubmit={(values) => {
-        console.log("LogIn Form");
         action({
           variables: {
             ...values,

@@ -73,13 +73,6 @@ const UserSettings = ({ beCoach, signOut }) => {
         />
         <Text style={{ fontSize: 20 }}>Settings</Text>
       </View>
-      {/* <LinearGradient
-        colors={[colors.primary, colors.primary]}
-        start={{ x: 1, y: 0.1 }}
-        end={{ x: 0.5, y: 0.9 }}
-        locations={[1, 0.8]}
-        style={styles.headerBackground}
-      /> */}
       <View style={styles.switchContainer}>
         <Text size={25} style={styles.margin}>
           Push Notifictaion

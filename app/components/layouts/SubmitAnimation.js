@@ -9,7 +9,11 @@ const SubmitAnimation = ({ children, error, loading }) => {
     <View>
       {loading && <ActivityIndicator style={styles.loadingIndicator} />}
       <View opacity={loading ? 0.5 : 1}>{children}</View>
-      <ErrorMessage error={error.message} visible={error.visible} />
+      <ErrorMessage
+        error={error.message}
+        visible={error.visible}
+        style={styles.errorMessage}
+      />
     </View>
   );
 };
@@ -18,6 +22,10 @@ const styles = StyleSheet.create({
   loadingIndicator: {
     position: "absolute",
     alignSelf: "center",
+  },
+  errorMessage: {
+    marginTop: 10,
+    textAlign: "center",
   },
 });
 

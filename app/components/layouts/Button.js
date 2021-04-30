@@ -2,12 +2,20 @@ import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from "./Text";
+import Text from "./Text";
 
 import colors from "../../config/colors";
 import defaultStyles from "../../config/styles";
 
-const AppButton = ({ style, btnHeight = 50, onPress, text, iconName }) => {
+const AppButton = ({
+  style,
+  btnHeight = 50,
+  onPress,
+  text,
+  textStyle,
+  iconName,
+  iconColor = colors.white,
+}) => {
   return (
     <TouchableOpacity
       style={[
@@ -17,12 +25,12 @@ const AppButton = ({ style, btnHeight = 50, onPress, text, iconName }) => {
       ]}
       onPress={onPress}
     >
-      <AppText style={styles.text}>{text}</AppText>
+      <Text style={[styles.text, textStyle]}>{text}</Text>
       {iconName && (
         <MaterialCommunityIcons
           name={iconName}
           size={25}
-          color={colors.white}
+          color={iconColor}
           style={styles.iconStyle}
         />
       )}

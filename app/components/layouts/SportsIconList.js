@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
 
 import SportsIcon from "./SportsIcon";
 import SportsPickerItem from "./SportsPickerItem";

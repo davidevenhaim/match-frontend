@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import DatePicker from "../datePicker/DatePicker";
 import Form from "../Form";
 import FormField from "../FormField";
-import ImagePicker from "../ImagePicker";
 import SubmitButton from "../SubmitButton";
 import Slider from "../Slider";
 import EventSportPicker from "./EventSportPicker";
@@ -19,7 +18,7 @@ const validationSchema = Yup.object().shape({
   // description: Yup.string().label("Event description"),
   eventDate: Yup.date().min(today).required().label("Event date"),
   level: Yup.string()
-    .required("Event needs his level!")
+    .required()
     .oneOf(events.EVENT_LEVELS)
     .label("Athletes level"),
   location: Yup.string().required().label("Location"), // Waze/Maps to:
@@ -28,7 +27,6 @@ const validationSchema = Yup.object().shape({
     .min(2)
     .max(35)
     .label("Players amount"),
-  // private: Yup.boolean().required().label("Is the event private?"),
   sport: Yup.string().required().label("Event Sport"),
 });
 
@@ -45,7 +43,7 @@ const CreateEventForm = ({ action }) => (
   <ScrollView style={styles.container}>
     <Form
       initialValues={{
-        // avatar: "",
+        avatar: "",
         eventDate: today,
         maxPlayersAmount: 1,
         level: "",

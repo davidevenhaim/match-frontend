@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
 
 import HeaderProfile from "./header/HeaderProfile";
 import UpcomingEvents from "./UpcomingEvents";
 import ConnectionsList from "./ConnectionsList";
 
-import defaultValues from "../../../config/defaultValues";
+import { defaultAthlete } from "../../../config/defaultValues";
 import colors from "../../../config/colors";
 
-const AthleteProfileOwner = ({ athlete, isOwner = false }) => {
+const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
+
+  const curAthleteId = useSelector((state) => state.userInfo.id);
+
+  if (!athlete) {
+    athlete = defaultAthlete;
+    opacity = 0.7;
+  }
+
+  const isOwner = curAthleteId === athlete.id;
 
   let opacity = 1;
   const toggleShowConnection = () => {
     const newShowConnection = !showConnection;
     setShowConnection(newShowConnection);
   };
-  if (!athlete) {
-    athlete = defaultValues.athlete;
-    opacity = 0.7;
-  }
 
   return (
     <View style={{ opacity }}>
@@ -32,9 +38,9 @@ const AthleteProfileOwner = ({ athlete, isOwner = false }) => {
         />
       </View>
       {showConnection && <ConnectionsList connections={athlete.connection} />}
-      <ScrollView style={styles.scrollView}>
+      <View style={styles.scrollView}>
         <UpcomingEvents events={athlete.upcomingEvents} isOwner={isOwner} />
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -55,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AthleteProfileOwner;
+export default AthleteProfile;

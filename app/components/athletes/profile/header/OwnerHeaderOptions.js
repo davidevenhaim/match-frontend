@@ -18,7 +18,7 @@ const OwnerHeaderOptions = () => {
   return (
     <View style={styles.bottomButtons}>
       {Object.keys(userOptions).map((key) => (
-        <IconButton name={key} onPress={userOptions[key]} />
+        <IconButton name={key} onPress={userOptions[key]} key={key} />
       ))}
     </View>
   );

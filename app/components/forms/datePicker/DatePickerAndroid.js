@@ -15,6 +15,7 @@ const DatePickerAndroid = ({ date, onSubmit, showMode, showPicker }) => {
           is24Hour
           minimumDate={today}
           onChange={(_, selectedDate) => onSubmit(selectedDate)}
+          {...otherProps}
         />
       )}
     </>

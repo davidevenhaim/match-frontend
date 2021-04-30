@@ -7,6 +7,7 @@ import DatePickerIOS from "./DatePickerIOS";
 import DatePickerAndroid from "./DatePickerAndroid";
 import RoundIconButton from "../../layouts/RoundIconButton";
 import Text from "../../layouts/Text";
+
 import colors from "../../../config/colors";
 
 const DatePicker = ({ inputName }) => {
@@ -20,6 +21,7 @@ const DatePicker = ({ inputName }) => {
 
   const [showPicker, setShowPicker] = useState(false);
   const [showMode, setShowMode] = useState("date");
+  const [isPicked, setIsPicked] = useState(false);
   const onChange = (newDate) => {
     setShowPicker(Platform.OS === "ios");
     setFieldValue(inputName, newDate);
@@ -28,13 +30,15 @@ const DatePicker = ({ inputName }) => {
   const showDatePicker = () => {
     setShowMode("date");
     setShowPicker(true);
-    setFieldTouched(inputName);
+    setTimeout(() => setFieldTouched(inputName), 1.5 * 1000);
+    setTimeout(() => setIsPicked(true), 1.5 * 1000);
   };
 
   const showTimePicker = () => {
     setShowMode("time");
     setShowPicker(true);
-    setFieldTouched(inputName);
+    setTimeout(() => setFieldTouched(inputName), 1.5 * 1000);
+    setTimeout(() => setIsPicked(true), 1.5 * 1000);
   };
 
   return (
@@ -44,11 +48,13 @@ const DatePicker = ({ inputName }) => {
           name="calendar"
           onPress={showDatePicker}
           backgroundSize={60}
+          backgroundColor={errors[inputName] ? colors.danger : colors.primary}
         />
         <RoundIconButton
           name="clock"
           onPress={showTimePicker}
           backgroundSize={60}
+          backgroundColor={errors[inputName] ? colors.danger : colors.primary}
         />
       </View>
       {Platform.OS === "ios" ? (
@@ -58,6 +64,7 @@ const DatePicker = ({ inputName }) => {
           showMode={showMode}
           showPicker={showPicker}
           setShowPicker={() => setShowPicker(!showPicker)}
+          minuteInterval={15}
         />
       ) : (
         <DatePickerAndroid
@@ -65,9 +72,10 @@ const DatePicker = ({ inputName }) => {
           onSubmit={(newDate) => onChange(newDate)}
           showMode={showMode}
           showPicker={showPicker}
+          minuteInterval={15}
         />
       )}
-      {touched[inputName] && (
+      {touched[inputName] && isPicked && (
         <Text style={styles.dateText}>
           {format(values[inputName], "EEEE MMMM do")} at{" "}
           {format(values[inputName], "HH:mm a")}
@@ -92,6 +100,5 @@ const styles = StyleSheet.create({
 export default DatePicker;
 
 /*
-Because of the major differences in platforms beahviours,
-datePicker is unique for every platform
+Major differences in platforms beahviours.
 */

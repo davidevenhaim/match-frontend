@@ -12,6 +12,7 @@ import {
   GET_EVENTS,
   GET_MY_CONNECTIONS,
   GET_MY_EVENTS,
+  GET_ME,
 } from "../../../api/gql/query";
 
 import routes from "../../../navigation/routes";
@@ -30,9 +31,10 @@ const JoinEvent = ({ event, isParticipant, text }) => {
 
   const [toggleJoinEvent] = useMutation(TOGGLE_JOIN_EVENT, {
     refetchQueries: [
-      { query: GET_EVENTS },
-      { query: GET_MY_EVENTS },
-      { query: GET_MY_CONNECTIONS },
+      // { query: GET_EVENTS },
+      { query: GET_ME },
+      // { query: GET_MY_EVENTS },
+      // { query: GET_MY_CONNECTIONS },
     ],
     onCompleted: navigateTo,
   });

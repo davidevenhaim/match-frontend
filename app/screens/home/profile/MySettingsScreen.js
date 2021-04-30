@@ -1,7 +1,9 @@
 import React from "react";
 import * as SecureStore from "expo-secure-store";
-
+import { useDispatch } from "react-redux";
 import UserSettings from "../../../components/athletes/profile/UserSettings";
+
+import { writeInfo } from "../../../store/actions";
 
 import routes from "../../../navigation/routes";
 

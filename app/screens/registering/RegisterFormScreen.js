@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import { useApolloClient, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import * as SecureStore from "expo-secure-store";
+import { KeyboardAvoidingView } from "react-native";
 
 import { SIGN_UP } from "../../api/gql/mutation";
 
 import Logo from "../../components/layouts/Logo";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import RegisterForm from "../../components/forms/RegisterForm";
+
 import routes from "../../navigation/routes";
-import KeyboardAvoid from "../../components/KeyboardAvoid";
-import { KeyboardAvoidingView } from "react-native";
+import Screen from "../../components/Screen";
 
 const RegisterFormScreen = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
 
   const [signUp, { loading }] = useMutation(SIGN_UP, {
     onCompleted: (data) => {
-      console.log(data.signUp);
       storeToken(data.signUp);
     },
-    onError: (error) =>
-      setError({ message: "Email is already in use!", visible: true }),
   });
 
   const storeToken = (token) => {
@@ -30,12 +28,14 @@ const RegisterFormScreen = ({ mainNavigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView>
-      <Logo />
-      <SubmitAnimation error={error} loading={loading}>
-        <RegisterForm action={signUp} />
-      </SubmitAnimation>
-    </KeyboardAvoidingView>
+    <Screen>
+      <KeyboardAvoidingView>
+        <Logo />
+        <SubmitAnimation error={error} loading={loading}>
+          <RegisterForm action={signUp} />
+        </SubmitAnimation>
+      </KeyboardAvoidingView>
+    </Screen>
   );
 };
 

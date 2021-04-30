@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { showLocation, Popup } from "react-native-map-link";
 
-import RoundIconButton from "./layouts/RoundIconButton";
-import Text from "./layouts/Text";
+import RoundIconButton from "../../layouts/RoundIconButton";
+import Text from "../../layouts/Text";
 
-import colors from "../config/colors";
+import colors from "../../../config/colors";
 
 const NavigateToEvent = ({ currentPosition, destination }) => {
   const [isVisible, setIsVisible] = useState(false);

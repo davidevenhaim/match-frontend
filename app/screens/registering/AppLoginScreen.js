@@ -13,6 +13,7 @@ import Text from "../../components/layouts/Text";
 
 import colors from "../../config/colors";
 import routes from "../../navigation/routes";
+import Screen from "../../components/Screen";
 // import { KeyboardAvoidingView } from "react-native";
 
 const AppLogin = ({ mainNavigation }) => {
@@ -32,31 +33,33 @@ const AppLogin = ({ mainNavigation }) => {
   };
 
   return (
-    <KeyboardAvoid style={styles.container}>
-      <Logo />
-      <Text style={styles.title}>Sign In With:</Text>
-      <View style={styles.socialIcons}>
-        <SocialIcon
-          type="facebook"
-          onPress={() => console.log("sign with facebook")}
-          style={styles.facebook}
-          Component={TouchableOpacity}
-        />
-        <SocialIcon
-          type="google"
-          onPress={() => console.log("sign with google")}
-          Component={TouchableOpacity}
-        />
-      </View>
-      <Text style={styles.middleText}>or be classic:</Text>
-      <SubmitAnimation loading={loading} error={error}>
-        <LogInForm
-          action={signIn}
-          actionLoading={loading}
-          actionError={error}
-        />
-      </SubmitAnimation>
-    </KeyboardAvoid>
+    <Screen>
+      <KeyboardAvoid style={styles.container}>
+        <Logo />
+        <Text style={styles.title}>Sign In With:</Text>
+        <View style={styles.socialIcons}>
+          <SocialIcon
+            type="facebook"
+            onPress={() => console.log("sign with facebook")}
+            style={styles.facebook}
+            Component={TouchableOpacity}
+          />
+          <SocialIcon
+            type="google"
+            onPress={() => console.log("sign with google")}
+            Component={TouchableOpacity}
+          />
+        </View>
+        <Text style={styles.middleText}>or be classic:</Text>
+        <SubmitAnimation loading={loading} error={error}>
+          <LogInForm
+            action={signIn}
+            actionLoading={loading}
+            actionError={error}
+          />
+        </SubmitAnimation>
+      </KeyboardAvoid>
+    </Screen>
   );
 };
 

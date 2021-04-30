@@ -15,6 +15,7 @@ const DatePicker = ({
   showMode,
   showPicker,
   setShowPicker,
+  ...otherProps
 }) => {
   const today = new Date();
 
@@ -36,6 +37,7 @@ const DatePicker = ({
             is24Hour
             minimumDate={today}
             onChange={(_, selectedDate) => onSubmit(selectedDate)}
+            {...otherProps}
           />
         </View>
         <Button

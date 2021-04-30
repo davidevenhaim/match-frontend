@@ -10,10 +10,7 @@ const SubmitButton = ({ text, style }) => {
   return (
     <AppButton
       text={text}
-      onPress={() => {
-        handleSubmit();
-        console.log(" Submit Button ");
-      }}
+      onPress={handleSubmit}
       style={[styles.submit, style]}
     />
   );
