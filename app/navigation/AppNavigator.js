@@ -8,7 +8,6 @@ import * as SplashScreen from "expo-splash-screen";
 import ActivityIndicator from "../components/layouts/ActivityIndicator";
 import CreateEventScreen from "../screens/home/createEvent/CreateEvent";
 import ExploreNavigator from "./stacks/ExploreNavigator";
-import ErrorIndicator from "../components/layouts/ErrorIndicator";
 import NewEventButton from "./stacks/NewEventButton";
 import ProfileNavigator from "./stacks/ProfileNavigator";
 import Text from "../components/layouts/Text";
@@ -27,16 +26,18 @@ const AppNavigator = ({ navigation }) => {
 
   const { data, loading, error } = useQuery(GET_ME);
   if (loading) {
-    SplashScreen.preventAutoHideAsync();
-    return null;
-  } else {
-    SplashScreen.hideAsync();
+    return <ActivityIndicator />;
+  }
+
+  SplashScreen.hideAsync();
+
+  if (error) {
+    navigation.navigate(routes.AUTH);
   }
 
   dispatch(writeInfo(data.Me));
 
   const mainNavigation = navigation;
-  let numOfNotifications;
 
   return (
     <Screen>
@@ -48,9 +49,9 @@ const AppNavigator = ({ navigation }) => {
             tabBarIcon: ({ color }) => (
               <FontAwesome
                 name="search"
-                size={30}
+                size={28}
                 color={color}
-                style={{ marginTop: 2 }}
+                style={{ marginTop: 10, height: 40, width: 40 }}
               />
             ),
             tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
@@ -76,11 +77,11 @@ const AppNavigator = ({ navigation }) => {
                 name="account-circle"
                 size={35}
                 color={color}
-                style={{ marginTop: 2 }}
+                style={{ marginTop: 10, height: 40, width: 40 }}
               />
             ),
             tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
-            tabBarBadge: numOfNotifications || 5,
+            // tabBarBadge: numOfNotifications || 5
           }}
         />
       </Tab.Navigator>

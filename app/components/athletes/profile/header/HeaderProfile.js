@@ -14,6 +14,7 @@ const HeaderProfile = ({
   athlete: { connection, name, avatar, favoriteSport, id },
   isOwner,
   toggleShowConnection,
+  isConnected,
 }) => {
   const connectionCount = connection.length;
   return (
@@ -34,7 +35,13 @@ const HeaderProfile = ({
           style={{ flexShrink: 1 }}
         />
       </View>
-      {isOwner ? <OwnerHeaderOptions /> : <GetConnectedButton id={id} />}
+      {isOwner ? (
+        <OwnerHeaderOptions />
+      ) : isConnected ? (
+        <OwnerHeaderOptions isConnected />
+      ) : (
+        <GetConnectedButton id={id} />
+      )}
     </View>
   );
 };

@@ -1,11 +1,10 @@
 import React from "react";
 import * as Yup from "yup";
-import { useFormikContext } from "formik";
 
 // import ErrorMessage from "./ErrorMessage";
 import Form from "./Form";
 import FormField from "./FormField";
-import FormSportPicker from "./FormSportsPicker";
+import FormSportsPicker from "./FormSportsPicker";
 import ProfileImagePicker from "./ImagePicker";
 import SecuredFormField from "./SecuredFormField";
 import SportsPickerItem from "../layouts/SportsPickerItem";
@@ -24,7 +23,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).matches().label("Password"),
 });
 
-const RegisterForm = ({ action }) => {
+const RegisterForm = ({ action, isCoach = false }) => {
   return (
     <Form
       initialValues={{
@@ -49,8 +48,7 @@ const RegisterForm = ({ action }) => {
       <FormField
         autoCapitalize="none"
         autoCorrect={false}
-        autoFocus
-        iconName="email"
+        iconName="at"
         inputName="email"
         keyboardType="email-address"
         placeholder="Email"
@@ -59,14 +57,14 @@ const RegisterForm = ({ action }) => {
       <FormField
         autoCorrect={false}
         autoCompleteType="name"
-        iconName="account"
+        iconName="user-alt"
         inputName="name"
         placeholder="Name"
         textContentType="name"
         width="50%"
       />
       <SecuredFormField name="password" />
-      <FormSportPicker
+      <FormSportsPicker
         name="favoriteSport"
         iconName="form-select"
         inputName="categories"

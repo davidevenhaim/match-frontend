@@ -29,7 +29,7 @@ const DATA = [
     title: "Have Fun!",
   },
   {
-    action: () => console.log("Be coach"),
+    action: true,
     description: `We can help you find potnetial clients and \n schedule a training session through the app!`,
     image: "https://www.flaticon.com/premium-icon/icons/svg/2940/2718302.svg",
     key: "i4",
@@ -133,7 +133,7 @@ const Square = ({ scrollX }) => {
 
 const { width, height } = Dimensions.get("screen");
 
-const index = ({ signUp, signIn }) => {
+const index = ({ beCoach, signUp, signIn }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
@@ -148,7 +148,7 @@ const index = ({ signUp, signIn }) => {
         keyExtractor={(item) => item.key.toString()}
         renderItem={({ item }) => (
           <ScrollViewCard
-            action={item.action ? item.action : null}
+            action={item.action ? beCoach : null}
             description={item.description}
             image={item.image}
             title={item.title}

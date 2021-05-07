@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/core";
 import EventInFeed from "../../events/EventInFeed";
 
 import routes from "../../../navigation/routes";
+import { SafeAreaView } from "react-native";
 
 const UpcomingEvents = ({ events, isOwner }) => {
   const navigation = useNavigation();
@@ -15,19 +16,22 @@ const UpcomingEvents = ({ events, isOwner }) => {
 
   const ListFooterComponent = () => <View style={{ height: 40 }}></View>;
   return (
-    <FlatList
-      data={events}
-      keyExtractor={({ id }) => id.toString()}
-      renderItem={({ item }) => (
-        <EventInFeed
-          event={item}
-          onPress={() =>
-            navigation.navigate(routes[route], { event: item, isOwner })
-          }
-        />
-      )}
-      ListFooterComponent={ListFooterComponent}
-    />
+    <SafeAreaView>
+      <FlatList
+        data={events}
+        keyExtractor={({ id }) => id.toString()}
+        scrollEventThrottle={32}
+        renderItem={({ item }) => (
+          <EventInFeed
+            event={item}
+            onPress={() =>
+              navigation.navigate(routes[route], { event: item, isOwner })
+            }
+          />
+        )}
+        ListFooterComponent={ListFooterComponent}
+      />
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

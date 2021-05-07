@@ -2,14 +2,14 @@ import React, { useState } from "react";
 
 import FormField from "./FormField";
 
-const SecuredFormField = ({ name, iconName = "lock" }) => {
+const SecuredFormField = ({ name, iconName = "lock", ...otherProps }) => {
   const [isHidden, setIsHidden] = useState(true);
-  const [rightIconName, setRightIconName] = useState("eye-off");
+  const [rightIconName, setRightIconName] = useState("eye-slash");
 
   const hiddenHandler = () => {
     setIsHidden(!isHidden);
     if (isHidden) setRightIconName("eye");
-    else setRightIconName("eye-off");
+    else setRightIconName("eye-slash");
   };
 
   const placeholder = name;
@@ -26,6 +26,7 @@ const SecuredFormField = ({ name, iconName = "lock" }) => {
       isProtected={true}
       setIsHidden={hiddenHandler}
       rightIconName={rightIconName}
+      {...otherProps}
     />
   );
 };

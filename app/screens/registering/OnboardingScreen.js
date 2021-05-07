@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import colors from "../../config/colors";
 import Index from "../../components/animation/AppFirstPage";
+
+import colors from "../../config/colors";
 import routes from "../../navigation/routes";
 
 const OnboardingScreen = ({ navigation }) => {
@@ -10,6 +11,7 @@ const OnboardingScreen = ({ navigation }) => {
     <Index
       signUp={() => navigation.navigate(routes.SIGN_UP)}
       signIn={() => navigation.navigate(routes.SIGN_IN)}
+      beCoach={() => navigation.navigate(routes.REGISTER_COACH)}
     />
   );
 };

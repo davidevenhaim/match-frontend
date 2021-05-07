@@ -22,6 +22,7 @@ const AthleteAvatar = ({
     />
   );
 };
+
 const styles = StyleSheet.create({
   avatarStyle: {
     backgroundColor: colors.silver,

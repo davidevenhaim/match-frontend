@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 
-import EventFeedHeader from "./EventFeedHeader";
-import ShowEventFeed from "./ShowEventFeed";
+// import ShowEventFeed from "./ShowEventFeed";
 
 import colors from "../../config/colors";
 
@@ -24,23 +23,13 @@ const EventFeed = () => {
     }
   };
 
-  const FeedHeader = () => (
-    <EventFeedHeader
-      setSportFilters={setSportFilter}
-      setTextFilters={setTextFilters}
-      isSelected={isSelected}
-      height={headerHeight}
-    />
-  );
-
   return (
     <View style={styles.container}>
-      {/* <EventFeedHeader /> */}
-      <ShowEventFeed
+      {/* <ShowEventFeed
         sportFilters={sportFilters}
         textFilters={textFilters}
         Header={FeedHeader}
-      />
+      /> */}
     </View>
   );
 };

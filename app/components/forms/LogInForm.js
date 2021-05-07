@@ -31,7 +31,7 @@ const LogInForm = ({ action }) => {
       <FormField
         autoCapitalize="none"
         autoCorrect={false}
-        iconName="email"
+        iconName="at"
         inputName="email"
         keyboardType="email-address"
         placeholder="Email"

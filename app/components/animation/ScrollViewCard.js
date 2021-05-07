@@ -47,7 +47,6 @@ const ScrollViewCard = ({ action, description, image, title, width }) => {
               onPress={action}
               style={styles.button}
               text="Sign Up as Coach"
-              // textStyle={{ color: colors.black }}
             />
           </View>
         )}

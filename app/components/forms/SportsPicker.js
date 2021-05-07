@@ -59,6 +59,7 @@ const SportsPicker = ({
                   key={item}
                   style={styles.userSports}
                   iconSize={40}
+                  isSelected
                   backgroundSize={60}
                 />
               );

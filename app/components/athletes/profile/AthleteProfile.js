@@ -13,20 +13,29 @@ import colors from "../../../config/colors";
 const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
 
-  const curAthleteId = useSelector((state) => state.userInfo.id);
+  const visitingAthlete = useSelector((state) => state.userInfo);
 
   if (!athlete) {
     athlete = defaultAthlete;
     opacity = 0.7;
   }
 
-  const isOwner = curAthleteId === athlete.id;
+  const isOwner = visitingAthlete.id === athlete.id;
 
   let opacity = 1;
   const toggleShowConnection = () => {
     const newShowConnection = !showConnection;
     setShowConnection(newShowConnection);
   };
+
+  let isConnected = false;
+  if (!isOwner) {
+    isConnected = visitingAthlete.connection.find(
+      (ath) => ath.id === athlete.id
+    )
+      ? true
+      : false;
+  }
 
   return (
     <View style={{ opacity }}>
@@ -35,6 +44,7 @@ const AthleteProfile = ({ athlete }) => {
           athlete={athlete}
           isOwner={isOwner}
           toggleShowConnection={toggleShowConnection}
+          isConnected={isConnected}
         />
       </View>
       {showConnection && <ConnectionsList connections={athlete.connection} />}

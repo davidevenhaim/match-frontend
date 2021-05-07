@@ -5,6 +5,7 @@ import AppLoginScreen from "../screens/registering/AppLoginScreen";
 import AppRegisterScreen from "../screens/registering/AppRegisterScreen";
 import OnboardingScreen from "../screens/registering/OnboardingScreen";
 import RegisterFormScreen from "../screens/registering/RegisterFormScreen";
+import RegisterAsCoachScreen from "../screens/registering/RegisterAsCoachScreen";
 
 import routes from "./routes";
 import colors from "../config/colors";
@@ -20,6 +21,10 @@ const AuthNavigator = ({ navigation }) => {
     >
       <Stack.Screen name={routes.ONBOARDING} component={OnboardingScreen} />
       <Stack.Screen name={routes.SIGN_UP} component={AppRegisterScreen} />
+      <Stack.Screen
+        name={routes.REGISTER_COACH}
+        component={RegisterAsCoachScreen}
+      />
       <Stack.Screen name={routes.SIGN_IN}>
         {() => <AppLoginScreen mainNavigation={mainNavigation} />}
       </Stack.Screen>

@@ -14,13 +14,15 @@ function SportsPickerItem({
   onPress,
   style,
 }) {
-  let selectedIconStyle = null;
+  let iconStyle = null;
   let selectedTextStyle = null;
-  if (isSelected) {
-    selectedIconStyle = styles.selectedIcon;
-    selectedTextStyle = styles.selectedText;
-  }
 
+  if (isSelected) {
+    iconStyle = {
+      backgroundColor: colors.sportColors[item],
+    };
+    selectedTextStyle = { color: colors.sportColors[item] };
+  }
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       {item && (
@@ -28,7 +30,7 @@ function SportsPickerItem({
           iconSize={iconSize}
           backgroundSize={backgroundSize}
           sport={item}
-          style={selectedIconStyle}
+          style={[styles.icon, iconStyle]}
         />
       )}
       <Text style={[styles.text, selectedTextStyle]}>{item}</Text>
@@ -38,17 +40,14 @@ function SportsPickerItem({
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.dark,
+    color: colors.notSelected,
     textAlign: "center",
     textTransform: "capitalize",
   },
-  selectedIcon: {
-    backgroundColor: colors.primary,
+  icon: {
     borderWidth: 1,
     borderColor: colors.secondary,
-  },
-  selectedText: {
-    color: colors.primary,
+    backgroundColor: colors.notSelected,
   },
 });
 

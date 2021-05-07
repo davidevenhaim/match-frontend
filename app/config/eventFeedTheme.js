@@ -9,8 +9,8 @@ const s = width * 0.68;
 
 export const itemFeedSpec = {
   ITEM_WIDTH: s,
-  ITEM_HEIGHT: s * 1.5,
+  ITEM_HEIGHT: s * 1.4,
   RADIUS: 18,
   SPACING,
-  FULL_SIZE: s + SPACING * 2,
+  FULL_SIZE: s + SPACING,
 };

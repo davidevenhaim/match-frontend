@@ -49,7 +49,7 @@ const OneSportPicker = ({
 const styles = StyleSheet.create({
   userChoice: {
     marginBottom: 15,
-    marginTop: 15,
+    marginTop: 0,
   },
   userPreview: {
     // marginLeft: 2,

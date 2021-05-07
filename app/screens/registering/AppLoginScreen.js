@@ -10,11 +10,10 @@ import KeyboardAvoid from "../../components/KeyboardAvoid";
 import LogInForm from "../../components/forms/LogInForm";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
+import Screen from "../../components/Screen";
 
 import colors from "../../config/colors";
 import routes from "../../navigation/routes";
-import Screen from "../../components/Screen";
-// import { KeyboardAvoidingView } from "react-native";
 
 const AppLogin = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -34,7 +33,7 @@ const AppLogin = ({ mainNavigation }) => {
 
   return (
     <Screen>
-      <KeyboardAvoid style={styles.container}>
+      <KeyboardAvoid>
         <Logo />
         <Text style={styles.title}>Sign In With:</Text>
         <View style={styles.socialIcons}>
@@ -67,7 +66,6 @@ const styles = StyleSheet.create({
   bottomText: {
     fontSize: 18,
   },
-  container: {},
   continueBtn: {
     marginTop: 60,
     width: "80%",

@@ -8,9 +8,9 @@ import { SIGN_UP } from "../../api/gql/mutation";
 import Logo from "../../components/layouts/Logo";
 import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import RegisterForm from "../../components/forms/RegisterForm";
+import Screen from "../../components/Screen";
 
 import routes from "../../navigation/routes";
-import Screen from "../../components/Screen";
 
 const RegisterFormScreen = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -18,6 +18,9 @@ const RegisterFormScreen = ({ mainNavigation }) => {
   const [signUp, { loading }] = useMutation(SIGN_UP, {
     onCompleted: (data) => {
       storeToken(data.signUp);
+    },
+    onError: (err) => {
+      setError({ message: err.message, visible: true });
     },
   });
 
@@ -30,8 +33,8 @@ const RegisterFormScreen = ({ mainNavigation }) => {
   return (
     <Screen>
       <KeyboardAvoidingView>
-        <Logo />
         <SubmitAnimation error={error} loading={loading}>
+          <Logo />
           <RegisterForm action={signUp} />
         </SubmitAnimation>
       </KeyboardAvoidingView>

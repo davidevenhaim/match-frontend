@@ -7,6 +7,7 @@ export default {
   lightYellow: "#ffe66d",
   lightRed: "#ffc0cb",
   mediumGrey: "#6e6969",
+  notSelected: "#B8B8B8",
   primary: "#2D9CDB",
   primaryLight: "#6BB4D3",
   // primaryLight: "#ABD7F1",
@@ -19,10 +20,16 @@ export default {
   sportColors: {
     basketball: "#eb6841",
     bike: "#708090",
-    soccer: "#854442",
+    soccer: "#685348",
     tennis: "#008744",
-    volleyball: "#ffeead",
-    running: "#3c2f2f",
+    volleyball: "#d4bb89",
+    running: "#369799",
     default: "#2D9CDB",
+  },
+  sportLevelColors: {
+    beginner: "#6AF2F0",
+    amatuer: "#04ECF0",
+    professional: "#04D4F0",
+    legendery: "#059DC0",
   },
 };

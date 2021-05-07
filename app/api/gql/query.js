@@ -148,7 +148,7 @@ const GET_EVENTS_BY_SPORT = gql`
 `;
 
 const GET_EVENTS = gql`
-  query Events($cursor: String, $sports: [favoriteSportSelection]) {
+  query Events($cursor: String, $sports: [sportSelection]) {
     Events(cursor: $cursor, sports: $sports) {
       cursor
       hasNextPage

@@ -1,5 +1,21 @@
 import { gql } from "@apollo/client";
 
+const BE_COACH = gql`
+  mutation beCoach(
+    $coachingSport: [sportSelection!]!
+    $description: String!
+    $price: Int!
+  ) {
+    beCoach(
+      coachingSport: $coachingSport
+      description: $description
+      price: $price
+    ) {
+      string
+    }
+  }
+`;
+
 const EDIT_EVENT = gql`
   mutation editEvent(
     $id: ID!
@@ -42,7 +58,7 @@ const NEW_EVENT = gql`
     $maxPlayersAmount: Int!
     $level: sportLevels
     $location: String!
-    $sport: favoriteSportSelection!
+    $sport: sportSelection!
   ) {
     newEvent(
       sport: $sport
@@ -86,9 +102,9 @@ const SIGN_IN = gql`
 
 const SIGN_UP = gql`
   mutation signUp(
-    $avatar: String!
+    $avatar: String
     $email: String!
-    $favoriteSport: [favoriteSportSelection!]!
+    $favoriteSport: [sportSelection!]!
     $password: String!
     $name: String!
   ) {
@@ -117,6 +133,7 @@ const TOGGLE_JOIN_EVENT = gql`
 `;
 
 export {
+  BE_COACH,
   EDIT_EVENT,
   GET_CONNECTED,
   NEW_EVENT,

@@ -78,7 +78,7 @@ const DatePicker = ({ inputName }) => {
       {touched[inputName] && isPicked && (
         <Text style={styles.dateText}>
           {format(values[inputName], "EEEE MMMM do")} at{" "}
-          {format(values[inputName], "HH:mm a")}
+          {format(values[inputName], "HH:mm")}
         </Text>
       )}
     </>

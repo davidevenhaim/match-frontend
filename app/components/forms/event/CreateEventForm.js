@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
 import DatePicker from "../datePicker/DatePicker";
@@ -27,20 +27,23 @@ const validationSchema = Yup.object().shape({
     .min(2)
     .max(35)
     .label("Players amount"),
-  sport: Yup.string().required().label("Event Sport"),
+  sport: Yup.string()
+    .required()
+    .oneOf(events.SPORTS_CATERGORIES)
+    .label("Event Sport"),
 });
 
 const convertValues = (values) => ({
+  // reformating eventDate & playersAmount to the way the BACKEND supports.
   ...values,
   maxPlayersAmount: isNaN(+values.maxPlayersAmount)
     ? 0
     : +values.maxPlayersAmount,
   eventDate: JSON.parse(JSON.stringify(values.eventDate)),
-  // reformating eventDate & playersAmount to the way the BACKEND supports.
 });
 
 const CreateEventForm = ({ action }) => (
-  <ScrollView style={styles.container}>
+  <View style={styles.container}>
     <Form
       initialValues={{
         avatar: "",
@@ -73,7 +76,7 @@ const CreateEventForm = ({ action }) => (
         width="80%"
       />
       <FormField
-        iconName="crosshairs-gps"
+        iconName="map-marker-alt"
         inputName="location"
         placeholder="Location"
         textContentType="addressCity"
@@ -81,9 +84,9 @@ const CreateEventForm = ({ action }) => (
         width="50%"
       />
       <FormField
-        iconName="account"
+        iconName="users"
         inputName="maxPlayersAmount"
-        placeholder="10"
+        placeholder="Players amount"
         autoCorrect={false}
         keyboardType="numeric"
         width="50%"
@@ -94,7 +97,7 @@ const CreateEventForm = ({ action }) => (
       />
       <SubmitButton text="Create Event" style={{ marginBottom: 40 }} />
     </Form>
-  </ScrollView>
+  </View>
 );
 
 const styles = StyleSheet.create({

@@ -34,7 +34,6 @@ const GetConnectedButton = ({ id }) => {
           onPress={getConnected}
         />
       )}
-      {connectionSent && <Text style={styles.text}> Connected! </Text>}
     </>
   );
 };

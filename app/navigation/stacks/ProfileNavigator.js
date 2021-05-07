@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import BeCoachFormScreen from "../../screens/home/profile/BeCoachFormScreen";
 import MyProfileScreen from "../../screens/home/profile/MyProfileScreen";
 import MySettingsScreen from "../../screens/home/profile/MySettingsScreen";
 import MyEventScreen from "../../screens/home/profile/MyEventScreen";
@@ -17,6 +18,7 @@ const ProfileStack = ({ mainNavigation }) => (
   >
     <Stack.Screen name={routes.MY_PROFILE} component={MyProfileScreen} />
     <Stack.Screen name={routes.MY_EVENT} component={MyEventScreen} />
+    <Stack.Screen name={routes.BE_COACH} component={BeCoachFormScreen} />
     <Stack.Screen name={routes.MY_SETTINGS}>
       {() => <MySettingsScreen mainNavigation={mainNavigation} />}
     </Stack.Screen>

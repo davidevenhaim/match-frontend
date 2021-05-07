@@ -1,21 +1,23 @@
 import React from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { useFonts } from "@expo-google-fonts/inter";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 
 import AppLoading from "expo-app-loading";
 
 import colors from "../../config/colors";
 
 const AppTextInput = ({
+  error,
+  fieldSize = 50,
   iconName,
+  iconSize = 15,
   isProtected,
   rightIconName,
   setIsHidden,
   style,
-  width,
   touched,
-  error,
+  width = "90%",
   ...otherProps
 }) => {
   let [fontsLoaded] = useFonts({
@@ -27,7 +29,7 @@ const AppTextInput = ({
     <View
       style={[
         styles.frame,
-        { width: width || "90%" },
+        { width, height: fieldSize },
         touched
           ? {
               borderWidth: 1,
@@ -41,11 +43,11 @@ const AppTextInput = ({
       ]}
     >
       {iconName && (
-        <MaterialCommunityIcons
+        <FontAwesome5
           name={iconName}
           color={error && touched ? colors.danger : colors.mediumGrey}
           style={styles.leftIcon}
-          size={20}
+          size={iconSize}
         />
       )}
       <TextInput
@@ -55,9 +57,9 @@ const AppTextInput = ({
       />
       {isProtected && (
         <TouchableOpacity style={styles.rightIconArea} onPress={setIsHidden}>
-          <MaterialCommunityIcons
+          <FontAwesome5
             name={rightIconName}
-            size={20}
+            size={iconSize}
             color={colors.mediumGrey}
             style={styles.rightIcon}
           />

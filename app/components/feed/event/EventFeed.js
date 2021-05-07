@@ -1,24 +1,14 @@
 import React, { useRef } from "react";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Animated,
-  TouchableOpacity,
-} from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import Button from "../../layouts/Button";
 import FeedItem from "./FeedItem";
 
 import { itemFeedSpec } from "../../../config/eventFeedTheme";
 const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
 
 import routes from "../../../navigation/routes";
-import colors from "../../../config/colors";
-
-const { width, height } = Dimensions.get("screen");
 
 const EventFeed = ({ events }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -58,16 +48,10 @@ const EventFeed = ({ events }) => {
             />
           );
         }}
+        ListFooterComponent={<View style={{ width: ITEM_WIDTH / 2.58 }} />}
       />
     </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({
-  itemContainer: {
-    width: ITEM_WIDTH,
-    height: ITEM_HEIGHT,
-    margin: SPACING,
-  },
-});
 
 export default EventFeed;
