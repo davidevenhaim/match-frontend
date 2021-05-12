@@ -17,8 +17,8 @@ const OneSportPicker = ({
       <ScrollView
         horizontal
         keyboardDismissMode="on-drag"
-        style={style}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={style}
       >
         {!touch
           ? userSports.map((sport) => (

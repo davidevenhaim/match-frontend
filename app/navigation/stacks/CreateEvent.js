@@ -8,10 +8,14 @@ import colors from "../../config/colors";
 
 const Stack = createStackNavigator();
 
-const CreateEventStack = ({ navigation }) => {
-  const mainNavigation = navigation;
+const CreateEventStack = () => {
   return (
-    <Stack.Screen name={routes.CREATE_EVENT} component={CreateEvent} screenOptions={{ cardStyle: { backgroundColor: colors.white } }} />
-);}
+    <Stack.Screen
+      name={routes.CREATE_EVENT}
+      component={CreateEvent}
+      screenOptions={{ cardStyle: { backgroundColor: colors.white } }}
+    />
+  );
+};
 
 export default CreateEventStack;

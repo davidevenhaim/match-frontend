@@ -1,35 +1,54 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import React, { useRef } from "react";
+import { Animated, StyleSheet, View, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
-import EventInFeed from "../../events/EventInFeed";
+import FeedItem from "../../feed/event/FeedItem";
 
 import routes from "../../../navigation/routes";
-import { SafeAreaView } from "react-native";
+import { itemFeedSpec } from "../../../config/eventFeedTheme";
+
+const { ITEM_WIDTH, FULL_SIZE } = itemFeedSpec;
 
 const UpcomingEvents = ({ events, isOwner }) => {
   const navigation = useNavigation();
 
-  let route = "EVENT_SCREEN";
-  if (isOwner) route = "MY_EVENT";
+  const scrollX = useRef(new Animated.Value(0)).current;
 
-  const ListFooterComponent = () => <View style={{ height: 40 }}></View>;
+  let route = routes.EVENT_SCREEN.toString();
+  if (isOwner) route = routes.MY_EVENT.toString();
+
   return (
-    <SafeAreaView>
-      <FlatList
+    <SafeAreaView style={{ marginTop: -25 }}>
+      <Animated.FlatList
         data={events}
-        keyExtractor={({ id }) => id.toString()}
-        scrollEventThrottle={32}
-        renderItem={({ item }) => (
-          <EventInFeed
-            event={item}
-            onPress={() =>
-              navigation.navigate(routes[route], { event: item, isOwner })
-            }
-          />
+        decelerationRate="fast"
+        horizontal
+        keyExtractor={(item) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: true }
         )}
-        ListFooterComponent={ListFooterComponent}
+        scrollEventThrottle={32}
+        snapToInterval={FULL_SIZE}
+        renderItem={({ item, index }) => {
+          return (
+            <FeedItem
+              captain={item.captain}
+              date={item.eventDate}
+              description={item.description}
+              index={index}
+              name={item.eventName}
+              level={item.level}
+              location={item.location}
+              playersAmount={[item.curPlayersAmount, item.maxPlayersAmount]}
+              sport={item.sport}
+              scrollX={scrollX}
+              onPress={() => navigation.push(route, { event: item })}
+            />
+          );
+        }}
+        ListFooterComponent={<View style={{ width: ITEM_WIDTH / 2.58 }} />}
       />
     </SafeAreaView>
   );

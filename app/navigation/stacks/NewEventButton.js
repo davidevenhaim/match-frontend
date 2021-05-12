@@ -10,7 +10,7 @@ const NewEventButton = ({ onPress }) => {
       <View style={styles.container}>
         <MaterialCommunityIcons
           name="plus-circle"
-          size={35}
+          size={28}
           color={colors.white}
         />
       </View>
@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderColor: colors.white,
     borderRadius: 40,
-    borderWidth: 10,
-    bottom: 30,
-    width: 80,
-    height: 80,
+    borderWidth: 7,
+    bottom: 4,
+    width: 60,
+    height: 60,
     justifyContent: "center",
   },
 });

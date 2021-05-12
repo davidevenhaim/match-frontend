@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import { useSelector } from "react-redux";
 
 import HeaderProfile from "./header/HeaderProfile";
@@ -12,15 +11,15 @@ import colors from "../../../config/colors";
 
 const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
-
-  const visitingAthlete = useSelector((state) => state.userInfo);
+  const [isConnected, setIsConnected] = useState(false);
+  const curAthlete = useSelector((state) => state.userInfo);
 
   if (!athlete) {
     athlete = defaultAthlete;
     opacity = 0.7;
   }
 
-  const isOwner = visitingAthlete.id === athlete.id;
+  const isOwner = curAthlete.id === athlete.id;
 
   let opacity = 1;
   const toggleShowConnection = () => {
@@ -28,18 +27,21 @@ const AthleteProfile = ({ athlete }) => {
     setShowConnection(newShowConnection);
   };
 
-  let isConnected = false;
-  if (!isOwner) {
-    isConnected = visitingAthlete.connection.find(
-      (ath) => ath.id === athlete.id
-    )
-      ? true
-      : false;
-  }
+  console.log(curAthlete.connection[0]);
+  useEffect(() => {
+    setIsConnected(
+      curAthlete.connection.find((ath) => ath.id === athlete.id) ? true : false
+    );
+  }, [curAthlete.connection]);
 
   return (
-    <View style={{ opacity }}>
-      <View style={styles.headerContainer}>
+    <SafeAreaView style={{ opacity }}>
+      <View
+        style={[
+          styles.headerContainer,
+          { marginBottom: showConnection ? undefined : 25 },
+        ]}
+      >
         <HeaderProfile
           athlete={athlete}
           isOwner={isOwner}
@@ -51,7 +53,7 @@ const AthleteProfile = ({ athlete }) => {
       <View style={styles.scrollView}>
         <UpcomingEvents events={athlete.upcomingEvents} isOwner={isOwner} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   headerContainer: {
-    height: 300,
+    height: 280,
   },
   scrollView: {
     // backgroundColor: "black",

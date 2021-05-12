@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,17 +10,27 @@ const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
 
 import routes from "../../../navigation/routes";
 
-const EventFeed = ({ events }) => {
+const EventFeed = ({ events, refetch }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
 
+  const [refreshing, setRefreshing] = useState(false);
+
+  const refreshHandler = () => {
+    setRefreshing(true);
+    console.log("Refreshing!");
+    refetch();
+    setTimeout(() => setRefreshing(false), 1500);
+  };
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ marginTop: -25 }}>
       <Animated.FlatList
-        contentContainerStyle={{ paddingBottom: 100 }}
         data={events}
         decelerationRate="fast"
         horizontal
+        onRefresh={refreshHandler}
+        refreshing={refreshing}
         keyExtractor={(item) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         onScroll={Animated.event(
@@ -43,7 +53,7 @@ const EventFeed = ({ events }) => {
               sport={item.sport}
               scrollX={scrollX}
               onPress={() =>
-                navigation.navigate(routes.EVENT_SCREEN, { event: item })
+                navigation.push(routes.EVENT_SCREEN, { event: item })
               }
             />
           );

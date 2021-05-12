@@ -4,9 +4,16 @@ export const signUser = () => {
   };
 };
 
-export const writeInfo = (athlete) => {
+export const writeUserInfo = (athlete) => {
   return {
     type: "WRITE",
     payload: athlete,
+  };
+};
+
+export const tabBarVisible = (isVisible) => {
+  return {
+    type: "WRITE",
+    payload: isVisible,
   };
 };

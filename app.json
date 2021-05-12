@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -23,7 +21,8 @@
           "comgooglemaps",
           "waze",
           "moovit",
-          "apple-maps"
+          "apple-maps",
+          "yango"
         ]
       }
     },

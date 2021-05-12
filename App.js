@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   ApolloClient,
@@ -11,10 +12,7 @@ import * as SecureStore from "expo-secure-store";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import allReducers from "./app/store/reducers";
-import * as SplashScreen from "expo-splash-screen";
-
 import SwitchNavigator from "./app/navigation/SwitchNavigator";
-import Screen from "./app/components/Screen";
 
 import getEnvVars from "./config";
 
@@ -37,6 +35,12 @@ const client = new ApolloClient({
   cache,
 });
 
+///*
+LogBox.ignoreLogs([
+  "Unhandled promise rejection: Error: Native splash screen is already hidden. Call this method before rendering any view.",
+]);
+LogBox.ignoreAllLogs();
+// */
 const store = createStore(allReducers);
 
 export default App = () => {

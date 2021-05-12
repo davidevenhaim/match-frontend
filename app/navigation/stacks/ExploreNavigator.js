@@ -11,10 +11,32 @@ import colors from "../../config/colors";
 
 const Stack = createStackNavigator();
 
+const config = {
+  animation: "spring",
+  config: {
+    stiffness: 600,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.9,
+  },
+};
+
 const ExploreStack = () => (
   <Stack.Navigator
     headerMode="none"
-    screenOptions={{ cardStyle: { backgroundColor: colors.white } }}
+    screenOptions={{
+      cardStyle: { backgroundColor: colors.white },
+      gestureEnabled: true,
+      gestureDirection: "horizontal",
+      transitionSpec: {
+        open: config,
+        close: config,
+      },
+    }}
+    initialRouteName={routes.EVENTS_FEED}
+    // mode="modal"
   >
     <Stack.Screen name={routes.EVENTS_FEED} component={EventsFeed} />
     <Stack.Screen

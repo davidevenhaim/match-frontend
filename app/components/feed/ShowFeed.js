@@ -7,7 +7,7 @@ import FeedHeader from "./FeedHeader";
 
 import { filterEvents } from "./event/helpers/filterEvents";
 
-const headerHeight = 200;
+const headerHeight = 175;
 
 const ShowEventFeed = ({
   events,
@@ -15,6 +15,7 @@ const ShowEventFeed = ({
   sportFilters,
   textFilters,
   setTextFilters,
+  refetch,
 }) => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [eventsArr, setEventsArr] = useState(events);
@@ -29,12 +30,13 @@ const ShowEventFeed = ({
   );
 
   useEffect(() => {
-    setIsLoadingMore(true);
+    // setIsLoadingMore(true);
 
     const filteredEvents = filterEvents(events, { sportFilters, textFilters });
+
     setEventsArr(filteredEvents);
 
-    setIsLoadingMore(false);
+    // setIsLoadingMore(false);
   }, [sportFilters, textFilters]);
 
   const LoadingStatus = () => (
@@ -67,8 +69,8 @@ const ShowEventFeed = ({
   return (
     <>
       <Header />
-      <EventFeed events={eventsArr} />
-      <CoachFeed />
+      <EventFeed events={eventsArr} refetch={refetch} />
+      {/* <CoachFeed /> */}
     </>
   );
 };

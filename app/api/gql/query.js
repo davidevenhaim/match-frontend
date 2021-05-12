@@ -14,19 +14,18 @@ const GET_ME = gql`
       name
       upcomingEvents {
         captain {
+          avatar
+          favoriteSport
           id
+          name
         }
         curPlayersAmount
         eventDate
+        eventName
         id
         level
         location
         maxPlayersAmount
-        players {
-          id
-          name
-          avatar
-        }
         private
         sport
       }
@@ -48,6 +47,8 @@ const GET_ATHLETE = gql`
       name
       upcomingEvents {
         captain {
+          avatar
+          name
           id
         }
         curPlayersAmount
@@ -79,6 +80,13 @@ const GET_ATHLETES = gql`
         favoriteSport
         avatar
         createdAt
+        upcomingEvents {
+          captain {
+            avatar
+            name
+            id
+          }
+        }
       }
     }
   }
@@ -92,6 +100,8 @@ const GET_EVENT = gql`
       eventDate
       sport
       captain {
+        avatar
+        favoriteSport
         id
         name
       }
@@ -110,6 +120,7 @@ const GET_EVENT_PLAYERS = gql`
   query Event($id: ID!) {
     Event(id: $id) {
       captain {
+        avatar
         id
         name
       }
@@ -133,6 +144,7 @@ const GET_EVENTS_BY_SPORT = gql`
         eventDate
         sport
         captain {
+          avatar
           id
           name
         }
@@ -154,9 +166,10 @@ const GET_EVENTS = gql`
       hasNextPage
       events {
         captain {
-          name
           avatar
+          favoriteSport
           id
+          name
         }
         curPlayersAmount
         id
@@ -200,6 +213,7 @@ const GET_MY_EVENTS = gql`
         maxPlayersAmount
         sport
         captain {
+          avatar
           id
           name
         }

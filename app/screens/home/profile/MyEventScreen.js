@@ -1,10 +1,21 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useRoute } from "@react-navigation/core";
 
-import EventPage from "../../../components/events/EventPage";
+import EventPage from "../../../components/feed/event/EventPage";
+import { useSelector } from "react-redux";
 
 const MyEventScreen = () => {
-  return <EventPage isParticipant={true} />;
+  const route = useRoute();
+  const eventId = route.params.event.id;
+  const curAthlete = useSelector((state) => state.userInfo);
+  const event = curAthlete.upcomingEvents.find((event) => event.id === eventId);
+  let isParticipant = false;
+  if (event) {
+    isParticipant = true;
+  }
+
+  return <EventPage isParticipant={isParticipant} />;
 };
 const styles = StyleSheet.create({});
 

@@ -13,25 +13,30 @@ const RoundIconButtonText = ({
   iconName,
   iconStyle,
   onPress,
+  textStyle,
+  style,
   text,
   textColor = backgroundColor,
+  ...otherProps
 }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.4}
       onPress={onPress}
-      style={styles.container}
+      style={[styles.container, style]}
     >
       <RoundIcon
         backgroundSize={backgroundSize}
         iconColor={iconColor}
         name={iconName}
         style={iconStyle}
+        {...otherProps}
       />
       <Text
         style={[
           styles.text,
           { color: textColor, fontSize: backgroundSize / 4 },
+          textStyle,
         ]}
       >
         {text}
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
   },
   text: {
     // textAlign: "center",
-    top: -3,
+    top: -10,
   },
 });
 

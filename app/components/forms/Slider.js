@@ -21,7 +21,12 @@ const AppSlider = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
+      <Text
+        style={[
+          styles.text,
+          { color: isInvalid ? colors.danger : colors.dark },
+        ]}
+      >
         {values[inputName] || "Choose event level"}
       </Text>
       <Slider
@@ -49,7 +54,6 @@ const styles = StyleSheet.create({
   },
   text: {
     textTransform: "capitalize",
-    color: colors.dark,
   },
 });
 

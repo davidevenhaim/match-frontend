@@ -1,6 +1,6 @@
 import React from "react";
 
-import Icon from "./RoundIcon";
+import RoundIcon from "./RoundIcon";
 
 import defaultStyles from "../../config/styles";
 
@@ -12,7 +12,7 @@ const SportsIcon = ({
   ...otherProps
 }) => {
   return (
-    <Icon
+    <RoundIcon
       name={defaultStyles.sportsIcons[sport]}
       style={[
         {

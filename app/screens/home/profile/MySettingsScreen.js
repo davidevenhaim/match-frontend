@@ -7,6 +7,7 @@ import { writeInfo } from "../../../store/actions";
 
 import routes from "../../../navigation/routes";
 import { useNavigation } from "@react-navigation/core";
+import { SafeAreaView } from "react-native";
 
 const MySettings = ({ mainNavigation }) => {
   const navigation = useNavigation();
@@ -21,6 +22,10 @@ const MySettings = ({ mainNavigation }) => {
     navigation.navigate(routes.BE_COACH);
   };
 
-  return <UserSettings beCoach={beCoach} signOut={signOut} />;
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <UserSettings beCoach={beCoach} signOut={signOut} />
+    </SafeAreaView>
+  );
 };
 export default MySettings;

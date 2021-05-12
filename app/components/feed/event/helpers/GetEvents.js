@@ -10,7 +10,6 @@ import { GET_EVENTS } from "../../../../api/gql/query";
 
 const GetEvents = () => {
   const curAthlete = useSelector((state) => state.userInfo);
-
   const [sportFilters, setSportFilters] = useState(curAthlete.favoriteSport);
   const [textFilters, setTextFilters] = useState("");
 

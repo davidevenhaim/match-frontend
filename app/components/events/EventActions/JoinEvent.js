@@ -17,11 +17,16 @@ import {
 
 import routes from "../../../navigation/routes";
 
-const JoinEvent = ({ event, isParticipant, text }) => {
+const JoinEvent = ({
+  event,
+  isParticipant,
+  text,
+  size = 60,
+  ...otherProps
+}) => {
   const navigation = useNavigation();
-
   let navigateTo = () =>
-    navigation.navigate(routes.EVENT_SCREEN, {
+    navigation.navigate(routes.EVENTS_FEED, {
       variables: { event, isParticipant },
     });
 
@@ -46,14 +51,13 @@ const JoinEvent = ({ event, isParticipant, text }) => {
   // }
 
   return (
-    <View style={styles.container}>
-      <RoundIconButtonText
-        backgroundSize={60}
-        iconName={iconName}
-        onPress={() => toggleJoinEvent({ variables: { id: event.id } })}
-        text={isParticipant ? "Exit" : "Join"}
-      />
-    </View>
+    <RoundIconButtonText
+      backgroundSize={size}
+      iconName={iconName}
+      onPress={() => toggleJoinEvent({ variables: { id: event.id } })}
+      text={isParticipant ? "Exit" : "Join"}
+      {...otherProps}
+    />
   );
 };
 const styles = StyleSheet.create({

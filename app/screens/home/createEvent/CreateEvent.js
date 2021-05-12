@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 
 import CreateEventForm from "../../../components/forms/event/CreateEventForm";
 import SubmitAnimation from "../../../components/layouts/SubmitAnimation";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 import colors from "../../../config/colors";
 import { StyleSheet } from "react-native";
 
@@ -22,11 +22,11 @@ const CreateEvent = ({ navigation }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SubmitAnimation loading={loading} error={error}>
         <CreateEventForm action={newEvent} />
       </SubmitAnimation>
-    </View>
+    </SafeAreaView>
   );
 };
 

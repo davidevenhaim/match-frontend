@@ -69,7 +69,8 @@ const UserSettings = ({ beCoach, signOut }) => {
       <View style={styles.headerContainer}>
         <IconButton
           name="arrow-left"
-          onPress={() => navigation.navigate(routes.MY_PROFILE)}
+          onPress={navigation.goBack}
+          iconColor={colors.black}
         />
         <Text style={{ fontSize: 20 }}>Settings</Text>
       </View>

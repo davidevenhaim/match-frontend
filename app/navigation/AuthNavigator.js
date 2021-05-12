@@ -18,6 +18,7 @@ const AuthNavigator = ({ navigation }) => {
     <Stack.Navigator
       headerMode="none"
       screenOptions={{ cardStyle: { backgroundColor: colors.white } }}
+      // mode="modal"
     >
       <Stack.Screen name={routes.ONBOARDING} component={OnboardingScreen} />
       <Stack.Screen name={routes.SIGN_UP} component={AppRegisterScreen} />

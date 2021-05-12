@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 200,
     height: 90,
-    marginBottom: 10,
+    marginBottom: 40,
     width: "90%",
   },
   connectionFeed: {

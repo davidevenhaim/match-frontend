@@ -3,17 +3,21 @@ import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
 
+import { FontAwesome5 } from "@expo/vector-icons";
+
 import AthleteAvatar from "../layouts/AthleteAvatar";
 
 import routes from "../../navigation/routes";
+import { Badge } from "react-native-elements";
+import colors from "../../config/colors";
 
-const ShowPlayers = ({ avatar, name, id, size = "large" }) => {
+const ShowPlayer = ({ avatar, name, id, size = "large", style }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate(routes.ATHLETE_PROFILE, { id })}
+      style={[styles.container, style]}
+      onPress={() => navigation.push(routes.ATHLETE_PROFILE, { id })}
     >
       <AthleteAvatar athleteImage={avatar} athleteName={name} size={size} />
     </TouchableOpacity>
@@ -23,8 +27,8 @@ const ShowPlayers = ({ avatar, name, id, size = "large" }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    margin: 10,
+    marginLeft: -6,
   },
 });
 
-export default ShowPlayers;
+export default ShowPlayer;
