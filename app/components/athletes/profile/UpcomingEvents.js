@@ -5,17 +5,14 @@ import { useNavigation } from "@react-navigation/core";
 import FeedItem from "../../feed/event/FeedItem";
 
 import routes from "../../../navigation/routes";
-import { itemFeedSpec } from "../../../config/eventFeedTheme";
+import { itemFeedSpec } from "../../../config/theme";
 
 const { ITEM_WIDTH, FULL_SIZE } = itemFeedSpec;
 
-const UpcomingEvents = ({ events, isOwner }) => {
+const UpcomingEvents = ({ events }) => {
   const navigation = useNavigation();
 
   const scrollX = useRef(new Animated.Value(0)).current;
-
-  let route = routes.EVENT_SCREEN.toString();
-  if (isOwner) route = routes.MY_EVENT.toString();
 
   return (
     <SafeAreaView style={{ marginTop: -25 }}>
@@ -44,7 +41,9 @@ const UpcomingEvents = ({ events, isOwner }) => {
               playersAmount={[item.curPlayersAmount, item.maxPlayersAmount]}
               sport={item.sport}
               scrollX={scrollX}
-              onPress={() => navigation.push(route, { event: item })}
+              onPress={() =>
+                navigation.push(routes.EVENT_SCREEN, { event: item })
+              }
             />
           );
         }}

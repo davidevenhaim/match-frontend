@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import FeedItem from "./FeedItem";
 
-import { itemFeedSpec } from "../../../config/eventFeedTheme";
+import { itemFeedSpec } from "../../../config/theme";
 const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
 
 import routes from "../../../navigation/routes";
@@ -29,8 +29,8 @@ const EventFeed = ({ events, refetch }) => {
         data={events}
         decelerationRate="fast"
         horizontal
-        onRefresh={refreshHandler}
-        refreshing={refreshing}
+        // onRefresh={refreshHandler}
+        // refreshing={refreshing}
         keyExtractor={(item) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         onScroll={Animated.event(

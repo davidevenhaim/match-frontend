@@ -1,8 +1,11 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Dimensions } from "react-native";
 
 import colors from "../../config/colors";
+
+const { width, height } = Dimensions.get("screen");
 
 const NewEventButton = ({ onPress }) => {
   return (
@@ -10,7 +13,7 @@ const NewEventButton = ({ onPress }) => {
       <View style={styles.container}>
         <MaterialCommunityIcons
           name="plus-circle"
-          size={28}
+          size={height * 0.028}
           color={colors.white}
         />
       </View>
@@ -23,11 +26,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.primary,
     borderColor: colors.white,
-    borderRadius: 40,
+    borderRadius: height * 0.035,
     borderWidth: 7,
-    bottom: 4,
-    width: 60,
-    height: 60,
+    // bottom: 2,
+    width: height * 0.07,
+    height: height * 0.07,
     justifyContent: "center",
   },
 });

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 import HeaderProfile from "./header/HeaderProfile";
 import UpcomingEvents from "./UpcomingEvents";
-import ConnectionsList from "./ConnectionsList";
 
 import { defaultAthlete } from "../../../config/defaultValues";
 import colors from "../../../config/colors";
@@ -12,6 +11,7 @@ import colors from "../../../config/colors";
 const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
   const curAthlete = useSelector((state) => state.userInfo);
 
   if (!athlete) {
@@ -19,37 +19,33 @@ const AthleteProfile = ({ athlete }) => {
     opacity = 0.7;
   }
 
-  const isOwner = curAthlete.id === athlete.id;
-
   let opacity = 1;
   const toggleShowConnection = () => {
     const newShowConnection = !showConnection;
     setShowConnection(newShowConnection);
   };
 
-  console.log(curAthlete.connection[0]);
-  useEffect(() => {
-    setIsConnected(
-      curAthlete.connection.find((ath) => ath.id === athlete.id) ? true : false
-    );
-  }, [curAthlete.connection]);
+  useEffect(
+    () => {
+      setIsConnected(
+        curAthlete.connection.find((ath) => ath.id === athlete.id)
+      );
+      setIsOwner(curAthlete.id === athlete.id);
+    }
+    /*,[] not good without this. */
+  );
 
   return (
     <SafeAreaView style={{ opacity }}>
-      <View
-        style={[
-          styles.headerContainer,
-          { marginBottom: showConnection ? undefined : 25 },
-        ]}
-      >
+      <View style={[styles.headerContainer, { marginBottom: 25 }]}>
         <HeaderProfile
           athlete={athlete}
           isOwner={isOwner}
           toggleShowConnection={toggleShowConnection}
+          showConnection={showConnection}
           isConnected={isConnected}
         />
       </View>
-      {showConnection && <ConnectionsList connections={athlete.connection} />}
       <View style={styles.scrollView}>
         <UpcomingEvents events={athlete.upcomingEvents} isOwner={isOwner} />
       </View>

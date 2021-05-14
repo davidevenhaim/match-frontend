@@ -26,7 +26,7 @@ const ShowPlayer = ({ avatar, name, id, size = "large", style }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    // alignItems: "center",
     marginLeft: -6,
   },
 });

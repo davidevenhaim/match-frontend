@@ -13,6 +13,7 @@ import ProfileNavigator from "./stacks/ProfileNavigator";
 import Text from "../components/layouts/Text";
 import Screen from "../components/Screen";
 
+import useLocation from "../hooks/useLocation";
 import { GET_ME } from "../api/gql/query";
 import { writeUserInfo, tabBarVisible } from "../store/actions";
 
@@ -22,6 +23,7 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({ navigation }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { data, loading, error } = useQuery(GET_ME);
 
   if (loading) {
@@ -32,11 +34,8 @@ const AppNavigator = ({ navigation }) => {
     navigation.navigate(routes.AUTH);
     return null;
   }
-  // useEffect(() => {
-  //   dispatch(tabBarVisible(true));
-  // }, []);
-  dispatch(writeUserInfo(data.Me));
-  // const isVisible = useSelector((state) => state.tabBarVisible);
+
+  dispatch(writeUserInfo({ ...data.Me, location }));
 
   const mainNavigation = navigation;
 

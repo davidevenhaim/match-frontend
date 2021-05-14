@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
 import AthleteAvatar from "../../layouts/AthleteAvatar";
@@ -8,33 +7,26 @@ import Text from "../../layouts/Text";
 
 import colors from "../../../config/colors";
 import routes from "../../../navigation/routes";
+import ShowEventPlayers from "../ShowPlayers";
 
 const ConnectionsList = ({ connections }) => {
   const navigation = useNavigation();
   return (
     <>
       {connections.length ? (
-        <FlatList
-          data={connections}
-          horizontal
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item: athlete }) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(routes.ATHLETE_PROFILE, { id: athlete.id })
-              }
-              style={styles.connectionFeed}
-            >
-              <AthleteAvatar
-                athleteImage={athlete.avatar}
-                athleteName={athlete.name}
-              />
-              <Text>{athlete.name}</Text>
-            </TouchableOpacity>
-          )}
-          style={styles.connectionsContainer}
-          showsHorizontalScrollIndicator={false}
-        />
+        <View style={styles.playersContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+          >
+            <ShowEventPlayers
+              players={connections}
+              size="medium"
+              limit={connections.length}
+            />
+          </ScrollView>
+        </View>
       ) : (
         <View style={styles.connectionsContainer}>
           <Text style={styles.text}> No connections yet...</Text>
@@ -44,14 +36,9 @@ const ConnectionsList = ({ connections }) => {
   );
 };
 const styles = StyleSheet.create({
-  connectionsContainer: {
-    alignSelf: "center",
-    borderColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 200,
-    height: 90,
-    marginBottom: 40,
-    width: "90%",
+  playersContainer: {
+    height: 65,
+    width: "100%",
   },
   connectionFeed: {
     marginLeft: 6,

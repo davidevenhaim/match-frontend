@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { showLocation, Popup } from "react-native-map-link";
+import { Popup } from "react-native-map-link";
 
 import RoundIconButton from "../../layouts/RoundIconButton";
 import Text from "../../layouts/Text";

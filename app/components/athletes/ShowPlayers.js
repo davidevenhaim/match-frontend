@@ -24,13 +24,8 @@ const ShowEventPlayers = ({ limit, players, ...otherProps }) => {
 const styles = StyleSheet.create({
   text: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 13,
     bottom: 3,
-  },
-  captainStyle: {
-    borderColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 30,
   },
 });
 

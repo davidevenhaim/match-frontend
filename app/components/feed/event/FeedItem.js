@@ -4,14 +4,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { differenceInDays, format } from "date-fns";
 
 import AthleteAvatar from "../../layouts/AthleteAvatar";
+import EventLevelIndicator from "../../layouts/EventLevelIndicator";
 import IconWithText from "../../layouts/IconWithText";
 import Text from "../../layouts/Text";
 import SportsIcon from "../../layouts/SportsIcon";
 
 import colors from "../../../config/colors";
-import eventConfig from "../../../config/events";
-import { itemFeedSpec, ICON_SIZE } from "../../../config/eventFeedTheme";
-import EventLevelIndicator from "../../layouts/EventLevelIndicator";
+import { itemFeedSpec, ICON_SIZE } from "../../../config/theme";
 
 const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
 

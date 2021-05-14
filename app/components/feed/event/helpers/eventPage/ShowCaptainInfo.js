@@ -1,19 +1,20 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import Text from "../../../../layouts/Text";
+import ShowPlayer from "../../../../athletes/ShowPlayer";
 import SportsIconList from "../../../../layouts/SportsIconList";
+import Text from "../../../../layouts/Text";
 
 import colors from "../../../../../config/colors";
 
-import { itemPageSpec, SIZE } from "../../../../../config/eventPageTheme";
-import ShowPlayer from "../../../../athletes/ShowPlayer";
-const { ITEM_WIDTH, ITEM_HEIGHT } = itemPageSpec;
+import { itemPageSpec } from "../../../../../config/theme";
+
+const { ITEM_WIDTH, ITEM_HEIGHT, RADIUS } = itemPageSpec;
 const ICON_SIZE = 20;
 
 const ShowCaptainInfo = ({ captain, sport }) => {
   const sportsListWidth = Math.min(
-    ICON_SIZE * captain.favoriteSport.length + 10,
+    (ICON_SIZE / 2) * captain.favoriteSport.length,
     60
   );
 
@@ -26,7 +27,7 @@ const ShowCaptainInfo = ({ captain, sport }) => {
             backgroundColor: colors.sportColors[sport],
             opacity: 0.3,
             overflow: "hidden",
-            borderRadius: 20,
+            borderRadius: RADIUS,
           },
         ]}
       />
@@ -36,7 +37,7 @@ const ShowCaptainInfo = ({ captain, sport }) => {
           avatar={captain.avatar}
           name={captain.name}
           id={captain.id}
-          size={60}
+          size={ITEM_HEIGHT * 0.13}
           style={styles.avatar}
         />
         <View>
@@ -49,16 +50,13 @@ const ShowCaptainInfo = ({ captain, sport }) => {
           />
         </View>
       </View>
-      {/* <Text numberOfLines={2} style={styles.eventsLabel}>
-        {"Particpaiting in 15 events more,\ncheck them out"}
-      </Text> */}
     </View>
   );
 };
 const styles = StyleSheet.create({
   avatar: {
     alignItems: "flex-start",
-    marginLeft: 20,
+    marginLeft: ITEM_HEIGHT * 0.1,
     marginTop: 3,
   },
   captainLabel: {
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
   },
   captainInfoContainer: {
     alignSelf: "center",
-    height: ITEM_HEIGHT * 0.35,
+    height: ITEM_HEIGHT * 0.3,
     width: ITEM_WIDTH * 1.2,
   },
   eventsLabel: {

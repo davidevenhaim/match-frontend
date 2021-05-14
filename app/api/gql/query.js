@@ -48,6 +48,7 @@ const GET_ATHLETE = gql`
       upcomingEvents {
         captain {
           avatar
+          favoriteSport
           name
           id
         }
@@ -215,6 +216,7 @@ const GET_MY_EVENTS = gql`
         captain {
           avatar
           id
+          favoriteSport
           name
         }
         players {

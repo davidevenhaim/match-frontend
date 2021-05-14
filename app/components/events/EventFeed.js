@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 
-// import ShowEventFeed from "./ShowEventFeed";
-
 import colors from "../../config/colors";
 
 const EventFeed = () => {

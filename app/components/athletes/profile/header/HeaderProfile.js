@@ -9,11 +9,13 @@ import OwnerHeaderOptions from "./OwnerHeaderOptions";
 import Text from "../../../layouts/Text";
 
 import colors from "../../../../config/colors";
+import ConnectionsList from "../ConnectionsList";
 
 const HeaderProfile = ({
   athlete: { connection, name, avatar, favoriteSport, id },
   isOwner,
   toggleShowConnection,
+  showConnection,
   isConnected,
 }) => {
   const connectionCount = connection.length;
@@ -29,13 +31,11 @@ const HeaderProfile = ({
         </Text>
       </TouchableOpacity>
       <View style={styles.sportContainer}>
-        <SportsIconList
-          userSports={favoriteSport}
-          touch={false}
-          style={{ flexShrink: 1 }}
-        />
+        <SportsIconList userSports={favoriteSport} touch={false} />
       </View>
-      {isOwner ? (
+      {showConnection ? (
+        <ConnectionsList connections={connection} />
+      ) : isOwner ? (
         <OwnerHeaderOptions />
       ) : isConnected ? (
         <OwnerHeaderOptions isConnected />
