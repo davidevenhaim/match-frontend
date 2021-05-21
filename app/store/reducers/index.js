@@ -8,6 +8,8 @@ const allReducers = combineReducers({
   isLogged: isLoggedReducer,
   userInfo: userInfoReducer,
   tabBarVisible: tabBarVisibleReducer,
+  coachView: false,
+  language: "en",
 });
 
 export default allReducers;

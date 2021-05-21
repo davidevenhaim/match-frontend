@@ -3,17 +3,21 @@ import { View, StyleSheet } from "react-native";
 
 import ShowPlayer from "./ShowPlayer";
 import Text from "../layouts/Text";
-import colors from "../../config/colors";
 
-const ShowEventPlayers = ({ limit, players, ...otherProps }) => {
+import { itemPageSpec } from "../../config/theme";
+const { TEXT_SIZE } = itemPageSpec;
+
+const ShowEventPlayers = ({ fontSize = 13, limit, players, ...otherProps }) => {
   return (
     <>
       {players.map(({ avatar, name, id }, index) => {
         if (index >= limit) return null;
         return (
-          <View key={id}>
+          <View key={id} style={{ marginLeft: -TEXT_SIZE * 0.1 }}>
             <ShowPlayer avatar={avatar} name={name} id={id} {...otherProps} />
-            <Text style={styles.text}>{name}</Text>
+            <Text style={[styles.text, { fontSize: fontSize * 0.1 }]}>
+              {name}
+            </Text>
           </View>
         );
       })}
@@ -24,7 +28,6 @@ const ShowEventPlayers = ({ limit, players, ...otherProps }) => {
 const styles = StyleSheet.create({
   text: {
     textAlign: "center",
-    fontSize: 13,
     bottom: 3,
   },
 });

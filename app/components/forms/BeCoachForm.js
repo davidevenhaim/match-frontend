@@ -25,7 +25,13 @@ const validationSchema = Yup.object().shape({
   price: Yup.number().min(0).max(1000).required(),
 });
 
-const BeCoachForm = ({ action }) => {
+const convertValues = (values) => ({
+  // reformating price per hour to the way the BACKEND supports.
+  ...values,
+  price: isNaN(+values.price) ? 0 : +values.price,
+});
+
+const BeCoachForm = ({ action, error }) => {
   const curAthlete = useSelector((state) => state.userInfo);
 
   return (
@@ -33,14 +39,14 @@ const BeCoachForm = ({ action }) => {
       initialValues={{
         coachingSport: [],
         description: "",
-        price: "",
+        price: 1,
       }}
       onSubmit={(values) => {
-        console.log(values);
+        const convertedValues = convertValues(values);
+
         action({
           variables: {
-            ...values,
-            price: +values.price,
+            ...convertedValues,
           },
         });
       }}
@@ -69,7 +75,7 @@ const BeCoachForm = ({ action }) => {
         maxLength={3}
         type="number"
       />
-      <SubmitButton text="Complete" style={{ width: "50%" }} />
+      <SubmitButton error={error} text="Complete" style={{ width: "50%" }} />
     </Form>
   );
 };

@@ -12,7 +12,7 @@ const AppTextInput = ({
   fieldSize = 50,
   iconName,
   iconSize = 15,
-  isProtected,
+  isProtected = false,
   rightIconName,
   setIsHidden,
   style,
@@ -54,6 +54,7 @@ const AppTextInput = ({
         placeholderTextColor={colors.mediumGrey}
         style={[styles.textInput, style]}
         {...otherProps}
+        // clearButtonMode="while-editing"
       />
       {isProtected && (
         <TouchableOpacity style={styles.rightIconArea} onPress={setIsHidden}>

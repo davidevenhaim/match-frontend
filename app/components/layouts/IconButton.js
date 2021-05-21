@@ -1,6 +1,6 @@
 import React from "react";
-
-import RoundIconButton from "./RoundIconButton";
+import { TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
@@ -12,13 +12,19 @@ const IconButton = ({
   style,
 }) => {
   return (
-    <RoundIconButton
-      name={name}
-      backgroundSize={size}
-      onPress={onPress}
-      style={[{ backgroundColor: null }, style]}
-      iconColor={iconColor}
-    />
+    <TouchableOpacity onPress={onPress} activeOpacity={0.6} style={style}>
+      <MaterialCommunityIcons name={name} size={size} color={iconColor} />
+    </TouchableOpacity>
+    /*
+    Old styling. check if there are bugs witht the new way.
+    // <RoundIconButton
+    //   name={name}
+    //   backgroundSize={size}
+    //   onPress={onPress}
+    //   style={[{ backgroundColor: "black" }, style]}
+    //   iconColor={iconColor}
+    // />
+    */
   );
 };
 

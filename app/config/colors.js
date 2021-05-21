@@ -9,6 +9,7 @@ export default {
   mediumGrey: "#6e6969",
   notSelected: "#B8B8B8",
   primary: "#2D9CDB",
+  // primary: "#4ecdc4",
   primaryLight: "#6BB4D3",
   // primaryLight: "#ABD7F1",
   selected: "#d6f8ff",

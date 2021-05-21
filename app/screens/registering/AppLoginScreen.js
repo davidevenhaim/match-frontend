@@ -12,8 +12,10 @@ import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Text from "../../components/layouts/Text";
 import Screen from "../../components/Screen";
 
-import colors from "../../config/colors";
 import routes from "../../navigation/routes";
+import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { ITEM_WIDTH, ICON_SIZE, ITEM_HEIGHT } = itemPageSpec;
 
 const AppLogin = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -67,17 +69,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   continueBtn: {
-    marginTop: 60,
+    marginTop: ICON_SIZE * 0.5,
     width: "80%",
     alignSelf: "center",
-  },
-  currentOnline: {
-    marginTop: 40,
-    height: 50,
-    width: "100%",
-    backgroundColor: colors.lightGrey,
-    justifyContent: "center",
-    alignItems: "center",
   },
   facebook: {
     marginRight: 60,
@@ -88,12 +82,8 @@ const styles = StyleSheet.create({
   },
   middleText: {
     textAlign: "center",
-    marginTop: 30,
+    marginTop: ICON_SIZE * 0.2,
     color: colors.mediumGrey,
-  },
-  nameInput: {
-    marginTop: 30,
-    marginBottom: 40,
   },
   socialIcons: {
     marginTop: 40,

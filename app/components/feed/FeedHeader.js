@@ -6,22 +6,19 @@ import SportsIconList from "../layouts/SportsIconList";
 import TextInput from "../forms/TextInput";
 
 import APP_SPORTS from "../../config/events";
+import { itemPageSpec, SPACING } from "../../config/theme";
 import colors from "../../config/colors";
 
-const EventFeedHeader = ({
-  height,
-  isSelected,
-  setSearchFilters,
-  setSportFilters,
-}) => {
+const { FULL_SIZE, ICON_SIZE, ITEM_HEIGHT, ITEM_WIDTH, RADIUS } = itemPageSpec;
+const EventFeedHeader = ({ isSelected, setSearchFilters, setSportFilters }) => {
   return (
-    <View style={[styles.container, { height: height }]}>
+    <View style={[styles.container, { height: FULL_SIZE * 0.55 }]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />
       </View>
       <SportsIconList
-        iconSize={33}
+        iconSize={ICON_SIZE * 0.9}
         itemSelected={isSelected}
         onPress={setSportFilters}
         userSports={APP_SPORTS.SPORTS_CATERGORIES}
@@ -46,18 +43,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   logoStyle: {
-    height: 80,
-    marginTop: 0,
-    alignSelf: "flex-start",
-    width: 60,
-    // position: "relative",
-    marginRight: 30,
+    height: ICON_SIZE * 1.5,
+    width: ICON_SIZE * 1.5,
   },
   topContainer: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "flex-start",
-    marginLeft: 10,
+    marginLeft: SPACING,
   },
 });
 

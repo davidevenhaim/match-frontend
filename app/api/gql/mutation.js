@@ -10,9 +10,7 @@ const BE_COACH = gql`
       coachingSport: $coachingSport
       description: $description
       price: $price
-    ) {
-      string
-    }
+    )
   }
 `;
 
@@ -55,18 +53,18 @@ const NEW_EVENT = gql`
   mutation newEvent(
     $avatar: String
     $eventDate: DateTime!
-    $maxPlayersAmount: Int!
     $level: sportLevels
     $location: String!
+    $maxPlayersAmount: Int!
     $sport: sportSelection!
   ) {
     newEvent(
-      sport: $sport
-      maxPlayersAmount: $maxPlayersAmount
-      eventDate: $eventDate
-      location: $location
       avatar: $avatar
+      eventDate: $eventDate
       level: $level
+      location: $location
+      maxPlayersAmount: $maxPlayersAmount
+      sport: $sport
     ) {
       alert
       succeed
@@ -75,6 +73,8 @@ const NEW_EVENT = gql`
         eventDate
         eventName
         captain {
+          avatar
+          favoriteSport
           id
           name
         }

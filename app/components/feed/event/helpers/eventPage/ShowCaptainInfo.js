@@ -6,7 +6,7 @@ import SportsIconList from "../../../../layouts/SportsIconList";
 import Text from "../../../../layouts/Text";
 
 import colors from "../../../../../config/colors";
-
+import { defaultAthlete } from "../../../../../config/defaultValues";
 import { itemPageSpec } from "../../../../../config/theme";
 
 const { ITEM_WIDTH, ITEM_HEIGHT, RADIUS } = itemPageSpec;
@@ -17,6 +17,10 @@ const ShowCaptainInfo = ({ captain, sport }) => {
     (ICON_SIZE / 2) * captain.favoriteSport.length,
     60
   );
+
+  if (!captain) {
+    captain = defaultAthlete;
+  }
 
   return (
     <View style={[styles.captainInfoContainer]}>

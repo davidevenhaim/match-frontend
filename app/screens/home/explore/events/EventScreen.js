@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-// import EventPage from "../../../../components/events/EventPage";
 import EventPage from "../../../../components/feed/event/EventPage";
 
 const EventScreen = ({ route }) => {

@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   userPreview: {
-    // marginLeft: 2,
+    marginLeft: 2,
+    alignSelf: "center",
   },
   scrollContainer: {
     flexGrow: 1,

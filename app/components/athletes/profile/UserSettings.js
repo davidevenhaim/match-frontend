@@ -12,7 +12,7 @@ import RoundIconButtonText from "../../layouts/RoundIconButtonText";
 import routes from "../../../navigation/routes";
 import colors from "../../../config/colors";
 
-const UserSettings = ({ beCoach, signOut }) => {
+const UserSettings = ({ beCoach, isCoach, signOut, toggleCoachView }) => {
   const navigation = useNavigation();
 
   const [switchValue, setSwitchValue] = useState({
@@ -55,7 +55,13 @@ const UserSettings = ({ beCoach, signOut }) => {
 
   const buttons = [
     { text: "Sign Out", onPress: signOut, iconName: "logout" },
-    { text: "Become Coach", onPress: beCoach, iconName: "whistle" },
+    isCoach
+      ? {
+          text: "Coach View",
+          onPress: toggleCoachView,
+          iconName: "view-dashboard",
+        }
+      : { text: "Become Coach", onPress: beCoach, iconName: "whistle" },
   ];
 
   const info = [
@@ -72,7 +78,7 @@ const UserSettings = ({ beCoach, signOut }) => {
           onPress={navigation.goBack}
           iconColor={colors.black}
         />
-        <Text style={{ fontSize: 20 }}>Settings</Text>
+        <Text style={{ fontSize: 20, left: 20 }}>Settings</Text>
       </View>
       <View style={styles.switchContainer}>
         <Text size={25} style={styles.margin}>

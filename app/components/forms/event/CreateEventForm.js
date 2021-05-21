@@ -54,10 +54,10 @@ const CreateEventForm = ({ action }) => (
         sport: "",
       }}
       onSubmit={(values) => {
-        const newValues = convertValues(values);
+        const convertedValues = convertValues(values);
         action({
           variables: {
-            ...newValues,
+            ...convertedValues,
           },
         });
       }}

@@ -16,8 +16,10 @@ const CreateEvent = ({ navigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
   const [newEvent, { loading }] = useMutation(NEW_EVENT, {
     refetchQueries: [{ query: GET_MY_EVENTS }],
-    onCompleted: (data) =>
-      navigation.navigate(routes.EVENT_SCREEN, { event: data.newEvent.event }),
+    onCompleted: (data) => {
+      console.log(data.newEvent.event);
+      navigation.navigate(routes.EVENT_SCREEN, { event: data.newEvent.event });
+    },
     onError: (error) => setError({ message: error.message, visible: true }),
   });
 

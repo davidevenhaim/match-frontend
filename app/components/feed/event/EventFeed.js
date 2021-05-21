@@ -5,8 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import FeedItem from "./FeedItem";
 
-import { itemFeedSpec } from "../../../config/theme";
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
+import { itemPageSpec } from "../../../config/theme";
+const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
 
 import routes from "../../../navigation/routes";
 

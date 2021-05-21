@@ -7,10 +7,14 @@ export const SPACING = 12;
 
 const s = width * 0.68;
 
-export const itemFeedSpec = {
+export const itemPageSpec = {
   ITEM_WIDTH: s,
   ITEM_HEIGHT: s * 1.4,
   RADIUS: 18,
   SPACING,
   FULL_SIZE: s + SPACING,
+  ICON_SIZE: height * 0.039,
+  DEVICE_HEIGHT: height,
+  TEXT_SIZE: s * 0.04,
+  LOGO_SIZE: ICON_SIZE * 2.3,
 };

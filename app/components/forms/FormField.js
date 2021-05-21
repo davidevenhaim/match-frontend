@@ -3,8 +3,10 @@ import { useFormikContext } from "formik";
 
 import ErrorMessage from "./ErrorMessage";
 import TextInput from "./TextInput";
+import TextInputFocusEffect from "./TextInputFocusEffect";
 
 const AppFormField = ({
+  autoFocus = false,
   iconName,
   iconColor,
   inputName,
@@ -20,17 +22,31 @@ const AppFormField = ({
 
   return (
     <>
-      <TextInput
-        iconName={iconName}
-        iconColor={iconColor}
-        onBlur={onBlur}
-        onChangeText={handleChange(inputName)}
-        isProtected={isProtected}
-        setIsHidden={setIsHidden}
-        touched={touched[inputName]}
-        error={errors[inputName]}
-        {...otherProps}
-      />
+      {autoFocus ? (
+        <TextInputFocusEffect
+          iconName={iconName}
+          iconColor={iconColor}
+          onBlur={onBlur}
+          onChangeText={handleChange(inputName)}
+          isProtected={isProtected}
+          setIsHidden={setIsHidden}
+          touched={touched[inputName]}
+          error={errors[inputName]}
+          {...otherProps}
+        />
+      ) : (
+        <TextInput
+          iconName={iconName}
+          iconColor={iconColor}
+          onBlur={onBlur}
+          onChangeText={handleChange(inputName)}
+          isProtected={isProtected}
+          setIsHidden={setIsHidden}
+          touched={touched[inputName]}
+          error={errors[inputName]}
+          {...otherProps}
+        />
+      )}
       {showErrorMessage && (
         <ErrorMessage
           visible={touched[inputName]}

@@ -5,11 +5,12 @@ import { useNavigation } from "@react-navigation/core";
 import IconButton from "../../../layouts/IconButton";
 
 import routes from "../../../../navigation/routes";
+import { itemPageSpec } from "../../../../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 
-const OwnerHeaderOptions = ({ isConnected = false }) => {
+const OwnerHeaderOptions = ({ isConnected = false, iconSize = 35 }) => {
   const navigation = useNavigation();
-
-  const userOptions = {
+  const athleteOptions = {
     chat: () => console.log("clicked chat"),
     bell: () => console.log("clicked bell"),
     cog: () => navigation.navigate(routes.MY_SETTINGS),
@@ -18,10 +19,20 @@ const OwnerHeaderOptions = ({ isConnected = false }) => {
   return (
     <View style={styles.bottomButtons}>
       {isConnected ? (
-        <IconButton name={userOptions.chat.name} onPress={userOptions.chat} />
+        <IconButton
+          name={athleteOptions.chat.name}
+          onPress={athleteOptions.chat}
+          size={iconSize}
+        />
       ) : (
-        Object.keys(userOptions).map((key) => (
-          <IconButton name={key} onPress={userOptions[key]} key={key} />
+        Object.keys(athleteOptions).map((key, index) => (
+          <IconButton
+            name={key}
+            onPress={athleteOptions[key]}
+            key={key}
+            size={iconSize}
+            style={{ marginLeft: index != 0 ? iconSize : 0, marginBottom: 2 }}
+          />
         ))
       )}
     </View>
@@ -30,7 +41,6 @@ const OwnerHeaderOptions = ({ isConnected = false }) => {
 const styles = StyleSheet.create({
   bottomButtons: {
     flexDirection: "row",
-    justifyContent: "space-between",
   },
 });
 

@@ -4,10 +4,8 @@ import { View, StyleSheet, Image, SafeAreaView } from "react-native";
 import { format } from "date-fns";
 import { ScrollView } from "react-native-gesture-handler";
 import { useQuery } from "@apollo/client";
-import { AntDesign } from "@expo/vector-icons";
 
 import IconWithText from "../layouts/IconWithText";
-import IconButton from "../layouts/IconButton";
 import JoinEvent from "./EventActions/JoinEvent";
 import NavigateToEvent from "./EventActions/NavigateToEvent";
 import ShowEventPlayers from "../athletes/ShowEventPlayers";
@@ -19,7 +17,6 @@ import { GET_EVENT_PLAYERS } from "../../api/gql/query";
 import colors from "../../config/colors";
 
 const EventPage = ({ isParticipant = false }) => {
-  const navigation = useNavigation();
   const route = useRoute();
   const event = route.params.event;
   const sport = event.sport;

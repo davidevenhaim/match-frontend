@@ -5,9 +5,9 @@ import { useNavigation } from "@react-navigation/core";
 import FeedItem from "../../feed/event/FeedItem";
 
 import routes from "../../../navigation/routes";
-import { itemFeedSpec } from "../../../config/theme";
+import { itemPageSpec } from "../../../config/theme";
 
-const { ITEM_WIDTH, FULL_SIZE } = itemFeedSpec;
+const { ITEM_WIDTH, FULL_SIZE } = itemPageSpec;
 
 const UpcomingEvents = ({ events }) => {
   const navigation = useNavigation();

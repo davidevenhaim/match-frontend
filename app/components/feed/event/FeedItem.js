@@ -10,9 +10,9 @@ import Text from "../../layouts/Text";
 import SportsIcon from "../../layouts/SportsIcon";
 
 import colors from "../../../config/colors";
-import { itemFeedSpec, ICON_SIZE } from "../../../config/theme";
+import { itemPageSpec, ICON_SIZE } from "../../../config/theme";
 
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemFeedSpec;
+const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
 
 const FeedItem = ({
   captain,

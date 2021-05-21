@@ -11,6 +11,7 @@ const GET_ME = gql`
       }
       favoriteSport
       id
+      isCoach
       name
       upcomingEvents {
         captain {
@@ -87,6 +88,36 @@ const GET_ATHLETES = gql`
             name
             id
           }
+        }
+      }
+    }
+  }
+`;
+
+const GET_COACH = gql`
+  query Coach($id: ID!) {
+    Coach(id: $id) {
+      price
+      description
+      athlete {
+        name
+        favoriteSport
+        avatar
+      }
+    }
+  }
+`;
+
+const GET_COACHES = gql`
+  query Coaches($cursor: String) {
+    Coaches(cursor: $cursor) {
+      coaches {
+        price
+        description
+        athlete {
+          name
+          favoriteSport
+          avatar
         }
       }
     }
@@ -244,6 +275,8 @@ export {
   GET_ME,
   GET_ATHLETE,
   GET_ATHLETES,
+  GET_COACH,
+  GET_COACHES,
   GET_EVENT,
   GET_EVENT_PLAYERS,
   GET_EVENTS_BY_SPORT,

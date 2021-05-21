@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-native";
 import { useMutation } from "@apollo/client";
 
 import RoundIconButtonText from "../../layouts/RoundIconButtonText";
@@ -15,6 +16,11 @@ const JoinEvent = ({
 }) => {
   const [toggleJoinEvent] = useMutation(TOGGLE_JOIN_EVENT, {
     refetchQueries: [{ query: GET_EVENTS }, { query: GET_MY_EVENTS }],
+    onError: (error) =>
+      Alert.alert(
+        error.message,
+        "Seems like there is a high demand to the event, try creating your own."
+      ),
   });
 
   return (

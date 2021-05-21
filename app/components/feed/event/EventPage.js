@@ -17,7 +17,6 @@ import { format } from "date-fns";
 
 import { GET_EVENT_PLAYERS } from "../../../api/gql/query";
 
-import Button from "../../layouts/Button";
 import EventLevelIndicator from "../../layouts/EventLevelIndicator";
 import IconWithText from "../../layouts/IconWithText";
 import JoinEvent from "../../events/EventActions/JoinEvent";
@@ -27,7 +26,8 @@ import ShowCaptainInfo from "./helpers/eventPage/ShowCaptainInfo";
 import Text from "../../layouts/Text";
 
 import colors from "../../../config/colors";
-import { itemPageSpec, ICON_SIZE } from "../../../config/theme";
+import { defaultEvent } from "../../../config/defaultValues";
+import { ICON_SIZE, itemPageSpec } from "../../../config/theme";
 
 const { ITEM_WIDTH, ITEM_HEIGHT, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
 const OPACITY = 0.4;
@@ -38,6 +38,7 @@ const EventPage = ({ isParticipant = false }) => {
 
   const event = route.params.event;
   const eventDate = new Date(event.eventDate);
+  if (!event) event = defaultEvent;
 
   useFocusEffect(
     React.useCallback(() => {

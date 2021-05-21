@@ -7,6 +7,8 @@ import UpcomingEvents from "./UpcomingEvents";
 
 import { defaultAthlete } from "../../../config/defaultValues";
 import colors from "../../../config/colors";
+import { itemPageSpec } from "../../../config/theme";
+const { ITEM_HEIGHT, ITEM_WIDTH, DEVICE_HEIGHT } = itemPageSpec;
 
 const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
@@ -37,7 +39,9 @@ const AthleteProfile = ({ athlete }) => {
 
   return (
     <SafeAreaView style={{ opacity }}>
-      <View style={[styles.headerContainer, { marginBottom: 25 }]}>
+      <View
+        style={[styles.headerContainer, { marginBottom: ITEM_HEIGHT * 0.04 }]}
+      >
         <HeaderProfile
           athlete={athlete}
           isOwner={isOwner}
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   headerContainer: {
-    height: 280,
+    height: DEVICE_HEIGHT * 0.3,
   },
   scrollView: {
     // backgroundColor: "black",

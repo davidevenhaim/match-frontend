@@ -14,11 +14,13 @@ import Text from "../components/layouts/Text";
 import Screen from "../components/Screen";
 
 import useLocation from "../hooks/useLocation";
+import { writeUserInfo } from "../store/actions";
 import { GET_ME } from "../api/gql/query";
-import { writeUserInfo, tabBarVisible } from "../store/actions";
+import { itemPageSpec } from "../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 
 import routes from "./routes";
-
+import colors from "../config/colors";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({ navigation }) => {
@@ -48,12 +50,12 @@ const AppNavigator = ({ navigation }) => {
           tabBarIcon: ({ color }) => (
             <FontAwesome
               name="search"
-              size={28}
+              size={ICON_SIZE * 0.8}
               color={color}
               style={{ marginTop: 10, height: 40, width: 40 }}
             />
           ),
-          tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
+          tabBarLabel: () => <Text></Text>,
         }}
       />
       <Tab.Screen
@@ -74,12 +76,12 @@ const AppNavigator = ({ navigation }) => {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="account-circle"
-              size={35}
+              size={ICON_SIZE}
               color={color}
               style={{ marginTop: 10, height: 40, width: 40 }}
             />
           ),
-          tabBarLabel: ({ color }) => <Text style={{ color: color }}></Text>,
+          tabBarLabel: () => <Text></Text>,
           // tabBarBadge: numOfNotifications || 5
         }}
       />

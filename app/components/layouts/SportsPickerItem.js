@@ -5,10 +5,12 @@ import Text from "./Text";
 import SportsIcon from "./SportsIcon";
 
 import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 
 function SportsPickerItem({
-  backgroundSize = 80,
   iconSize = 55,
+  backgroundSize = iconSize * 1.45,
   item,
   isSelected,
   onPress,
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
     color: colors.notSelected,
     textAlign: "center",
     textTransform: "capitalize",
+    top: -ICON_SIZE * 0.2,
   },
   icon: {
     borderWidth: 1,

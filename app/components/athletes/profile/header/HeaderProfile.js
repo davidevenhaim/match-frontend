@@ -3,13 +3,16 @@ import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import AthleteAvatar from "../../../layouts/AthleteAvatar";
-import SportsIconList from "../../../layouts/SportsIconList";
+import ConnectionsList from "../ConnectionsList";
 import GetConnectedButton from "./GetConnectedButton";
-import OwnerHeaderOptions from "./OwnerHeaderOptions";
+import AthleteHeaderOptions from "./AthleteHeaderOptions";
+import SportsIconList from "../../../layouts/SportsIconList";
 import Text from "../../../layouts/Text";
 
 import colors from "../../../../config/colors";
-import ConnectionsList from "../ConnectionsList";
+import { itemPageSpec } from "../../../../config/theme";
+const { ITEM_HEIGHT, ICON_SIZE, RADIUS, DEVICE_HEIGHT, TEXT_SIZE } =
+  itemPageSpec;
 
 const HeaderProfile = ({
   athlete: { connection, name, avatar, favoriteSport, id },
@@ -19,10 +22,15 @@ const HeaderProfile = ({
   isConnected,
 }) => {
   const connectionCount = connection.length;
+  const iconSize = ICON_SIZE;
   return (
     <View style={styles.conatiner}>
       <View style={styles.avatarStyle}>
-        <AthleteAvatar athleteName={name} athleteImage={avatar} size="large" />
+        <AthleteAvatar
+          athleteName={name}
+          athleteImage={avatar}
+          size={ICON_SIZE * 1.8}
+        />
       </View>
       <Text style={styles.nameText}>{name}</Text>
       <TouchableOpacity onPress={toggleShowConnection}>
@@ -31,14 +39,18 @@ const HeaderProfile = ({
         </Text>
       </TouchableOpacity>
       <View style={styles.sportContainer}>
-        <SportsIconList userSports={favoriteSport} touch={false} />
+        <SportsIconList
+          userSports={favoriteSport}
+          touch={false}
+          iconSize={ICON_SIZE * 0.78}
+        />
       </View>
       {showConnection ? (
-        <ConnectionsList connections={connection} />
+        <ConnectionsList connections={connection} iconSize={iconSize} />
       ) : isOwner ? (
-        <OwnerHeaderOptions />
+        <AthleteHeaderOptions iconSize={iconSize} />
       ) : isConnected ? (
-        <OwnerHeaderOptions isConnected />
+        <AthleteHeaderOptions isConnected iconSize={iconSize} />
       ) : (
         <GetConnectedButton id={id} />
       )}
@@ -48,27 +60,27 @@ const HeaderProfile = ({
 const styles = StyleSheet.create({
   avatarStyle: {
     alignItems: "center",
-    top: -40,
+    top: -ICON_SIZE - 5,
     flexShrink: 0.5,
   },
   conatiner: {
     alignSelf: "center",
     alignItems: "center",
     backgroundColor: colors.snow,
-    borderRadius: 10,
+    borderRadius: RADIUS,
     borderWidth: 0.2,
     borderColor: colors.lightGrey,
-    height: 200,
-    top: 65,
+    height: DEVICE_HEIGHT * 0.2,
+    top: ICON_SIZE * 1.5,
     shadowOpacity: 0.3,
     width: "80%",
   },
   connectionText: {
     color: colors.primary,
+    fontSize: TEXT_SIZE * 1.1,
   },
   nameText: {
-    marginTop: 15,
-    fontSize: 18,
+    fontSize: TEXT_SIZE * 1.6,
   },
   sportContainer: {
     alignSelf: "center",
