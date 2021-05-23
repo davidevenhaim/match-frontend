@@ -1,26 +1,25 @@
 import React, { useRef, useState } from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import FeedItem from "./FeedItem";
+import FeedLabel from "../FeedLabel";
 
 import { itemPageSpec } from "../../../config/theme";
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
-
+const { ITEM_WIDTH, FULL_SIZE } = itemPageSpec;
 import routes from "../../../navigation/routes";
 
 const EventFeed = ({ events, refetch }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-
   const [refreshing, setRefreshing] = useState(false);
 
   const refreshHandler = () => {
     setRefreshing(true);
     console.log("Refreshing!");
     refetch();
-    setTimeout(() => setRefreshing(false), 1500);
+    setTimeout(() => setRefreshing(false), 2000);
   };
 
   return (
@@ -59,6 +58,8 @@ const EventFeed = ({ events, refetch }) => {
           );
         }}
         ListFooterComponent={<View style={{ width: ITEM_WIDTH / 2.58 }} />}
+        ListHeaderComponent={<FeedLabel text="Event Feed" />}
+        stickySectionHeadersEnabled={true}
       />
     </SafeAreaView>
   );

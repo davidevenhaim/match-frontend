@@ -13,6 +13,7 @@ export const itemPageSpec = {
   RADIUS: 18,
   SPACING,
   FULL_SIZE: s + SPACING,
+  HEADER_HEIGHT: 175,
   ICON_SIZE: height * 0.039,
   DEVICE_HEIGHT: height,
   TEXT_SIZE: s * 0.04,

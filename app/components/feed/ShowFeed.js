@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import ActivityIndicator from "../layouts/ActivityIndicator";
-import CoachFeed from "./coach/CoachFeed";
+import CoachFeed from "./coach/GetCoaches";
 import EventFeed from "./event/EventFeed";
 import FeedHeader from "./FeedHeader";
 
 import { filterEvents } from "./event/helpers/filterEvents";
 
-const headerHeight = 175;
+import { itemPageSpec } from "../../config/theme";
+
+const { HEADER_HEIGHT } = itemPageSpec;
 
 const ShowEventFeed = ({
   events,
@@ -20,23 +22,10 @@ const ShowEventFeed = ({
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [eventsArr, setEventsArr] = useState(events);
 
-  const Header = () => (
-    <FeedHeader
-      setSportFilters={setSportFilter}
-      setTextFilters={setTextFilters}
-      isSelected={isSelected}
-      height={headerHeight}
-    />
-  );
-
   useEffect(() => {
-    // setIsLoadingMore(true);
-
     const filteredEvents = filterEvents(events, { sportFilters, textFilters });
 
     setEventsArr(filteredEvents);
-
-    // setIsLoadingMore(false);
   }, [sportFilters, textFilters]);
 
   const LoadingStatus = () => (
@@ -68,10 +57,16 @@ const ShowEventFeed = ({
 
   return (
     <>
-      <Header />
+      <FeedHeader
+        setSportFilters={setSportFilter}
+        setTextFilters={setTextFilters}
+        isSelected={isSelected}
+        height={HEADER_HEIGHT}
+      />
       <EventFeed events={eventsArr} refetch={refetch} />
-      {/* <CoachFeed /> */}
+      <CoachFeed />
     </>
   );
 };
+
 export default ShowEventFeed;

@@ -5,14 +5,14 @@ import { differenceInDays, format } from "date-fns";
 
 import AthleteAvatar from "../../layouts/AthleteAvatar";
 import EventLevelIndicator from "../../layouts/EventLevelIndicator";
-import IconWithText from "../../layouts/IconWithText";
 import Text from "../../layouts/Text";
 import SportsIcon from "../../layouts/SportsIcon";
 
 import colors from "../../../config/colors";
 import { itemPageSpec, ICON_SIZE } from "../../../config/theme";
 
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
+const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE, TEXT_SIZE } =
+  itemPageSpec;
 
 const FeedItem = ({
   captain,
@@ -177,6 +177,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     top: ITEM_WIDTH * 0.65,
+  },
+  label: {
+    height: ITEM_WIDTH * 0.14,
+    width: ITEM_WIDTH * 0.25,
+    borderRadius: ITEM_WIDTH * 0.06,
+    top: ITEM_HEIGHT * 0.3,
+    backgroundColor: colors.primary,
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
   },
   locationText: {
     color: colors.white,

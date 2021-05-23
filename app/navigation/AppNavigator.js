@@ -20,7 +20,7 @@ import { itemPageSpec } from "../config/theme";
 const { ICON_SIZE } = itemPageSpec;
 
 import routes from "./routes";
-import colors from "../config/colors";
+
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({ navigation }) => {

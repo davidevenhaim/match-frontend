@@ -97,13 +97,21 @@ const GET_ATHLETES = gql`
 const GET_COACH = gql`
   query Coach($id: ID!) {
     Coach(id: $id) {
-      price
-      description
       athlete {
-        name
-        favoriteSport
         avatar
+        connection
+        favoriteSport
+        name
       }
+      coachingSport
+      description
+      feedback
+      gallery
+      id
+      price
+      rating
+      ratingCount
+      schedule
     }
   }
 `;
@@ -112,13 +120,17 @@ const GET_COACHES = gql`
   query Coaches($cursor: String) {
     Coaches(cursor: $cursor) {
       coaches {
-        price
-        description
         athlete {
-          name
-          favoriteSport
           avatar
+          favoriteSport
+          name
         }
+        coachingSport
+        description
+        id
+        price
+        rating
+        ratingCount
       }
     }
   }
@@ -127,23 +139,25 @@ const GET_COACHES = gql`
 const GET_EVENT = gql`
   query Event($id: ID!) {
     Event(id: $id) {
-      id
-      eventName
-      eventDate
-      sport
       captain {
         avatar
         favoriteSport
         id
         name
       }
+      curPlayersAmount
+      eventName
+      eventDate
+      id
+      level
+      location
+      maxPlayersAmount
       players {
         id
         name
         avatar
       }
-      curPlayersAmount
-      maxPlayersAmount
+      sport
     }
   }
 `;
@@ -206,7 +220,6 @@ const GET_EVENTS = gql`
         curPlayersAmount
         id
         eventDate
-        eventName
         level
         location
         maxPlayersAmount
