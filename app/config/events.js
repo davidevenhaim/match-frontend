@@ -1,11 +1,17 @@
 export default {
   SPORTS_CATERGORIES: [
-    "soccer",
     "basketball",
-    "tennis",
-    "bike",
-    "volleyball",
+    "soccer",
     "running",
+    "tennis",
+    "matkot",
+    "surfing",
+    "gym",
+    "volleyball",
+    "bike",
+    "handball",
+    "hockey",
+    "swimming",
   ],
   EVENT_LEVELS: ["beginner", "amatuer", "professional", "legendery"],
 };

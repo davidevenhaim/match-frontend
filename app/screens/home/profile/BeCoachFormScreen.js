@@ -5,7 +5,7 @@ import * as SecureStore from "expo-secure-store";
 import { useNavigation } from "@react-navigation/core";
 
 import Logo from "../../../components/layouts/Logo";
-import BeCoachForm from "../../../components/forms/BeCoachForm";
+import BeCoachForm from "../../../components/forms/coach/BeCoachForm";
 import Screen from "../../../components/Screen";
 
 import { BE_COACH } from "../../../api/gql/mutation";

@@ -15,6 +15,8 @@ import Screen from "../Screen";
 import SportsPickerItem from "../layouts/SportsPickerItem";
 
 import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE, MARGIN } = itemPageSpec;
 
 const SportsPicker = ({
   errorBtnColor = colors.primary,
@@ -47,7 +49,11 @@ const SportsPicker = ({
             <View
               style={[styles.selectSport, { backgroundColor: errorBtnColor }]}
             >
-              <MaterialCommunityIcons name="plus" size={50} color="white" />
+              <MaterialCommunityIcons
+                name="plus"
+                size={ICON_SIZE}
+                color="white"
+              />
             </View>
           </TouchableOpacity>
           {values[name] &&
@@ -58,9 +64,8 @@ const SportsPicker = ({
                   onPress={() => onRemoveItem(item)}
                   key={item}
                   style={styles.userSports}
-                  iconSize={40}
                   isSelected
-                  backgroundSize={60}
+                  iconSize={ICON_SIZE}
                 />
               );
             })}
@@ -92,6 +97,7 @@ const SportsPicker = ({
                   style={styles.menuSports}
                   item={item} // name of sport
                   isSelected={isSelected}
+                  iconSize={ICON_SIZE * 1.5}
                   onPress={() => {
                     if (isSelected) {
                       onRemoveItem(item);
@@ -129,22 +135,22 @@ const styles = StyleSheet.create({
     width: "33%",
   },
   menuBtn: {
-    marginTop: 30,
+    marginTop: MARGIN,
     width: "50%",
   },
   selectSport: {
     alignItems: "center",
-    borderRadius: 20,
-    height: 70,
+    borderRadius: ICON_SIZE / 2,
+    height: ICON_SIZE * 2,
     justifyContent: "center",
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 5,
-    marginTop: 10,
-    width: 70,
+    marginBottom: MARGIN / 2,
+    marginLeft: MARGIN / 2,
+    marginRight: MARGIN / 2,
+    marginTop: MARGIN / 4,
+    width: ICON_SIZE * 2,
   },
   userSports: {
-    marginBottom: 10,
+    marginBottom: MARGIN / 2,
   },
 });
 

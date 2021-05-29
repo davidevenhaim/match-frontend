@@ -10,6 +10,9 @@ import Slider from "../Slider";
 import EventSportPicker from "./EventSportPicker";
 
 import events from "../../../config/events";
+import { itemPageSpec } from "../../../config/theme";
+import GooglePlacesInput from "../GooglePlacesInput";
+const { MARGIN } = itemPageSpec;
 
 const today = new Date();
 
@@ -21,7 +24,14 @@ const validationSchema = Yup.object().shape({
     .required()
     .oneOf(events.EVENT_LEVELS)
     .label("Athletes level"),
-  location: Yup.string().required().label("Location"), // Waze/Maps to:
+  location: Yup.object()
+    .required()
+    .label("Location")
+    .test(
+      "Location must be entered with google Maps API",
+      "Location",
+      (loc) => !isNaN(loc.lat) && !isNaN(loc.lng)
+    ), // Waze/Maps to:
   maxPlayersAmount: Yup.number()
     .required()
     .min(2)
@@ -50,11 +60,12 @@ const CreateEventForm = ({ action }) => (
         eventDate: today,
         maxPlayersAmount: 1,
         level: "",
-        location: "",
+        location: { lat: 0, lng: 0 },
         sport: "",
       }}
       onSubmit={(values) => {
         const convertedValues = convertValues(values);
+        console.log(convertedValues);
         action({
           variables: {
             ...convertedValues,
@@ -76,14 +87,6 @@ const CreateEventForm = ({ action }) => (
         width="80%"
       />
       <FormField
-        iconName="map-marker-alt"
-        inputName="location"
-        placeholder="Location"
-        textContentType="addressCity"
-        autoCorrect={false}
-        width="50%"
-      />
-      <FormField
         iconName="users"
         inputName="maxPlayersAmount"
         placeholder="Players amount"
@@ -95,6 +98,11 @@ const CreateEventForm = ({ action }) => (
         showErrorMessage={true}
         errorMessageStyle={{ left: 30 }}
       />
+      <GooglePlacesInput
+        style={styles.googlePlaces}
+        iconName="map-marker"
+        inputName="location"
+      />
       <SubmitButton text="Create Event" style={{ marginBottom: 40 }} />
     </Form>
   </View>
@@ -102,9 +110,21 @@ const CreateEventForm = ({ action }) => (
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: MARGIN,
     padding: 5,
+  },
+  googlePlaces: {
+    height: itemPageSpec.ITEM_WIDTH * 0.65,
   },
 });
 
 export default CreateEventForm;
+
+/* <FormField
+        iconName="map-marker-alt"
+        inputName="location"
+        placeholder="Location"
+        textContentType="addressCity"
+        autoCorrect={false}
+        width="50%"
+      /> */

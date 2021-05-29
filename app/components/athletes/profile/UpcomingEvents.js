@@ -37,7 +37,9 @@ const UpcomingEvents = ({ events }) => {
               index={index}
               name={item.eventName}
               level={item.level}
-              location={item.location}
+              location={
+                item.location.lat ? item.location.longName : item.location
+              }
               playersAmount={[item.curPlayersAmount, item.maxPlayersAmount]}
               sport={item.sport}
               scrollX={scrollX}

@@ -9,15 +9,12 @@ import RoundIconButton from "../../layouts/RoundIconButton";
 import Text from "../../layouts/Text";
 
 import colors from "../../../config/colors";
+import { itemPageSpec } from "../../../config/theme";
+const { ICON_SIZE, MARGIN } = itemPageSpec;
 
 const DatePicker = ({ inputName }) => {
-  const {
-    setFieldValue,
-    errors,
-    values,
-    setFieldTouched,
-    touched,
-  } = useFormikContext();
+  const { setFieldValue, errors, values, setFieldTouched, touched } =
+    useFormikContext();
 
   const [showPicker, setShowPicker] = useState(false);
   const [showMode, setShowMode] = useState("date");
@@ -47,13 +44,13 @@ const DatePicker = ({ inputName }) => {
         <RoundIconButton
           name="calendar"
           onPress={showDatePicker}
-          backgroundSize={60}
+          backgroundSize={ICON_SIZE * 1.5}
           backgroundColor={errors[inputName] ? colors.danger : colors.primary}
         />
         <RoundIconButton
           name="clock"
           onPress={showTimePicker}
-          backgroundSize={60}
+          backgroundSize={ICON_SIZE * 1.5}
           backgroundColor={errors[inputName] ? colors.danger : colors.primary}
         />
       </View>
@@ -89,7 +86,7 @@ const styles = StyleSheet.create({
   dateText: {
     textAlign: "center",
     color: colors.primary,
-    marginBottom: 20,
+    marginBottom: MARGIN,
   },
   pickerIcons: {
     flexDirection: "row",

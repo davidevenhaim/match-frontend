@@ -1,12 +1,13 @@
 export const defaultEvent = {
   id: "1234",
+  captain: { avatar: "", name: "Match", favoriteSport: ["default"] },
+  curPlayersAmount: 0,
   eventName: "Match & Roll",
   eventDate: new Date(),
-  sport: "default",
-  captain: { avatar: "", name: "Match", favoriteSport: ["default"] },
-  players: [defaultAthlete],
-  curPlayersAmount: 0,
+  location: {},
   maxPlayersAmount: 0,
+  players: [defaultAthlete],
+  sport: "default",
 };
 
 export const defaultAthlete = {

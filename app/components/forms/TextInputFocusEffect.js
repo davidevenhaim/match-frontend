@@ -28,7 +28,7 @@ const TextInputFocusEffect = ({
       style={{}}
       touched={touched}
       width={width}
-      onFocus={() => console.log("Email")}
+      // onFocus={() => console.log("Email")}
       {...otherProps}
     />
   );

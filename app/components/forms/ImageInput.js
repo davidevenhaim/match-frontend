@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import {
-  Alert,
-  Image,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 
-const ImageInput = ({ imageUri, handleChange, iconName = "face" }) => {
+const ImageInput = ({
+  imageUri = "",
+  handleChange,
+  iconName = "face",
+  inputStyle,
+}) => {
   useEffect(() => {
     askImagePermission();
   }, []);
@@ -49,20 +49,20 @@ const ImageInput = ({ imageUri, handleChange, iconName = "face" }) => {
     }
   };
   return (
-    <TouchableWithoutFeedback onPress={handleImagePress}>
-      <View style={styles.container}>
+    <TouchableOpacity onPress={handleImagePress}>
+      <View style={[styles.container, inputStyle]}>
         {imageUri === "" && (
           <MaterialCommunityIcons
             name={iconName}
-            size={45}
-            color={colors.mediumGrey}
+            size={ICON_SIZE * 1.2}
+            color={colors.silver}
           />
         )}
         {imageUri !== "" && (
           <Image source={{ uri: imageUri }} style={styles.image} />
         )}
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     alignSelf: "center",
-    borderRadius: 45,
+    borderRadius: ICON_SIZE * 1.25,
     backgroundColor: colors.snow,
-    height: 90,
+    height: ICON_SIZE * 2.5,
     justifyContent: "center",
     overflow: "hidden",
-    width: 90,
+    width: ICON_SIZE * 2.5,
     borderWidth: 0.2,
     borderColor: colors.mediumGrey,
   },

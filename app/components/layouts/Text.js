@@ -4,8 +4,15 @@ import { useFonts } from "@expo-google-fonts/inter";
 import AppLoading from "expo-app-loading";
 
 import defaultStyles from "../../config/styles";
+import { SPACING, itemPageSpec } from "../../config/theme";
+const { TEXT_SIZE } = itemPageSpec;
 
-const AppText = ({ children, size = 15, style, ...otherProps }) => {
+const AppText = ({
+  children,
+  size = TEXT_SIZE * 1.2,
+  style,
+  ...otherProps
+}) => {
   let [fontsLoaded] = useFonts({
     "Righteous-font": require("../../assets/fonts/Righteous-Regular.ttf"),
   });

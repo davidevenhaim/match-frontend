@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const BE_COACH = gql`
   mutation beCoach(
-    $coachingSport: [sportSelection!]!
+    $coachingSport: [SportSelection!]!
     $description: String!
     $price: Int!
   ) {
@@ -14,10 +14,18 @@ const BE_COACH = gql`
   }
 `;
 
+const COACH_FEEDBACK = gql`
+  mutation coachFeedback($id: ID!, $message: String!, $rating: Int!) {
+    coachFeedback(id: $id, message: $message, rating: $rating) {
+      alert
+    }
+  }
+`;
+
 const EDIT_EVENT = gql`
   mutation editEvent(
     $id: ID!
-    $eventDate: Date
+    $eventDate: DateTime
     $maxPlayersAmount: Int
     $private: Boolean
   ) {
@@ -53,10 +61,10 @@ const NEW_EVENT = gql`
   mutation newEvent(
     $avatar: String
     $eventDate: DateTime!
-    $level: sportLevels
-    $location: String!
+    $level: SportLevels!
+    $location: Location!
     $maxPlayersAmount: Int!
-    $sport: sportSelection!
+    $sport: SportSelection!
   ) {
     newEvent(
       avatar: $avatar
@@ -104,7 +112,7 @@ const SIGN_UP = gql`
   mutation signUp(
     $avatar: String
     $email: String!
-    $favoriteSport: [sportSelection!]!
+    $favoriteSport: [SportSelection!]!
     $password: String!
     $name: String!
   ) {
@@ -134,6 +142,7 @@ const TOGGLE_JOIN_EVENT = gql`
 
 export {
   BE_COACH,
+  COACH_FEEDBACK,
   EDIT_EVENT,
   GET_CONNECTED,
   NEW_EVENT,

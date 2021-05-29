@@ -8,7 +8,7 @@ import UpcomingEvents from "./UpcomingEvents";
 import { defaultAthlete } from "../../../config/defaultValues";
 import colors from "../../../config/colors";
 import { itemPageSpec } from "../../../config/theme";
-const { ITEM_HEIGHT, ITEM_WIDTH, DEVICE_HEIGHT } = itemPageSpec;
+const { ITEM_HEIGHT, DEVICE_HEIGHT } = itemPageSpec;
 
 const AthleteProfile = ({ athlete }) => {
   const [showConnection, setShowConnection] = useState(false);
@@ -16,12 +16,13 @@ const AthleteProfile = ({ athlete }) => {
   const [isOwner, setIsOwner] = useState(false);
   const curAthlete = useSelector((state) => state.userInfo);
 
+  let opacity = 1;
+
   if (!athlete) {
     athlete = defaultAthlete;
     opacity = 0.7;
   }
 
-  let opacity = 1;
   const toggleShowConnection = () => {
     const newShowConnection = !showConnection;
     setShowConnection(newShowConnection);

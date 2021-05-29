@@ -6,16 +6,19 @@ import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
 
 import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE, TEXT_SIZE, MARGIN, RADIUS } = itemPageSpec;
 
 const AppTextInput = ({
   error,
-  fieldSize = 50,
+  fieldSize = TEXT_SIZE * 4,
   iconName,
-  iconSize = 15,
+  iconSize = ICON_SIZE * 0.45,
   isProtected = false,
   rightIconName,
   setIsHidden,
   style,
+  applyStyle = true,
   touched,
   width = "90%",
   ...otherProps
@@ -28,7 +31,7 @@ const AppTextInput = ({
   return (
     <View
       style={[
-        styles.frame,
+        applyStyle ? styles.frame : null,
         { width, height: fieldSize },
         touched
           ? {
@@ -73,28 +76,29 @@ const AppTextInput = ({
 const styles = StyleSheet.create({
   frame: {
     backgroundColor: colors.snow,
-    borderRadius: 25,
+    borderRadius: RADIUS * 2,
     flexDirection: "row",
-    height: 50,
-    marginBottom: 10,
-    marginLeft: 20,
-    marginTop: 10,
-    padding: 15,
+    // height: TEXT_SIZE,
+    marginBottom: MARGIN * 0.5,
+    marginLeft: MARGIN,
+    marginTop: MARGIN * 0.5,
+    padding: MARGIN,
     borderColor: colors.mediumGrey,
-    borderWidth: 0.2,
+    borderWidth: 0.1,
   },
   leftIcon: {
-    marginRight: 15,
+    marginRight: MARGIN,
+    alignContent: "center",
   },
   placeholder: {
     color: colors.mediumGrey,
   },
   rightIconArea: {
-    height: 40,
-    width: 40,
+    height: ICON_SIZE,
+    width: ICON_SIZE,
   },
   rightIcon: {
-    marginLeft: 10,
+    marginLeft: MARGIN * 0.5,
   },
   textInput: {
     flex: 1,

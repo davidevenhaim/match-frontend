@@ -1,14 +1,18 @@
 import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 import SportsIcon from "./SportsIcon";
 import SportsPickerItem from "./SportsPickerItem";
 
-const OneSportPicker = ({
+import { itemPageSpec } from "../../config/theme";
+const { MARGIN, ICON_SIZE } = itemPageSpec;
+
+const SportsIconList = ({
   userSports,
   onPress,
   itemSelected,
-  iconSize = 30,
+  iconSize = ICON_SIZE,
+  textSize = iconSize / 2,
   style,
   touch = true,
 }) => {
@@ -28,6 +32,7 @@ const OneSportPicker = ({
               iconSize={iconSize}
               backgroundSize={iconSize * 1.5}
               style={styles.userChoice}
+              textSize={textSize}
               isSelected={itemSelected(sport)}
             />
           ))
@@ -46,7 +51,7 @@ const OneSportPicker = ({
 
 const styles = StyleSheet.create({
   userChoice: {
-    marginBottom: 15,
+    marginBottom: MARGIN / 3,
     marginTop: 0,
   },
   userPreview: {
@@ -59,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OneSportPicker;
+export default SportsIconList;

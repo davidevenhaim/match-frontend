@@ -8,6 +8,8 @@ import Text from "../layouts/Text";
 
 import colors from "../../config/colors";
 
+const STEP = 1;
+
 const AppSlider = ({
   inputName,
   maximumValue,
@@ -35,7 +37,7 @@ const AppSlider = ({
         thumbTintColor={isInvalid ? colors.lightRed : colors.white}
         onValueChange={(value) => setFieldValue(inputName, stepDetails[value])}
         minimumTrackTintColor={colors.primary}
-        step={1}
+        step={STEP}
         style={[sliderStyle, { width: width }]}
         value={stepDetails.indexOf(values[inputName])}
       />

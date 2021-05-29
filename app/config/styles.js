@@ -13,12 +13,18 @@ export default {
   colors,
   appFont: font,
   sportsIcons: {
-    // will define MaterialCommunityIcon name for each sport.
+    // will define "MaterialCommunityIcon" name for each sport.
     bike: "bike",
     basketball: "basketball",
-    tennis: "tennis",
+    handball: "handball",
+    hockey: "hockey-sticks",
+    gym: "weight-lifter",
+    matkot: "table-tennis",
     running: "shoe-print",
     soccer: "soccer",
+    surfing: "snowboard",
+    swimming: "swim",
+    tennis: "tennis",
     volleyball: "volleyball",
     default: "emoticon-sad-outline",
   },

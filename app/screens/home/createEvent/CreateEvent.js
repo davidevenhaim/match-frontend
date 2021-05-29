@@ -7,10 +7,12 @@ import { SafeAreaView } from "react-native";
 import colors from "../../../config/colors";
 import { StyleSheet } from "react-native";
 
+import MapView from "../../../components/feed/event/mapView/MapView";
 import { NEW_EVENT } from "../../../api/gql/mutation";
 import { GET_MY_EVENTS } from "../../../api/gql/query";
 
 import routes from "../../../navigation/routes";
+import GooglePlacesInput from "../../../components/forms/GooglePlacesInput";
 
 const CreateEvent = ({ navigation }) => {
   const [error, setError] = useState({ message: "", visible: false });

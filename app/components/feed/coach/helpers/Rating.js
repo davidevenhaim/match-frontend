@@ -8,20 +8,20 @@ import colors from "../../../../config/colors";
 
 const RATING = [1, 2, 3, 4, 5];
 
-const Rating = ({ userRating, ratingCount, size = 18 }) => {
-  userRating = Math.random() * userRating + 1;
+const Rating = ({ userRating, ratingCount, size = 18, showText = false }) => {
+  if (!userRating) userRating = Math.random() * userRating + 1;
   return (
     <View style={styles.container}>
       {RATING.map((rate) => {
         return (
           <MaterialCommunityIcons
             name="star"
-            color={rate <= userRating ? colors.primary : colors.white}
+            color={rate <= userRating ? colors.primary : colors.silver}
             size={size}
           />
         );
       })}
-      <Text style={styles.text}>from {ratingCount} votes </Text>
+      {showText && <Text style={styles.text}>from {ratingCount} votes </Text>}
     </View>
   );
 };

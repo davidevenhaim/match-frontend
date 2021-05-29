@@ -14,7 +14,7 @@ const useLoaction = () => {
     const {
       coords: { latitude, longitude },
     } = await Location.getCurrentPositionAsync();
-    setLocation({ latitude, longitude });
+    setLocation({ lat: latitude, lng: longitude });
   };
 
   useEffect(() => {

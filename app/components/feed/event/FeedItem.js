@@ -1,7 +1,6 @@
 import React from "react";
-import { Animated, StyleSheet, View, ScrollView } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { differenceInDays, format } from "date-fns";
 
 import AthleteAvatar from "../../layouts/AthleteAvatar";
 import EventLevelIndicator from "../../layouts/EventLevelIndicator";
@@ -10,16 +9,17 @@ import SportsIcon from "../../layouts/SportsIcon";
 
 import colors from "../../../config/colors";
 import { itemPageSpec, ICON_SIZE } from "../../../config/theme";
+import { useSelector } from "react-redux";
+import calculateDistance from "../../../api/CalculateDistance";
 
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE, TEXT_SIZE } =
-  itemPageSpec;
+const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
+const ONE_DAY = 1000 * 60 * 60 * 24; // in milliseconds
 
 const FeedItem = ({
   captain,
   date,
   description,
   index,
-  name,
   onPress,
   level,
   location,
@@ -30,8 +30,23 @@ const FeedItem = ({
 }) => {
   date = new Date(date);
   const today = new Date();
-  const daysUntilEvent = differenceInDays(date, today);
-  const dateArray = format(date, "MMM do EEEE").split(" ");
+  const curAthleteLocation = useSelector((state) => state.userInfo.location);
+
+  if (location && location.lat) {
+    console.log("here");
+    console.log(calculateDistance(curAthleteLocation, location));
+  }
+
+  const daysUntilEvent = parseInt((date.getTime() - today.getTime()) / ONE_DAY);
+
+  const eventDateString =
+    daysUntilEvent < 0
+      ? `Happened\n${Math.abs(daysUntilEvent)} days ago`
+      : daysUntilEvent === 0
+      ? "Hapening\nToday!"
+      : daysUntilEvent === 1
+      ? `Hapening In\n${daysUntilEvent} day`
+      : `Hapening In\n${daysUntilEvent} days`;
 
   const inputRange = [
     (index - 1) * FULL_SIZE,
@@ -77,16 +92,14 @@ const FeedItem = ({
           <Text
             style={{
               fontSize: 13,
-              color: daysUntilEvent < 3 ? colors.dark : colors.white,
+              color:
+                daysUntilEvent < 0 || daysUntilEvent > 3
+                  ? colors.white
+                  : colors.black,
               textAlign: "center",
             }}
           >
-            {"Hapening\n"}
-            {daysUntilEvent === 0
-              ? `Today!`
-              : daysUntilEvent === 1
-              ? `In ${daysUntilEvent} days`
-              : `In ${daysUntilEvent} day`}
+            {eventDateString}
           </Text>
         </View>
         <View style={styles.captainContainer}>

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, KeyboardAvoidingView } from "react-native";
 
 import Logo from "../../components/layouts/Logo";
-import BeCoachForm from "../../components/forms/BeCoachForm";
+import BeCoachForm from "../../components/forms/coach/BeCoachForm";
 import Screen from "../../components/Screen";
 
 const RegisterAsCoachScreen = () => {

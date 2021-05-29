@@ -39,10 +39,7 @@ const ShowPlayer = ({
         </View>
         <SportsIconList userSports={sports} touch={false} iconSize={20} />
       </View>
-      <Rating
-        userRating={rating || 5}
-        ratingCount={ratingCount || parseInt(Math.random() * 100)}
-      />
+      <Rating userRating={rating} ratingCount={ratingCount} />
     </TouchableOpacity>
   );
 };

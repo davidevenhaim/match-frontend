@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { useMutation } from "@apollo/client";
 
 import Button from "../../../layouts/Button";
-import Text from "../../../layouts/Text";
-
-import colors from "../../../../config/colors";
 
 import { GET_CONNECTED } from "../../../../api/gql/mutation";
 import { GET_MY_CONNECTIONS, GET_ATHLETES } from "../../../../api/gql/query";
+
+import colors from "../../../../config/colors";
+import { itemPageSpec } from "../../../../config/theme";
+const { ICON_SIZE, MARGIN } = itemPageSpec;
 
 const GetConnectedButton = ({ id }) => {
   const [connectionSent, setConnectionSent] = useState(false);
@@ -30,7 +31,7 @@ const GetConnectedButton = ({ id }) => {
       {!connectionSent && (
         <Button
           style={styles.connectBtn}
-          btnHeight={40}
+          btnHeight={ICON_SIZE}
           text="Connect"
           onPress={getConnected}
         />
@@ -41,11 +42,11 @@ const GetConnectedButton = ({ id }) => {
 const styles = StyleSheet.create({
   connectBtn: {
     width: "25%",
-    marginBottom: 10,
+    marginBottom: MARGIN * 0.75,
   },
   text: {
     color: colors.primary,
-    marginBottom: 10,
+    marginBottom: MARGIN * 0.75,
   },
 });
 

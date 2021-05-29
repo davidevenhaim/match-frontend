@@ -2,33 +2,43 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { useFormikContext } from "formik";
 
-import AppButton from "../layouts/Button";
-import Erro from "../layouts/Text";
+import Button from "../layouts/Button";
 import ErrorMessage from "./ErrorMessage";
-import colors from "../../config/colors";
 
-const SubmitButton = ({ error, text, style }) => {
+import colors from "../../config/colors";
+import IconButton from "../layouts/IconButton";
+
+const SubmitButton = ({ error, errorMessageStyle, text, iconName, style }) => {
   const { handleSubmit } = useFormikContext();
   return (
     <>
-      <AppButton
-        text={text}
-        onPress={handleSubmit}
-        style={[
-          styles.submit,
-          error
-            ? error.visible
-              ? { backgroundColor: colors.danger }
-              : null
-            : null,
-          style,
-        ]}
-      />
+      {iconName ? (
+        <IconButton
+          name={iconName}
+          onPress={handleSubmit}
+          style={[styles.submit, style]}
+          size={40}
+        />
+      ) : (
+        <Button
+          text={text}
+          onPress={handleSubmit}
+          style={[
+            styles.submit,
+            error
+              ? error.visible
+                ? { backgroundColor: colors.danger }
+                : null
+              : null,
+            style,
+          ]}
+        />
+      )}
       {error && (
         <ErrorMessage
           error={error.message}
           visible={error.visible}
-          style={{ alignSelf: "center", marginTop: 5 }}
+          style={[{ alignSelf: "center", marginTop: 5 }, errorMessageStyle]}
         />
       )}
     </>

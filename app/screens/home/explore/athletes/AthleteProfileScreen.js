@@ -7,7 +7,6 @@ import { GET_ATHLETE } from "../../../../api/gql/query";
 
 const AthleteProfileScreen = ({ route }) => {
   const id = route.params.id;
-
   const { loading, data, error } = useQuery(GET_ATHLETE, {
     variables: { id },
   });

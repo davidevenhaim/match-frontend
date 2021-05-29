@@ -1,17 +1,15 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 import { useSelector } from "react-redux";
 
-import Form from "./Form";
-import FormField from "./FormField";
-import EventSportPicker from "./event/EventSportPicker";
-import FormFeedPicker from "./FormFeedPicker";
-import SubmitButton from "./SubmitButton";
-import Text from "../layouts/Text";
+import Form from "../Form";
+import FormField from "../FormField";
+import FormFeedPicker from "../FormFeedPicker";
+import SubmitButton from "../SubmitButton";
+import Text from "../../layouts/Text";
 
-import colors from "../../config/colors";
-import events from "../../config/events";
+import colors from "../../../config/colors";
 
 const validationSchema = Yup.object().shape({
   coachingSport: Yup.array().min(1, "What sports can you coach?"),

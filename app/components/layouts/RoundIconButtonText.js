@@ -1,13 +1,16 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import colors from "../../config/colors";
 
 import RoundIcon from "./RoundIcon";
 import Text from "./Text";
 
+import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { MARGIN, ICON_SIZE } = itemPageSpec;
+
 const RoundIconButtonText = ({
-  backgroundSize = 80,
+  backgroundSize = ICON_SIZE * 2.2,
   backgroundColor = colors.primary,
   iconColor = colors.white,
   iconName,
@@ -23,7 +26,7 @@ const RoundIconButtonText = ({
     <TouchableOpacity
       activeOpacity={0.4}
       onPress={onPress}
-      style={[styles.container, style]}
+      containerStyle={[styles.container, style]}
     >
       <RoundIcon
         backgroundSize={backgroundSize}
@@ -50,8 +53,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    // textAlign: "center",
-    top: -10,
+    textAlign: "center",
+    top: -MARGIN * 10,
   },
 });
 

@@ -99,15 +99,25 @@ const GET_COACH = gql`
     Coach(id: $id) {
       athlete {
         avatar
-        connection
+        connectionsCount
         favoriteSport
+        id
         name
       }
       coachingSport
       description
-      feedback
-      gallery
+      feedback {
+        athlete {
+          avatar
+          id
+          name
+        }
+        message
+        rating
+        id
+      }
       id
+      gallery
       price
       rating
       ratingCount
@@ -122,7 +132,7 @@ const GET_COACHES = gql`
       coaches {
         athlete {
           avatar
-          favoriteSport
+          id
           name
         }
         coachingSport
@@ -179,34 +189,8 @@ const GET_EVENT_PLAYERS = gql`
   }
 `;
 
-const GET_EVENTS_BY_SPORT = gql`
-  query EventBySport($sports: favoriteSportSelection!) {
-    EventBySport(sports: $sports) {
-      cursor
-      hasNextPage
-      events {
-        id
-        eventName
-        eventDate
-        sport
-        captain {
-          avatar
-          id
-          name
-        }
-        players {
-          id
-          name
-        }
-        curPlayersAmount
-        maxPlayersAmount
-      }
-    }
-  }
-`;
-
 const GET_EVENTS = gql`
-  query Events($cursor: String, $sports: [sportSelection]) {
+  query Events($cursor: String, $sports: [SportSelection]) {
     Events(cursor: $cursor, sports: $sports) {
       cursor
       hasNextPage
@@ -220,6 +204,7 @@ const GET_EVENTS = gql`
         curPlayersAmount
         id
         eventDate
+        eventName
         level
         location
         maxPlayersAmount
@@ -292,7 +277,6 @@ export {
   GET_COACHES,
   GET_EVENT,
   GET_EVENT_PLAYERS,
-  GET_EVENTS_BY_SPORT,
   GET_EVENTS,
   GET_MY_CONNECTIONS,
   GET_MY_EVENTS,

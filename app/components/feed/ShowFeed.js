@@ -11,7 +11,7 @@ import { itemPageSpec } from "../../config/theme";
 
 const { HEADER_HEIGHT } = itemPageSpec;
 
-const ShowEventFeed = ({
+const ShowFeed = ({
   events,
   setSportFilters,
   sportFilters,
@@ -69,4 +69,4 @@ const ShowEventFeed = ({
   );
 };
 
-export default ShowEventFeed;
+export default ShowFeed;

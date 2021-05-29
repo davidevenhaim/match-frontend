@@ -12,7 +12,7 @@ import colors from "../../config/colors";
 const { FULL_SIZE, ICON_SIZE, ITEM_HEIGHT, ITEM_WIDTH, RADIUS } = itemPageSpec;
 const EventFeedHeader = ({ isSelected, setSearchFilters, setSportFilters }) => {
   return (
-    <View style={[styles.container, { height: FULL_SIZE * 0.55 }]}>
+    <View style={[styles.container, { height: FULL_SIZE * 0.52 }]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />
@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     borderLeftWidth: 1,
-    borderBottomLeftRadius: 30,
+    borderBottomLeftRadius: RADIUS * 1.5,
     borderEndWidth: 1,
     borderRightWidth: 1,
-    borderBottomRightRadius: 30,
+    borderBottomRightRadius: RADIUS * 1.5,
     borderBottomWidth: 1,
     borderRightColor: colors.secondary,
     borderBottomColor: colors.secondary,

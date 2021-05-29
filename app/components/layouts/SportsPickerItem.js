@@ -9,7 +9,8 @@ import { itemPageSpec } from "../../config/theme";
 const { ICON_SIZE } = itemPageSpec;
 
 function SportsPickerItem({
-  iconSize = 55,
+  iconSize = ICON_SIZE,
+  textSize = iconSize / 2.5,
   backgroundSize = iconSize * 1.45,
   item,
   isSelected,
@@ -35,12 +36,18 @@ function SportsPickerItem({
           style={[styles.icon, iconStyle]}
         />
       )}
-      <Text style={[styles.text, selectedTextStyle]}>{item}</Text>
+      <Text style={[styles.text, { fontSize: textSize }, selectedTextStyle]}>
+        {item}
+      </Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    marginRight: ICON_SIZE / 20,
+  },
   text: {
     color: colors.notSelected,
     textAlign: "center",

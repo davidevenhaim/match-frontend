@@ -25,18 +25,6 @@ const CoachFeed = ({ coaches, refetch }) => {
     setTimeout(() => setShowLabel(false), 5 * 1000);
   }, [showLabel]);
 
-  const HeaderComponent = () => {
-    return (
-      <>
-        {showLabel && (
-          <View style={styles.label}>
-            <Text style={styles.labelText}>Coach Feed</Text>
-          </View>
-        )}
-      </>
-    );
-  };
-
   const refreshHandler = () => {
     setRefreshing(true);
     console.log("Refreshing!");
@@ -67,6 +55,8 @@ const CoachFeed = ({ coaches, refetch }) => {
               index={index}
               name={item.athlete.name}
               scrollX={scrollX}
+              rating={item.rating}
+              ratingCount={item.ratingCount}
               onPress={() =>
                 navigation.push(routes.COACH_PROFILE, { coach: item })
               }

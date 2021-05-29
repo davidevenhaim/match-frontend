@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import * as SecureStore from "expo-secure-store";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, StyleSheet } from "react-native";
 
 import { SIGN_UP } from "../../api/gql/mutation";
 
 import Logo from "../../components/layouts/Logo";
-import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import RegisterForm from "../../components/forms/RegisterForm";
+import SubmitAnimation from "../../components/layouts/SubmitAnimation";
 import Screen from "../../components/Screen";
 
 import routes from "../../navigation/routes";
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 
 const RegisterFormScreen = ({ mainNavigation }) => {
   const [error, setError] = useState({ message: "", visible: false });
@@ -34,12 +36,19 @@ const RegisterFormScreen = ({ mainNavigation }) => {
     <Screen>
       <KeyboardAvoidingView>
         <SubmitAnimation error={error} loading={loading}>
-          <Logo />
+          <Logo style={styles.appLogo} />
           <RegisterForm action={signUp} />
         </SubmitAnimation>
       </KeyboardAvoidingView>
     </Screen>
   );
 };
+
+const styles = StyleSheet.create({
+  appLogo: {
+    height: ICON_SIZE * 2,
+    width: ICON_SIZE * 2,
+  },
+});
 
 export default RegisterFormScreen;

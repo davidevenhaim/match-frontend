@@ -16,6 +16,9 @@ export const itemPageSpec = {
   HEADER_HEIGHT: 175,
   ICON_SIZE: height * 0.039,
   DEVICE_HEIGHT: height,
-  TEXT_SIZE: s * 0.04,
+  DEVICE_WIDTH: width,
+  TEXT_SIZE: height * 0.015,
   LOGO_SIZE: ICON_SIZE * 2.3,
+  MARGIN: height * 0.02,
+  PADDING: height * 0.02 * 0.5,
 };
