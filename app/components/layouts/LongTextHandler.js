@@ -4,6 +4,8 @@ import { StyleSheet, View } from "react-native";
 import Text from "./Text";
 
 import colors from "../../config/colors";
+import { itemPageSpec } from "../../config/theme";
+const { TEXT_SIZE, MARGIN } = itemPageSpec;
 
 const LongTextHandler = ({
   text,
@@ -18,10 +20,7 @@ const LongTextHandler = ({
   const [textShown, setTextShown] = useState(false);
 
   if (!text) {
-    text = `lorem ipusm is the best, how do i get it in my app!? i want to get
-    it now.lorem ipusm is the best, how do i get it in my app!? i want to
-    get it now.lorem ipusm is the best, how do i get it in my app!? i want
-    to get it now.`;
+    text = `We are going to play at the indicated time, we are very friendly and experienced. We want to get better every time and we need new challenges, and if we meet new friends in the way, it will be great :)`;
   }
 
   const onTextLayout = useCallback((e) => {
@@ -35,11 +34,10 @@ const LongTextHandler = ({
     setTextShown((prevState) => !prevState);
     if (scrollHandler) scrollHandler((prevState) => !prevState);
   };
-
   return (
     <View style={[styles.container, { width: containerWidth }]}>
       <Text
-        style={{ textAlign: "center" }}
+        style={styles.text}
         numberOfLines={linesNumber}
         onTextLayout={onTextLayout}
         selectable
@@ -49,7 +47,7 @@ const LongTextHandler = ({
       </Text>
       {isMoreText && (
         <Text
-          style={{ color: colors.primary, fontSize: 13 }}
+          style={{ color: colors.primary, fontSize: TEXT_SIZE * 0.9 }}
           onPress={toggleLineNumber}
         >
           Tap to see {textShown ? "less" : "more"}
@@ -61,8 +59,12 @@ const LongTextHandler = ({
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: MARGIN * 0.5,
+    marginBottom: MARGIN * 0.5,
+  },
+  text: {
+    textAlign: "center",
+    fontSize: TEXT_SIZE * 1.15,
   },
 });
 

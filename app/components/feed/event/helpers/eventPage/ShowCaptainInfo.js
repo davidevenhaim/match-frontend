@@ -91,7 +91,9 @@ const styles = StyleSheet.create({
   },
   sportsIconList: {
     flexGrow: 1,
-    width: "93%",
+    left: MARGIN,
+    top: MARGIN * 0.1,
+    width: "90%",
     overflow: "hidden",
   },
 });

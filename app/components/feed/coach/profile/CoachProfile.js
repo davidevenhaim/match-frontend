@@ -4,8 +4,8 @@ import { useRoute, useNavigation } from "@react-navigation/core";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 
+import ActivityIndicator from "../../../layouts/ActivityIndicator";
 import AthleteAvatar from "../../../layouts/AthleteAvatar";
-import AthleteProfile from "../../../athletes/profile/AthleteProfile";
 import CoachFeedBack from "./CoachFeedback";
 import CoachGallery from "./CoachGallery";
 import LongTextHandler from "../../../layouts/LongTextHandler";
@@ -17,13 +17,12 @@ import FeedbackHandlerButton from "./FeedbackHandlerButton";
 
 import { GET_COACH } from "../../../../api/gql/query";
 
-import { defaultAthlete } from "../../../../config/defaultValues";
 import { SPACING, itemPageSpec } from "../../../../config/theme";
 const { ICON_SIZE, TEXT_SIZE, MARGIN } = itemPageSpec;
 
 import routes from "../../../../navigation/routes";
 
-const CoachPage = ({ leaveFeedback }) => {
+const CoachPage = ({ leaveFeedbackHandler }) => {
   const route = useRoute();
   const navigation = useNavigation();
 
@@ -37,7 +36,8 @@ const CoachPage = ({ leaveFeedback }) => {
     variables: { id: coachId },
   });
 
-  if (loading || error) return <AthleteProfile athlete={defaultAthlete} />;
+  if (loading || error) return <ActivityIndicator />;
+  //<AthleteProfile athlete={defaultAthlete} />;
 
   const coach = data.Coach;
 
@@ -89,10 +89,10 @@ const CoachPage = ({ leaveFeedback }) => {
         />
         {writeFeedback ? (
           <WriteFeedbackForm
-            action={leaveFeedback.action}
+            action={leaveFeedbackHandler.action}
             handler={addFeedbackHandler}
-            error={leaveFeedback.error}
-            loading={leaveFeedback.loading}
+            error={leaveFeedbackHandler.error}
+            loading={leaveFeedbackHandler.loading}
             coachId={coach.id}
           />
         ) : (

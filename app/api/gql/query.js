@@ -30,6 +30,14 @@ const GET_ME = gql`
         private
         sport
       }
+      pastEvents {
+        curPlayersAmount
+        eventDate
+        id
+        level
+        location
+        sport
+      }
     }
   }
 `;

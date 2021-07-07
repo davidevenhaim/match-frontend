@@ -1,7 +1,10 @@
 // distance calculation in KM
 // using Haversine formula.
 
-export default function computeDistance({ prevLat, prevLong }, { lat, long }) {
+export default function computeDistance(
+  { lat: prevLat, lng: prevLong },
+  { lat, lng: long }
+) {
   const prevLatInRad = toRad(prevLat);
   const prevLongInRad = toRad(prevLong);
   const latInRad = toRad(lat);

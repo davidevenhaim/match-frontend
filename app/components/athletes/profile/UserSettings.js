@@ -11,6 +11,8 @@ import RoundIconButtonText from "../../layouts/RoundIconButtonText";
 
 import routes from "../../../navigation/routes";
 import colors from "../../../config/colors";
+import { itemPageSpec } from "../../../config/theme";
+const { ICON_SIZE, MARGIN, TEXT_SIZE } = itemPageSpec;
 
 const UserSettings = ({ beCoach, isCoach, signOut, toggleCoachView }) => {
   const navigation = useNavigation();
@@ -97,7 +99,7 @@ const UserSettings = ({ beCoach, isCoach, signOut, toggleCoachView }) => {
           )}
         />
       </View>
-      <Seperator style={{ marginBottom: 5 }} />
+      <Seperator style={{ marginBottom: MARGIN * 0.5 }} />
       <View style={styles.btnContainer}>
         {buttons.map((btn) => (
           <RoundIconButtonText
@@ -105,25 +107,25 @@ const UserSettings = ({ beCoach, isCoach, signOut, toggleCoachView }) => {
             iconName={btn.iconName}
             text={btn.text}
             onPress={btn.onPress}
-            backgroundSize={50}
+            backgroundSize={ICON_SIZE * 1.4}
           />
         ))}
       </View>
-      <Seperator style={{ marginBottom: 5 }} />
+      <Seperator style={{ marginBottom: MARGIN * 0.5 }} />
       <View style={styles.moreInfo}>
-        <Text size={25} style={styles.margin}>
+        <Text size={TEXT_SIZE * 2} style={styles.margin}>
           Extra info
         </Text>
-        <Seperator style={{ marginBottom: 20 }} />
+        <Seperator style={{ marginBottom: MARGIN }} />
         {info.map((inf) => (
           <TouchableOpacity
             style={styles.moreInfoChilds}
             key={inf.text.trim().toString()}
           >
-            <Text size={20} style={styles.infoText}>
+            <Text size={TEXT_SIZE * 1.5} style={styles.infoText}>
               {inf.text}
             </Text>
-            <Seperator style={{ marginBottom: 5 }} />
+            <Seperator style={{ marginBottom: MARGIN * 0.2 }} />
           </TouchableOpacity>
         ))}
       </View>

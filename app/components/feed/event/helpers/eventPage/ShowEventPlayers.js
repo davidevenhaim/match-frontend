@@ -6,8 +6,11 @@ import ShowPlayers from "../../../../athletes/ShowPlayers";
 import Text from "../../../../layouts/Text";
 
 import colors from "../../../../../config/colors";
+import { itemPageSpec } from "../../../../../config/theme";
+const { MARGIN, TEXT_SIZE, ICON_SIZE } = itemPageSpec;
+
 const PLAYERS_TO_SHOW = 3;
-const SIZE = 50;
+const SIZE = ICON_SIZE * 1.3;
 
 const ShowEventPlayers = ({ loading = true, error = false, players }) => {
   const [showPlayersLimit, setShowPlayersLimit] = useState(PLAYERS_TO_SHOW);
@@ -40,13 +43,15 @@ const ShowEventPlayers = ({ loading = true, error = false, players }) => {
                   style={{
                     color: colors.white,
                     textAlign: "center",
-                    fontSize: 12,
+                    fontSize: TEXT_SIZE * 0.8,
                   }}
                 >
                   {"show\nless"}
                 </Text>
               ) : (
-                <Text style={{ color: colors.white, fontSize: 18 }}>
+                <Text
+                  style={{ color: colors.white, fontSize: TEXT_SIZE * 1.2 }}
+                >
                   +{Math.max(0, players.length - showPlayersLimit)}
                 </Text>
               )}
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
   playersContainer: {
     justifyContent: "flex-start",
     flexGrow: 1,
-    margin: 30,
+    margin: MARGIN * 1.5,
   },
   playersAmountIndicator: {
     backgroundColor: colors.primary,
@@ -81,14 +86,14 @@ const styles = StyleSheet.create({
     borderRadius: SIZE / 2,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: -4,
+    marginLeft: -MARGIN * 0.2,
   },
   playerLabel: {
-    fontSize: 22,
+    fontSize: TEXT_SIZE * 1.6,
     letterSpacing: 1.2,
     justifyContent: "center",
-    top: 10,
-    marginLeft: 20,
+    top: MARGIN * 0.5,
+    marginLeft: MARGIN,
   },
 });
 

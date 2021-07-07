@@ -27,9 +27,11 @@ const RoundIconButtonText = ({
       activeOpacity={0.4}
       onPress={onPress}
       containerStyle={[styles.container, style]}
+      // style={style}
     >
       <RoundIcon
         backgroundSize={backgroundSize}
+        backgroundColor={backgroundColor}
         iconColor={iconColor}
         name={iconName}
         style={iconStyle}
@@ -38,7 +40,7 @@ const RoundIconButtonText = ({
       <Text
         style={[
           styles.text,
-          { color: textColor, fontSize: backgroundSize / 4 },
+          { color: textColor, fontSize: backgroundSize / 3.5 },
           textStyle,
         ]}
       >
@@ -49,12 +51,11 @@ const RoundIconButtonText = ({
 };
 const styles = StyleSheet.create({
   container: {
-    alignContent: "center",
     alignItems: "center",
   },
   text: {
     textAlign: "center",
-    top: -MARGIN * 10,
+    top: -MARGIN * 0.5,
   },
 });
 

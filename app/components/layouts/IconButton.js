@@ -3,10 +3,11 @@ import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
-
+import { itemPageSpec } from "../../config/theme";
+const { ICON_SIZE } = itemPageSpec;
 const IconButton = ({
   name,
-  size = 50,
+  size = ICON_SIZE * 1.2,
   onPress,
   iconColor = colors.primary,
   style,

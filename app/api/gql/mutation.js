@@ -140,6 +140,12 @@ const TOGGLE_JOIN_EVENT = gql`
   }
 `;
 
+const UPDATE_ATHLETE_EVENTS = gql`
+  mutation updateAthleteEvents($id: ID!) {
+    updateAthleteEvents(id: $id)
+  }
+`;
+
 export {
   BE_COACH,
   COACH_FEEDBACK,
@@ -149,4 +155,5 @@ export {
   SIGN_IN,
   SIGN_UP,
   TOGGLE_JOIN_EVENT,
+  UPDATE_ATHLETE_EVENTS,
 };

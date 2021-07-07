@@ -12,7 +12,7 @@ const AthleteProfileScreen = ({ route }) => {
   });
 
   // Showing the default athlete preview page.
-  if (loading) return <AthleteProfile />;
+  if (loading) return null; // <AthleteProfile />;
 
   if (error) return <AthleteProfile error={true} />;
 

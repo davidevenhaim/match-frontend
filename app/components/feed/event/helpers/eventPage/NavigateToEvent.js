@@ -7,29 +7,32 @@ import Text from "../../../../layouts/Text";
 
 import colors from "../../../../../config/colors";
 import { itemPageSpec } from "../../../../../config/theme";
+import RoundIconButtonText from "../../../../layouts/RoundIconButtonText";
 const { ICON_SIZE, TEXT_SIZE } = itemPageSpec;
 
 const NavigateToEvent = ({
   currentPosition,
+  color,
   destination,
   eventName,
+  iconStyle,
   style,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-
-  console.log(currentPosition);
-  console.log(destination);
   return (
     <View style={[styles.container, style]}>
       <View style={{ flexDirection: "row" }}>
-        <RoundIconButton
+        <RoundIconButtonText
           name="google-maps"
+          style={iconStyle}
           onPress={() => setIsVisible(!isVisible)}
-          style={styles.navigateButton}
+          iconStyle={[styles.navigateButton, { backgroundColor: color }]}
           backgroundSize={ICON_SIZE}
+          text={`Navigate To Event`}
+          textStyle={[styles.text, { color }]}
         />
       </View>
-      <Text style={styles.text}>{`Navigate To\nEvent`}</Text>
+      {/* <Text style={styles.text}>{`Navigate To\nEvent`}</Text> */}
       <Popup
         isVisible={isVisible}
         onCancelPressed={() => setIsVisible(false)}
@@ -45,7 +48,7 @@ const NavigateToEvent = ({
           longitude: destination.lng ? destination.lng : -77.0387185,
           sourceLatitude: currentPosition.lat, // optionally specify starting location for directions
           sourceLongitude: currentPosition.lng, // not optional if sourceLatitude is specified
-          title: eventName,
+          // title: eventName,
           googleForceLatLon: false, // optionally force GoogleMaps to use the latlon for the query instead of the title
           alwaysIncludeGoogle: false, // optional, true will always add Google Maps to iOS and open in Safari, even if app is not installed (default: false)
           dialogTitle: `Navigate to ${eventName} ?`,
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.sportColors.basketball,
   },
   text: {
-    fontSize: TEXT_SIZE,
+    fontSize: TEXT_SIZE * 0.8,
     top: -TEXT_SIZE * 0.5,
     textAlign: "center",
     color: colors.sportColors.basketball,

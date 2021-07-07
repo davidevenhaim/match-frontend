@@ -7,7 +7,7 @@ import FeedItem from "./FeedItem";
 import FeedLabel from "../FeedLabel";
 
 import { itemPageSpec } from "../../../config/theme";
-const { ITEM_WIDTH, FULL_SIZE } = itemPageSpec;
+const { ITEM_WIDTH, FULL_SIZE, MARGIN } = itemPageSpec;
 import routes from "../../../navigation/routes";
 
 const EventFeed = ({ events, refetch }) => {
@@ -23,8 +23,9 @@ const EventFeed = ({ events, refetch }) => {
   };
 
   return (
-    <SafeAreaView style={{ marginTop: -25 }}>
+    <SafeAreaView style={{ marginTop: -MARGIN }}>
       <Animated.FlatList
+        contentContainerStyle={{ left: MARGIN * 0.4 }}
         data={events}
         decelerationRate="fast"
         horizontal
@@ -47,9 +48,7 @@ const EventFeed = ({ events, refetch }) => {
               index={index}
               name={item.eventName}
               level={item.level}
-              location={
-                item.location.lat ? item.location.longName : item.location
-              }
+              location={item.location}
               playersAmount={[item.curPlayersAmount, item.maxPlayersAmount]}
               sport={item.sport}
               scrollX={scrollX}
@@ -59,7 +58,7 @@ const EventFeed = ({ events, refetch }) => {
             />
           );
         }}
-        ListFooterComponent={<View style={{ width: ITEM_WIDTH / 2.58 }} />}
+        ListFooterComponent={<View style={{ width: ITEM_WIDTH / 5 }} />}
         ListHeaderComponent={<FeedLabel text="Event Feed" />}
         stickySectionHeadersEnabled={true}
       />

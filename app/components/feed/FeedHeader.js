@@ -9,10 +9,10 @@ import APP_SPORTS from "../../config/events";
 import { itemPageSpec, SPACING } from "../../config/theme";
 import colors from "../../config/colors";
 
-const { FULL_SIZE, ICON_SIZE, ITEM_HEIGHT, ITEM_WIDTH, RADIUS } = itemPageSpec;
+const { ICON_SIZE, RADIUS, HEADER_HEIGHT } = itemPageSpec;
 const EventFeedHeader = ({ isSelected, setSearchFilters, setSportFilters }) => {
   return (
-    <View style={[styles.container, { height: FULL_SIZE * 0.52 }]}>
+    <View style={[styles.container, { height: HEADER_HEIGHT }]}>
       <View style={styles.topContainer}>
         <AppLogo showText={false} logoStyle={styles.logoStyle} />
         <TextInput iconName="filter" width="60%" placeholder="Custom Place" />

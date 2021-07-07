@@ -30,6 +30,7 @@ import colors from "../../../config/colors";
 import { defaultEvent } from "../../../config/defaultValues";
 import { ICON_SIZE, itemPageSpec } from "../../../config/theme";
 import { useSelector } from "react-redux";
+import RoundIconButtonText from "../../layouts/RoundIconButtonText";
 
 const { ITEM_WIDTH, ITEM_HEIGHT, RADIUS, MARGIN, FULL_SIZE, TEXT_SIZE } =
   itemPageSpec;
@@ -60,8 +61,8 @@ const EventPage = ({ isParticipant = false }) => {
     minute: "numeric",
   });
 
-  const [scrollEnabled, setScrollEnabled] = useState(false);
   const [showMapView, setShowMapView] = useState(true);
+
   useFocusEffect(
     React.useCallback(() => {
       navigation.dangerouslyGetParent().setOptions({
@@ -76,125 +77,128 @@ const EventPage = ({ isParticipant = false }) => {
     })
   );
 
+  const showMapViewHandler = () => setShowMapView((prevState) => !prevState);
+
   const { data, error, loading } = useQuery(GET_EVENT_PLAYERS, {
     variables: { id: event.id },
     fetchPolicy: "network-only",
   });
 
   return (
-    <ScrollView
-      scrollEnabled={scrollEnabled}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-    >
-      <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar barStyle="light-content" />
-        <View
-          style={[
-            { backgroundColor: colors.sportColors[event.sport] },
-            styles.sportLabel,
-          ]}
-        >
-          <MaterialCommunityIcons
-            name="arrow-left"
-            size={ICON_SIZE}
-            onPress={navigation.goBack}
-            style={styles.goBackButton}
-            color={colors.white}
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar barStyle="light-content" />
+      <View
+        style={[
+          { backgroundColor: colors.sportColors[event.sport] },
+          styles.sportLabel,
+        ]}
+      >
+        <MaterialCommunityIcons
+          name="arrow-left"
+          size={ICON_SIZE}
+          onPress={navigation.goBack}
+          style={styles.goBackButton}
+          color={colors.white}
+        />
+        <Text style={styles.sportText}>{event.sport}</Text>
+      </View>
+      <View style={styles.joinEventContainer}>
+        <JoinEvent
+          event={event}
+          isParticipant={isParticipant}
+          size={ICON_SIZE * 1.3}
+          iconStyle={{ backgroundColor: colors.sportColors[event.sport] }}
+          textStyle={{ color: colors.sportColors[event.sport] }}
+        />
+      </View>
+      <View style={styles.evenInfoContainer}>
+        <View style={styles.dateContainer}>
+          <IconWithText
+            iconName="calendar"
+            iconSize={ICON_SIZE * 0.7}
+            iconColor={colors.sportColors[event.sport]}
+            text={formattedDate}
+            textColor={colors.primary}
+            style={{ flexDirection: "row" }}
           />
-          <Text style={styles.sportText}>{event.sport}</Text>
-        </View>
-        <View style={styles.joinEventContainer}>
-          <JoinEvent
-            event={event}
-            isParticipant={isParticipant}
-            size={ICON_SIZE * 1.3}
-            iconStyle={{ backgroundColor: colors.sportColors[event.sport] }}
-            textStyle={{ color: colors.sportColors[event.sport] }}
+          <IconWithText
+            iconName="clock"
+            iconSize={ICON_SIZE * 0.7}
+            iconColor={colors.sportColors[event.sport]}
+            text={formattedTime}
+            textColor={colors.primary}
+            style={{ flexDirection: "row" }}
           />
         </View>
-        <View style={styles.evenInfoContainer}>
-          <View style={styles.dateContainer}>
-            <IconWithText
-              iconName="calendar"
-              iconSize={ICON_SIZE * 0.7}
-              iconColor={colors.sportColors[event.sport]}
-              text={formattedDate}
-              textColor={colors.primary}
-              style={{ flexDirection: "row" }}
-            />
-            <IconWithText
-              iconName="clock"
-              iconSize={ICON_SIZE * 0.7}
-              iconColor={colors.sportColors[event.sport]}
-              text={formattedTime}
-              textColor={colors.primary}
-              style={{ flexDirection: "row" }}
-            />
-          </View>
-          <View style={styles.eventExtraDetails}>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <View>
-                <Text style={{ fontSize: TEXT_SIZE * 2 }}>
-                  {event.eventName}
-                </Text>
-                <IconWithText
-                  iconName="map-marker"
-                  iconSize={ICON_SIZE * 0.7}
-                  iconColor={colors.sportColors[event.sport]}
-                  text={
-                    event.location.lng
-                      ? event.location.longName
-                      : event.location
-                  }
-                  textColor={colors.mediumGrey}
-                  style={{ flexDirection: "row", marginTop: 10 }}
-                />
-              </View>
-              <NavigateToEvent
-                currentPosition={curAthleteLocation}
-                destination={event.location}
-                eventName={event.eventName}
-                style={{ left: -MARGIN * 3 }}
+        <View style={styles.eventExtraDetails}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <View>
+              <Text style={{ fontSize: TEXT_SIZE * 2 }}>{event.eventName}</Text>
+              <IconWithText
+                iconName="map-marker"
+                iconSize={ICON_SIZE * 0.7}
+                iconColor={colors.sportColors[event.sport]}
+                text={
+                  event.location.lng ? event.location.longName : event.location
+                  // remove when resetting MongoDB.
+                }
+                textColor={colors.mediumGrey}
+                style={{ flexDirection: "row", marginTop: 10 }}
               />
             </View>
-            <LongTextHandler
-              text={event.description}
-              scrollHandler={setScrollEnabled}
+            <NavigateToEvent
+              currentPosition={curAthleteLocation}
+              destination={event.location}
+              eventName={event.eventName}
+              color={colors.sportColors[event.sport]}
+              style={{ left: -MARGIN * 3 }}
+              iconStyle={{ width: "35%" }}
             />
+          </View>
+          <LongTextHandler text={event.description} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <EventLevelIndicator
               itemHeight={ITEM_HEIGHT}
               itemWidth={ITEM_WIDTH}
               level={event.level}
               textStyle={{ textTransform: "capitalize" }}
             />
+            <RoundIconButtonText
+              style={{ right: MARGIN * 4, width: "35%" }}
+              // backgroundColor={colors.sportColors[event.sport]}
+              onPress={showMapViewHandler}
+              backgroundSize={ICON_SIZE}
+              iconName={showMapView ? "view-carousel-outline" : "view-carousel"}
+              iconStyle={{ alignSelf: "center" }}
+              text={showMapView ? "More Info" : "Show Location"}
+            />
           </View>
         </View>
-        <View style={{ marginTop: MARGIN * 2 }}>
-          {showMapView ? (
-            <MapView
-              longitude={event.location.lng}
-              latitude={event.location.lat}
+      </View>
+      <View>
+        {showMapView ? (
+          <MapView
+            style={{ marginTop: MARGIN * 2 }}
+            longitude={event.location.lng}
+            latitude={event.location.lat}
+          />
+        ) : (
+          <>
+            <ShowEventPlayers
+              players={loading ? null : data.Event.players}
+              loading={loading}
+              error={error}
+              itemSize={ITEM_HEIGHT}
             />
-          ) : (
-            <>
-              <ShowEventPlayers
-                players={loading ? null : data.Event.players}
-                loading={loading}
-                error={error}
-                itemSize={ITEM_HEIGHT}
-              />
-              <ShowCaptainInfo
-                captain={event.captain}
-                eventSport={event.sport}
-              />
-            </>
-          )}
-        </View>
-      </SafeAreaView>
-    </ScrollView>
+            <ShowCaptainInfo captain={event.captain} eventSport={event.sport} />
+          </>
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

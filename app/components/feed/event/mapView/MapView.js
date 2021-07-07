@@ -1,26 +1,30 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 
 import { itemPageSpec } from "../../../../config/theme";
 
 const AppMapView = ({
-  latitude,
-  longitude,
-  latitudeDelta = 0.002,
-  longitudeDelta = 0.002,
+  latitude = 37.78825,
+  longitude = -122.4324,
+  latitudeDelta = 0.001,
+  longitudeDelta = 0.001,
+  markerTitle = "Event's location",
+  style,
 }) => {
   return (
-    <View>
+    <View style={style}>
       <MapView
         initialRegion={{
-          latitude: latitude || 37.78825,
-          longitude: longitude || -122.4324,
+          latitude: latitude,
+          longitude: longitude,
           latitudeDelta,
           longitudeDelta,
         }}
         style={styles.mapStyle}
-      />
+      >
+        <Marker coordinate={{ latitude, longitude }} title={markerTitle} />
+      </MapView>
     </View>
   );
 };

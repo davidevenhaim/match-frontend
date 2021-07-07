@@ -23,7 +23,11 @@ const CoachPageScreen = () => {
 
   return (
     <CoachProfile
-      leaveFeedback={{ action: leaveFeedback, error: error, loading: loading }}
+      leaveFeedbackHandler={{
+        action: leaveFeedback,
+        error: error,
+        loading: loading,
+      }}
     />
   );
 };

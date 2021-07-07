@@ -8,11 +8,22 @@ import Text from "../../layouts/Text";
 import SportsIcon from "../../layouts/SportsIcon";
 
 import colors from "../../../config/colors";
-import { itemPageSpec, ICON_SIZE } from "../../../config/theme";
+import { itemPageSpec } from "../../../config/theme";
 import { useSelector } from "react-redux";
 import calculateDistance from "../../../api/CalculateDistance";
 
-const { ITEM_HEIGHT, ITEM_WIDTH, RADIUS, SPACING, FULL_SIZE } = itemPageSpec;
+const {
+  ITEM_HEIGHT,
+  ITEM_WIDTH,
+  MARGIN,
+  RADIUS,
+  FULL_SIZE,
+  TEXT_SIZE,
+  ICON_SIZE,
+} = itemPageSpec;
+
+const SPACING = MARGIN * 0.7;
+
 const ONE_DAY = 1000 * 60 * 60 * 24; // in milliseconds
 
 const FeedItem = ({
@@ -26,16 +37,16 @@ const FeedItem = ({
   playersAmount,
   sport,
   scrollX,
-  width,
+  height,
 }) => {
   date = new Date(date);
   const today = new Date();
   const curAthleteLocation = useSelector((state) => state.userInfo.location);
-
-  if (location && location.lat) {
-    console.log("here");
-    console.log(calculateDistance(curAthleteLocation, location));
-  }
+  // if (location && location.lat) {
+  const distanceFromEvent = parseFloat(
+    calculateDistance(curAthleteLocation, location).toFixed(1)
+  );
+  // }
 
   const daysUntilEvent = parseInt((date.getTime() - today.getTime()) / ONE_DAY);
 
@@ -63,9 +74,14 @@ const FeedItem = ({
     inputRange,
     outputRange: [1, 1.1, 1],
   });
-
   return (
-    <TouchableOpacity onPress={onPress} style={styles.conatiner}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.conatiner,
+        { height: height ? height : height ? height : ITEM_HEIGHT },
+      ]}
+    >
       <View
         style={[
           StyleSheet.absoluteFillObject,
@@ -86,12 +102,12 @@ const FeedItem = ({
         <Animated.Text
           style={[styles.locationText, { transform: [{ translateX }] }]}
         >
-          {location}
+          {location.lat ? location.longName : location}
         </Animated.Text>
         <View style={styles.dateContainer}>
           <Text
             style={{
-              fontSize: 13,
+              fontSize: TEXT_SIZE * 0.9,
               color:
                 daysUntilEvent < 0 || daysUntilEvent > 3
                   ? colors.white
@@ -102,16 +118,26 @@ const FeedItem = ({
             {eventDateString}
           </Text>
         </View>
+        <View style={styles.distanceContainer}>
+          <Text
+            style={{
+              fontSize: TEXT_SIZE,
+              color: distanceFromEvent < 10 ? colors.snow : colors.black,
+            }}
+          >
+            {distanceFromEvent ? `${distanceFromEvent}/ק״מ` : null}
+          </Text>
+        </View>
         <View style={styles.captainContainer}>
           <AthleteAvatar
             athleteImage={captain.avatar}
             athleteName={captain.name}
-            size="large"
+            size={ICON_SIZE * 2}
           />
           <Text style={styles.captainText}>{captain.name}</Text>
         </View>
         <EventLevelIndicator
-          itemHeight={ITEM_HEIGHT}
+          itemHeight={height ? height : ITEM_HEIGHT}
           itemWidth={ITEM_WIDTH}
           level={level}
           style={styles.eventLevelIndicator}
@@ -136,10 +162,11 @@ const FeedItem = ({
     </TouchableOpacity>
   );
 };
+
 const styles = StyleSheet.create({
   conatiner: {
-    height: ITEM_HEIGHT,
-    margin: SPACING / 2,
+    height: ITEM_HEIGHT > 400 ? ITEM_HEIGHT : ITEM_HEIGHT * 0.9,
+    marginRight: MARGIN * 0.4,
     width: ITEM_WIDTH,
   },
   captainContainer: {
@@ -154,21 +181,21 @@ const styles = StyleSheet.create({
   },
   captainText: {
     textTransform: "capitalize",
-    fontSize: 18,
+    fontSize: TEXT_SIZE * 1.3,
   },
   dateContainer: {
     alignItems: "center",
     position: "absolute",
-    right: SPACING,
-    top: SPACING,
+    right: MARGIN * 1.1,
+    top: MARGIN * 1.1,
   },
   dateLabel: {
     alignItems: "center",
     borderColor: colors.black,
     borderWidth: 0.2,
-    borderRadius: 45,
-    height: 80,
-    width: 80,
+    borderRadius: ICON_SIZE * 0.5,
+    height: ICON_SIZE,
+    width: ICON_SIZE,
     justifyContent: "center",
   },
   dateText: {
@@ -177,13 +204,25 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     alignSelf: "center",
     top: ITEM_HEIGHT * 0.5,
-    height: 45,
+    height: ICON_SIZE * 2,
     width: "80%",
   },
   descriptionText: {
     textAlign: "center",
     textTransform: "lowercase",
     color: colors.white,
+  },
+  distanceContainer: {
+    alignItems: "center",
+    backgroundColor: colors.primary,
+    borderTopLeftRadius: RADIUS,
+    borderBottomLeftRadius: RADIUS,
+    height: TEXT_SIZE * 2,
+    justifyContent: "center",
+    position: "absolute",
+    right: 0,
+    top: MARGIN * 3.5,
+    width: "30%",
   },
   eventLevelIndicator: {
     alignSelf: "center",
@@ -203,7 +242,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     color: colors.white,
-    fontSize: 30,
+    fontSize: TEXT_SIZE * 2,
     fontFamily: "Righteous-font",
     left: SPACING,
     position: "absolute",
@@ -214,21 +253,21 @@ const styles = StyleSheet.create({
   playersContainer: {
     alignItems: "center",
     backgroundColor: colors.primary,
-    borderRadius: 26,
-    bottom: SPACING + 12,
-    height: 52,
+    borderRadius: ICON_SIZE * 0.75,
+    bottom: SPACING,
+    height: ICON_SIZE * 1.5,
     justifyContent: "center",
     left: SPACING,
     position: "absolute",
-    width: 52,
+    width: ICON_SIZE * 1.5,
   },
   playersText: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: TEXT_SIZE * 1.3,
   },
   playersLabel: {
     color: colors.white,
-    fontSize: 9,
+    fontSize: TEXT_SIZE * 0.6,
   },
   sportContainer: {
     bottom: SPACING,

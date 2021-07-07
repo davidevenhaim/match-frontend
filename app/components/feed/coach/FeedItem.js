@@ -8,14 +8,15 @@ import Text from "../../layouts/Text";
 import { itemPageSpec, SPACING } from "../../../config/theme";
 import colors from "../../../config/colors";
 import Rating from "./helpers/Rating";
-const { ITEM_WIDTH, RADIUS } = itemPageSpec;
+const { ITEM_WIDTH, RADIUS, ICON_SIZE, MARGIN, TEXT_SIZE } = itemPageSpec;
 
 const ShowPlayer = ({
   avatar,
   sports,
   name,
   onPress,
-  size = "medium",
+  price,
+  size = ICON_SIZE * 1.5,
   rating,
   ratingCount,
 }) => {
@@ -37,9 +38,16 @@ const ShowPlayer = ({
           <AthleteAvatar athleteImage={avatar} athleteName={name} size={size} />
           <Text>{name}</Text>
         </View>
-        <SportsIconList userSports={sports} touch={false} iconSize={20} />
+        <SportsIconList
+          userSports={sports}
+          touch={false}
+          iconSize={ICON_SIZE * 0.7}
+        />
       </View>
-      <Rating userRating={rating} ratingCount={ratingCount} />
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Rating userRating={rating} ratingCount={ratingCount} />
+        <Text style={styles.priceText}>{price}₪/hr</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -50,9 +58,13 @@ const styles = StyleSheet.create({
     margin: SPACING * 0.8,
   },
   container: {
-    height: ITEM_WIDTH * 0.5,
-    margin: RADIUS * 0.5,
+    height: ITEM_WIDTH * 0.4,
+    marginRight: RADIUS * 0.5,
     width: ITEM_WIDTH,
+  },
+  priceText: {
+    right: MARGIN * 2,
+    fontSize: TEXT_SIZE,
   },
 });
 

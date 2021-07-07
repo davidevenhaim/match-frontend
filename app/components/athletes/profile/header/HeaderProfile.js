@@ -3,16 +3,15 @@ import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import AthleteAvatar from "../../../layouts/AthleteAvatar";
+import AthleteHeaderOptions from "./AthleteHeaderOptions";
 import ConnectionsList from "../ConnectionsList";
 import GetConnectedButton from "./GetConnectedButton";
-import AthleteHeaderOptions from "./AthleteHeaderOptions";
 import SportsIconList from "../../../layouts/SportsIconList";
 import Text from "../../../layouts/Text";
 
 import colors from "../../../../config/colors";
 import { itemPageSpec } from "../../../../config/theme";
-const { ITEM_HEIGHT, ICON_SIZE, RADIUS, DEVICE_HEIGHT, TEXT_SIZE } =
-  itemPageSpec;
+const { ICON_SIZE, RADIUS, DEVICE_HEIGHT, TEXT_SIZE } = itemPageSpec;
 
 const HeaderProfile = ({
   athlete: { connection, name, avatar, favoriteSport, id },
@@ -57,6 +56,7 @@ const HeaderProfile = ({
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   avatarStyle: {
     alignItems: "center",
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: colors.lightGrey,
     height: DEVICE_HEIGHT * 0.2,
+    marginBottom: DEVICE_HEIGHT * 0.08,
     top: ICON_SIZE * 1.5,
     shadowOpacity: 0.3,
     width: "80%",

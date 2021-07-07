@@ -8,8 +8,7 @@ import FeedHeader from "./FeedHeader";
 import { filterEvents } from "./event/helpers/filterEvents";
 
 import { itemPageSpec } from "../../config/theme";
-
-const { HEADER_HEIGHT } = itemPageSpec;
+import { SafeAreaView } from "react-native";
 
 const ShowFeed = ({
   events,
@@ -21,7 +20,6 @@ const ShowFeed = ({
 }) => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [eventsArr, setEventsArr] = useState(events);
-
   useEffect(() => {
     const filteredEvents = filterEvents(events, { sportFilters, textFilters });
 
@@ -56,16 +54,15 @@ const ShowFeed = ({
   }
 
   return (
-    <>
+    <SafeAreaView>
       <FeedHeader
         setSportFilters={setSportFilter}
         setTextFilters={setTextFilters}
         isSelected={isSelected}
-        height={HEADER_HEIGHT}
       />
       <EventFeed events={eventsArr} refetch={refetch} />
       <CoachFeed />
-    </>
+    </SafeAreaView>
   );
 };
 
