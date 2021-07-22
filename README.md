@@ -21,10 +21,10 @@ Purpose:
 ### App's Signup screen:  
 
 #### "Signup With" / or be classic:
-<img width="507" alt="Screen Shot 2021-07-22 at 10 14 25" src="https://user-images.githubusercontent.com/68952247/126602963-b3af1e80-cc4e-4ee0-94e9-d67e1fbb3aa9.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 14 25" src="https://user-images.githubusercontent.com/68952247/126602963-b3af1e80-cc4e-4ee0-94e9-d67e1fbb3aa9.png">
 
 #### Classic signing up:
-<img width="496" alt="login" src="https://user-images.githubusercontent.com/68952247/126603076-6a93d7cd-b03f-424e-998a-3d63300882e0.png">
+<img width="300" alt="login" src="https://user-images.githubusercontent.com/68952247/126603076-6a93d7cd-b03f-424e-998a-3d63300882e0.png">
 
 
 ## Log in
@@ -36,7 +36,7 @@ Purpose:
 
 ## App's Log-in screen:  
 
-<img width="496" alt="login" src="https://user-images.githubusercontent.com/68952247/126602726-63f4ac97-582a-4e9e-ae50-0668f7c3adfe.png">x
+<img width="300" alt="login" src="https://user-images.githubusercontent.com/68952247/126602726-63f4ac97-582a-4e9e-ae50-0668f7c3adfe.png">x
 
 
 
@@ -55,7 +55,7 @@ The basic user, has profile:
 
 ## Athlete Page:  
 
-<img width="504" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126602485-240bc0c3-8917-4560-809f-2c3088b68afb.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126602485-240bc0c3-8917-4560-809f-2c3088b68afb.png">
 
 
 ### 2.Captains:  
@@ -77,17 +77,17 @@ The basic user, has profile:
 - Can accept or decline notification directly
 - Click on notification will show more details.
 
-<img width="504" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126605861-cc71aeff-97de-496a-8320-736b98c80a71.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126605861-cc71aeff-97de-496a-8320-736b98c80a71.png">
 
 
 
 ##### Athlete's user & app settings:
 
-<img width="502" alt="settings" src="https://user-images.githubusercontent.com/68952247/126605663-9b7ad315-77d1-4796-92a1-cb3a96b75866.png">
+<img width="300" alt="settings" src="https://user-images.githubusercontent.com/68952247/126605663-9b7ad315-77d1-4796-92a1-cb3a96b75866.png">
 
 #### Athlete profile view: (as visitor):
 
-<img width="499" alt="athlete-profile-visitor" src="https://user-images.githubusercontent.com/68952247/126605818-f13bd1a6-618a-4628-a2aa-51fec476c276.png">
+<img width="300" alt="athlete-profile-visitor" src="https://user-images.githubusercontent.com/68952247/126605818-f13bd1a6-618a-4628-a2aa-51fec476c276.png">
 
 
 - See their upcoming events and ask to join them.
@@ -109,7 +109,7 @@ besides all the athletes fields will have:
 
 #### Coach Page:  
 
-<img width="503" alt="Screen Shot 2021-07-22 at 10 13 39" src="https://user-images.githubusercontent.com/68952247/126602608-72c38041-f48d-4608-ab1c-0ed43ce41ce5.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 13 39" src="https://user-images.githubusercontent.com/68952247/126602608-72c38041-f48d-4608-ab1c-0ed43ce41ce5.png">
 
 
 - Coaches cannot be private, and will be open to chat with everyone.
@@ -133,7 +133,7 @@ An event will have a status bar of matching from the user to the event ( based o
 
 ## Event + Coach Feed Preview:
 
-<img width="489" alt="Screen Shot 2021-07-22 at 10 11 26" src="https://user-images.githubusercontent.com/68952247/126603308-a9ea1c28-bf2c-4188-a572-eb10ff4ee272.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 11 26" src="https://user-images.githubusercontent.com/68952247/126603308-a9ea1c28-bf2c-4188-a572-eb10ff4ee272.png">
 
 
 #### **Search event filters:**
@@ -143,7 +143,7 @@ An event will have a status bar of matching from the user to the event ( based o
 - Search by keywords
 
 ### Preview of event searched - Tennis only:
-<img width="495" alt="tennis-events" src="https://user-images.githubusercontent.com/68952247/126603553-4118aa42-deb3-42a7-8f2a-2bea2db102f3.png">
+<img width="300" alt="tennis-events" src="https://user-images.githubusercontent.com/68952247/126603553-4118aa42-deb3-42a7-8f2a-2bea2db102f3.png">
 
 
 
@@ -163,12 +163,12 @@ Those who didn&#39;t approve the event request will not appear.
 
 ### **Event page:**
 
-<img width="502" alt="Screen Shot 2021-07-22 at 10 12 20" src="https://user-images.githubusercontent.com/68952247/126603364-7acad9be-3648-41b4-a3c7-d502ce4b6764.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 12 20" src="https://user-images.githubusercontent.com/68952247/126603364-7acad9be-3648-41b4-a3c7-d502ce4b6764.png">
 
 
 #### Event page with map view:  
 
-<img width="504" alt="Screen Shot 2021-07-22 at 10 12 49" src="https://user-images.githubusercontent.com/68952247/126604845-6c051d70-333f-4235-83cd-b66a3139559a.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 12 49" src="https://user-images.githubusercontent.com/68952247/126604845-6c051d70-333f-4235-83cd-b66a3139559a.png">
 
 
 - When sent an invitation it will appear as an invitation and a notification will be sent with all the details.
@@ -199,10 +199,10 @@ Options when creating event:
 - Where &amp; When the event will occur.
 
 ### Event creation initial state. 
-<img width="505" alt="Screen Shot 2021-07-22 at 10 13 21" src="https://user-images.githubusercontent.com/68952247/126603117-00329a92-d659-428d-9e89-25bf30f66f02.png">
+<img width="300" alt="Screen Shot 2021-07-22 at 10 13 21" src="https://user-images.githubusercontent.com/68952247/126603117-00329a92-d659-428d-9e89-25bf30f66f02.png">
 
 #### Event details filled:  
-<img width="504" alt="create-event-filled" src="https://user-images.githubusercontent.com/68952247/126603232-29c72976-bafe-457d-aabe-c0431d77f942.png">
+<img width="300" alt="create-event-filled" src="https://user-images.githubusercontent.com/68952247/126603232-29c72976-bafe-457d-aabe-c0431d77f942.png">
 
 ### After creating the event, the user will be navigated to the event page.  
 
@@ -235,15 +235,6 @@ will have all of the team member features and:
 - Private chat will be possible only between event members
 
 inbox will show private messages and event messages.  
- 
- #### Team Member:
-
-1. Chat
-2. Default mechanism will count each group member as 1, if the group member wants to invite a friend that does not have the app, (invite by link will be recommended) he has (&quot;+&quot;) option to be counted as more than 1 (add friend that doesn&#39;t have an app profile).
-3. Confirm/decline arrival.
-4. Users can change &quot;Team&quot; photo.
-5. pen events: can invite athletes nearby and friends.
-6. change event photo.
 
 
 ## Push Notifications
@@ -260,8 +251,6 @@ Activity panel notifications:
 1. Captain: when someone left the event.
 2. Someone joined the event.
 3. A day after the match a notification will be sent to in order to know if they want to play again next week (Make a one time event usual). (maybe on create event page only, not sure yet).
-
-![](RackMultipart20210722-4-olje8h_html_312e7afa30a66a60.jpg)
 
 - Event chat messages are muted by default.
 
