@@ -3,6 +3,12 @@
 ![photo_2021-07-22 10 38 27](https://user-images.githubusercontent.com/68952247/126604599-f1ff7fa9-b56f-42c1-ad58-a028bd44bdc3.jpeg)
 
 
+## Match - a React Native Application 
+#### Backend written with Node.js, GraphQL.  
+#### Database managed with MongoDB.  
+### App Purpose:
+The app is trying to connect people with love for sports, and help people live more active life and making friends!
+The app is complete and ready to use.
 
 ## Onboarding Page:  
 
@@ -51,11 +57,6 @@ The basic user, has profile:
 2. Basic information (required): Name, Favorite sports, Location (based on gps).
 3. Statistics & Seasons - information about current athlete record event participations.  
 4. every Athlete that creates an event becomes the event &quot;captain&quot;.
-5.
-
-## Athlete Page:  
-
-<img width="300" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126602485-240bc0c3-8917-4560-809f-2c3088b68afb.png">
 
 
 ### 2.Captains:  
@@ -77,8 +78,10 @@ The basic user, has profile:
 - Can accept or decline notification directly
 - Click on notification will show more details.
 
-<img width="300" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126605861-cc71aeff-97de-496a-8320-736b98c80a71.png">
 
+## Athlete/Captain Page:  
+
+<img width="300" alt="Screen Shot 2021-07-22 at 10 13 14" src="https://user-images.githubusercontent.com/68952247/126605861-cc71aeff-97de-496a-8320-736b98c80a71.png">
 
 
 ##### Athlete's user & app settings:
@@ -96,9 +99,10 @@ The basic user, has profile:
 - ONLY if players are connected, visitor will be able to send a message.
 - Invite to an event/ if doesn&#39;t have an event will be directed to 1-Step create an event.
 
-### 3.Coaches - Coaches are Athletes but **Athletes are NOT coaches**.
+### 3.Coaches
+#### Coaches are Athletes but **Athletes are NOT coaches**. 
 
-besides all the athletes fields will have:
+Besides all the athletes fields will have:
 
 1. Booking Schedule - Athletes can ask for an appointment, if the coach accepts the appointment the date and time will be occupied.
 2. Rating &amp; Feedback - from athletes that had a training session with him.
