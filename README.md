@@ -3,9 +3,22 @@
 ![photo_2021-07-22 10 38 27](https://user-images.githubusercontent.com/68952247/126604599-f1ff7fa9-b56f-42c1-ad58-a028bd44bdc3.jpeg)
 
 
-## Match - a React Native Application 
-#### Backend written with Node.js, GraphQL.  
-#### Database managed with MongoDB.  
+# Match - a React Native Application 
+## Technologies used:
+
+#### Front-End:
+##### React Native 
+##### React Hooks 
+##### Redux 
+
+#### Back-End:
+##### Node.js
+##### GraphQL
+
+#### DataBase:
+##### MongoDB
+
+
 ### App Purpose:
 The app is trying to connect people with love for sports, and help people live more active life and making friends!
 The app is complete and ready to use.
@@ -13,7 +26,9 @@ The app is complete and ready to use.
 ## Onboarding Page:  
 
 #### App Explenation:  
-Purpose:  
+
+##### App Introduction
+
 <img width="300" alt="Screen Shot 2021-07-22 at 10 09 55" src="https://user-images.githubusercontent.com/68952247/126602819-b6a1ed43-c127-423f-8309-48e25e269a80.png">
 #### Events:  
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 12" src="https://user-images.githubusercontent.com/68952247/126602824-3a6755c3-ee94-4944-b569-209696f607da.png">.
