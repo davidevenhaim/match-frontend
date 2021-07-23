@@ -3,23 +3,12 @@
 ![photo_2021-07-22 10 38 27](https://user-images.githubusercontent.com/68952247/126604599-f1ff7fa9-b56f-42c1-ad58-a028bd44bdc3.jpeg)
 
 
-# Match - a React Native Application 
-## Technologies used:
+# Technologies used:
 
-#### Front-End:
-##### React Native 
-##### React Hooks 
-##### Redux 
-
-#### Back-End:
-##### Node.js
-##### GraphQL
-
-#### DataBase:
-##### MongoDB
+![Match-Tech](https://user-images.githubusercontent.com/68952247/126772938-63c9ea13-e3d7-4020-aa74-cf4ddf909700.png)
 
 
-### App Purpose:
+# App Purpose:
 The app is trying to connect people with love for sports, and help people live more active life and making friends!
 The app is complete and ready to use.
 
@@ -34,7 +23,7 @@ The app is complete and ready to use.
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 12" src="https://user-images.githubusercontent.com/68952247/126602824-3a6755c3-ee94-4944-b569-209696f607da.png">.
 ####  Joining Events:  
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 22" src="https://user-images.githubusercontent.com/68952247/126602874-ac706ade-a8c4-4846-b330-17d0df3e2558.png">
-#### Become Coach:  
+#### Become coach:
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 34" src="https://user-images.githubusercontent.com/68952247/126602889-907006f6-e139-420b-9c7a-10e78d20cde9.png">
 
 ## Signup
