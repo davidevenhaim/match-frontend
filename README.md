@@ -3,37 +3,45 @@
 ![photo_2021-07-22 10 38 27](https://user-images.githubusercontent.com/68952247/126604599-f1ff7fa9-b56f-42c1-ad58-a028bd44bdc3.jpeg)
 
 
-# Technologies used:
+### This repo contains only the front end code.
 
-![Match-Tech](https://user-images.githubusercontent.com/68952247/126772938-63c9ea13-e3d7-4020-aa74-cf4ddf909700.png)
+# Technologies
+
+![Match-Tech](https://user-images.githubusercontent.com/68952247/126772938-63c9ea13-e3d7-4020-aa74-cf4ddf909700.png) 
 
 
-# App Purpose:
+# App Purpose
 The app is trying to connect people with love for sports, and help people live more active life and making friends!
 The app is complete and ready to use.
 
-## Onboarding Page:  
+## Onboarding Page.  
 
-#### App Explenation:  
+#### App Explenation   
 
 ##### App Introduction
 
 <img width="300" alt="Screen Shot 2021-07-22 at 10 09 55" src="https://user-images.githubusercontent.com/68952247/126602819-b6a1ed43-c127-423f-8309-48e25e269a80.png">
-#### Events:  
+
+Events   
+
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 12" src="https://user-images.githubusercontent.com/68952247/126602824-3a6755c3-ee94-4944-b569-209696f607da.png">.
-####  Joining Events:  
+
+Joining Events 
+
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 22" src="https://user-images.githubusercontent.com/68952247/126602874-ac706ade-a8c4-4846-b330-17d0df3e2558.png">
-#### Become coach:
+
+Become coach 
+
 <img width="300" alt="Screen Shot 2021-07-22 at 10 10 34" src="https://user-images.githubusercontent.com/68952247/126602889-907006f6-e139-420b-9c7a-10e78d20cde9.png">
 
 ## Signup
 
-### App's Signup screen:  
+### App's Signup screen 
 
-#### "Signup With" / or be classic:
+#### "Signup With" / or be classic
 <img width="300" alt="Screen Shot 2021-07-22 at 10 14 25" src="https://user-images.githubusercontent.com/68952247/126602963-b3af1e80-cc4e-4ee0-94e9-d67e1fbb3aa9.png">
 
-#### Classic signing up:
+#### Classic signing up
 <img width="300" alt="login" src="https://user-images.githubusercontent.com/68952247/126603076-6a93d7cd-b03f-424e-998a-3d63300882e0.png">
 
 
@@ -143,6 +151,8 @@ An event will have a status bar of matching from the user to the event ( based o
 
 <img width="300" alt="Screen Shot 2021-07-22 at 10 11 26" src="https://user-images.githubusercontent.com/68952247/126603308-a9ea1c28-bf2c-4188-a572-eb10ff4ee272.png">
 
+- 
+
 
 #### **Search event filters:**
 
@@ -173,6 +183,16 @@ Those who didn&#39;t approve the event request will not appear.
 
 <img width="300" alt="Screen Shot 2021-07-22 at 10 12 20" src="https://user-images.githubusercontent.com/68952247/126603364-7acad9be-3648-41b4-a3c7-d502ce4b6764.png">
 
+### Event info in feed
+
+- Avatar of the event captain
+- City of the event
+- Distance from current device location to event location
+- Day counter - how many days until event, less than 2 days will appear in RED, less than 10 will appear in black, otherwise will appear in white.
+- Color of the event component will be based on the sport color
+- Event level: (Beginner, Amatuer, Proffesional, Legendery)
+- Current players amount / Max players amount
+- Event description - 2 lines of maximum
 
 #### Event page with map view:  
 
@@ -205,6 +225,7 @@ Options when creating event:
 - Kind of sport, if has a few favorite sport - need do define which sport. (only user favorite sports will appear!).
 - Amount of people that can join.
 - Where &amp; When the event will occur.
+- Level of the event - Slider with options (Beginner, Amatuer, Proffesional, Legendery)
 
 ### Event creation initial state. 
 <img width="300" alt="Screen Shot 2021-07-22 at 10 13 21" src="https://user-images.githubusercontent.com/68952247/126603117-00329a92-d659-428d-9e89-25bf30f66f02.png">
@@ -264,3 +285,13 @@ Activity panel notifications:
 
 - by default only &quot;common event members&quot; can send messages. Can be changed to &quot;Everyone&quot;.
 - Language will be Hebrew or English (Same as system language).
+
+
+# Copyrights ©
+
+- App idea
+- App SRS 
+- Ui/Ux design
+- Backend & Frontend
+
+Created by David Abenhaim
