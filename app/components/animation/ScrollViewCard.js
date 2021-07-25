@@ -57,7 +57,7 @@ const ScrollViewCard = ({ action, description, image, title, width }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primary,
     width: "60%",
     margin: 15,
     borderWidth: 1,

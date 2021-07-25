@@ -7,31 +7,34 @@ import ScrollViewCard from "../ScrollViewCard";
 
 import colors from "../../../config/colors";
 
-const BACKGROUNDS = [colors.primary, "#4279a3", "#3b5998", colors.secondary];
+const BACKGROUNDS = [colors.primary, "#4279a3", "#3b5998", colors.primary];
 
 const DATA = [
   {
     description: `Explore & Join Sport Events that match\n the best for YOU.`,
-    image: "https://www.flaticon.com/premium-icon/icons/svg/2940/3048379.svg",
+    image:
+      "https://img-premium.flaticon.com/png/512/2936/premium/2936766.png?token=exp=1626937147~hmac=8345bf145b0ff25a294fb99cf398489a",
     key: "i1",
     title: "Meet New Friends",
   },
   {
     description: `Create your own custom sport events and athletes will join you.`,
-    image: "https://www.flaticon.com/premium-icon/icons/svg/2940/3593635.svg",
+    image: "https://image.flaticon.com/icons/png/512/3593/3593635.png",
     key: "i2",
     title: "Create Events",
   },
   {
     description: `You are ready to start,it's completley free.\n With friendly and easy to adapt UI`,
-    image: "https://www.flaticon.com/premium-icon/icons/svg/2940/2674973.svg",
+    image:
+      "https://img-premium.flaticon.com/png/512/2436/premium/2436696.png?token=exp=1626937078~hmac=e038c90e41cbdb761bee72be79c21816",
     key: "i3",
     title: "Have Fun!",
   },
   {
     action: true,
     description: `We can help you find potnetial clients and \n schedule a training session through the app!`,
-    image: "https://www.flaticon.com/premium-icon/icons/svg/2940/2718302.svg",
+    image:
+      "https://img-premium.flaticon.com/png/512/3475/premium/3475033.png?token=exp=1626937234~hmac=38f7af8092830c05a5c9f5218ffd24ee",
     key: "i4",
     title: "Are you a Coach?",
   },
@@ -54,7 +57,7 @@ const Indicator = ({ scrollX }) => {
           extrapolate: "clamp",
         });
         if (i == DATA.length - 1) {
-          backgroundColor = colors.primary;
+          backgroundColor = colors.silver;
           // last element of the list gets a unique color.
         }
         return (
