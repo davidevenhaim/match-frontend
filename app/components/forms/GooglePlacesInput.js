@@ -10,7 +10,7 @@ import colors from "../../config/colors";
 import { itemPageSpec } from "../../config/theme";
 const { MARGIN, RADIUS } = itemPageSpec;
 
-const API_KEY = "AIzaSyCq8a_KTqULenrmLjhJRYiAVbSVJJVWaxY";
+const API_KEY = "";
 const URL_REQUEST =
   "https://maps.googleapis.com/maps/api/place/findplacefromtext/output?$parameters";
 const INPUT_TYPE = "textquery"; // "phonenumber" alse avilable
