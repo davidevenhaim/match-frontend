@@ -37,6 +37,10 @@ Become coach
 
 ## Signup
 
+### Sports aviliable in the App:
+<img width="300" alt="Screen Shot 2021-08-12 at 22 00 55" src="https://user-images.githubusercontent.com/68952247/129253777-644009d7-c00f-4763-b532-18331cc4c6e4.png">
+
+
 ### App's Signup screen 
 
 #### "Signup With" / or be classic
@@ -296,3 +300,5 @@ Activity panel notifications:
 - Backend & Frontend
 
 Created by David Abenhaim
+
+© All rights reserved to David Abenhaim. Before forking/downloading repo please contact me. ©
