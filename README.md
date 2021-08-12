@@ -38,7 +38,10 @@ Become coach
 ## Signup
 
 ### Sports aviliable in the App:
-<img width="300" alt="Screen Shot 2021-08-12 at 22 00 55" src="https://user-images.githubusercontent.com/68952247/129253777-644009d7-c00f-4763-b532-18331cc4c6e4.png">
+
+<img width="513" alt="Screen Shot 2021-08-12 at 22 00 55" src="https://user-images.githubusercontent.com/68952247/129254764-c6a1979b-5299-411d-8a1b-26ed367998e8.png">
+
+Every sport has his unique color and will appear with this color in the athletes profile and event feed that will be shown below.
 
 
 ### App's Signup screen 
