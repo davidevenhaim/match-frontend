@@ -11,7 +11,8 @@
 
 
 # App Purpose
-The app is trying to connect people with love for sports, and help people live more active life and making friends!
+The app goal is to find participate in sport events hapening nearby.
+Users are defines as athletes and users can connect and and schedule a sport event, from surfing in the beach to play basketball in a local basketball court.
 The app is complete and ready to use.
 
 ## Onboarding Page.  
